@@ -1,0 +1,355 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>Test eturnal_SUITE:start_eturnal result</title>
+<meta http-equiv="cache-control" content="no-cache"></meta>
+<meta http-equiv="content-type" content="text/html; charset=utf-8"></meta>
+<link rel="stylesheet" href="../../ct_default.css" type="text/css"></link>
+<script type="text/javascript" src="../../jquery-latest.js"></script>
+<script type="text/javascript" src="../../jquery.tablesorter.min.js"></script>
+</head>
+<body>
+
+<a name="top"></a><pre>
+=== Test case: <a href="eturnal_suite.src.html#start_eturnal-1">eturnal_SUITE:start_eturnal/1</a> (click for source code)
+
+=== Config value:
+
+    [{watchdog,&lt;0.673.0&gt;},
+     {tc_logfile,"/home/runner/work/eturnal/eturnal/_build/test/logs/ct_run.nonode@nohost.2021-12-10_20.04.35/lib.eturnal.logs/run.2021-12-10_20.04.35/eturnal_suite.start_eturnal.html"},
+     {tc_group_properties,[]},
+     {tc_group_path,[]},
+     {data_dir,"/home/runner/work/eturnal/eturnal/_build/test/lib/eturnal/test/eturnal_SUITE_data/"},
+     {priv_dir,"/home/runner/work/eturnal/eturnal/_build/test/logs/ct_run.nonode@nohost.2021-12-10_20.04.35/lib.eturnal.logs/run.2021-12-10_20.04.35/log_private/"}]
+
+=== Current directory is "/home/runner/work/eturnal/eturnal/_build/test/logs/ct_run.nonode@nohost.2021-12-10_20.04.35"
+
+=== Started at 2021-12-10 20:04:35
+
+<br />
+
+</pre>
+<div class="default"><pre><b>*** User 2021-12-10 20:04:35.459 ***</b>
+Starting up eturnal
+</pre></div>
+<pre>
+
+</pre>
+<div class="sasl"><pre><b>*** System report during eturnal_SUITE:start_eturnal/1 2021-12-10 20:04:35.503 ***</b>
+=NOTICE REPORT==== 10-Dec-2021::20:04:35.503765 ===
+Starting eturnal 1.6.0 on Erlang/OTP 24 (ERTS 12.1.5)
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="sasl"><pre><b>*** System report during eturnal_SUITE:start_eturnal/1 2021-12-10 20:04:35.504 ***</b>
+=DEBUG REPORT==== 10-Dec-2021::20:04:35.504039 ===
+Starting supervisor: eturnal_sup
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="sasl"><pre><b>*** System report during eturnal_SUITE:start_eturnal/1 2021-12-10 20:04:35.504 ***</b>
+=DEBUG REPORT==== 10-Dec-2021::20:04:35.504192 ===
+Configuring eturnal_sup supervisor: [#{id =&gt; systemd,
+                                       start =&gt;
+                                           {eturnal_systemd,start_link,[]}},
+                                     #{id =&gt; eturnal,
+                                       start =&gt; {eturnal,start_link,[]}}]
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="sasl"><pre><b>*** System report during eturnal_SUITE:start_eturnal/1 2021-12-10 20:04:35.506 ***</b>
+=INFO REPORT==== 10-Dec-2021::20:04:35.506604 ===
+Got no NOTIFY_SOCKET, notifications disabled
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="sasl"><pre><b>*** System report during eturnal_SUITE:start_eturnal/1 2021-12-10 20:04:35.507 ***</b>
+=DEBUG REPORT==== 10-Dec-2021::20:04:35.507041 ===
+Using run directory run
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="sasl"><pre><b>*** System report during eturnal_SUITE:start_eturnal/1 2021-12-10 20:04:35.507 ***</b>
+=DEBUG REPORT==== 10-Dec-2021::20:04:35.507180 ===
+TURN configuration seems fine
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="sasl"><pre><b>*** System report during eturnal_SUITE:start_eturnal/1 2021-12-10 20:04:35.507 ***</b>
+=WARNING REPORT==== 10-Dec-2021::20:04:35.507320 ===
+TLS enabled without 'tls_crt_file', creating self-signed certificate
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="sasl"><pre><b>*** System report during eturnal_SUITE:start_eturnal/1 2021-12-10 20:04:37.316 ***</b>
+=DEBUG REPORT==== 10-Dec-2021::20:04:37.316481 ===
+Calling mod_log_stun:start/0
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="sasl"><pre><b>*** System report during eturnal_SUITE:start_eturnal/1 2021-12-10 20:04:37.316 ***</b>
+=DEBUG REPORT==== 10-Dec-2021::20:04:37.316826 ===
+Starting mod_log_stun
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="sasl"><pre><b>*** System report during eturnal_SUITE:start_eturnal/1 2021-12-10 20:04:37.317 ***</b>
+=INFO REPORT==== 10-Dec-2021::20:04:37.317077 ===
+Started mod_log_stun
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="sasl"><pre><b>*** System report during eturnal_SUITE:start_eturnal/1 2021-12-10 20:04:37.317 ***</b>
+=DEBUG REPORT==== 10-Dec-2021::20:04:37.317230 ===
+Calling mod_stats_influx:start/0
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="sasl"><pre><b>*** System report during eturnal_SUITE:start_eturnal/1 2021-12-10 20:04:37.317 ***</b>
+=DEBUG REPORT==== 10-Dec-2021::20:04:37.317348 ===
+Starting mod_stats_influx
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="sasl"><pre><b>*** System report during eturnal_SUITE:start_eturnal/1 2021-12-10 20:04:37.323 ***</b>
+=INFO REPORT==== 10-Dec-2021::20:04:37.322928 ===
+    msg: Starting application: influx_udp
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="sasl"><pre><b>*** System report during eturnal_SUITE:start_eturnal/1 2021-12-10 20:04:37.325 ***</b>
+=DEBUG REPORT==== 10-Dec-2021::20:04:37.325464 ===
+Dependency influx_udp was available already
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="sasl"><pre><b>*** System report during eturnal_SUITE:start_eturnal/1 2021-12-10 20:04:37.327 ***</b>
+=INFO REPORT==== 10-Dec-2021::20:04:37.327292 ===
+    host: {127,0,0,1}
+    msg: Start clients pool
+    options: #{host =&gt; "localhost",max_overflow =&gt; 1,pool_size =&gt; 1,
+               port =&gt; 8089}
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="sasl"><pre><b>*** System report during eturnal_SUITE:start_eturnal/1 2021-12-10 20:04:37.335 ***</b>
+=INFO REPORT==== 10-Dec-2021::20:04:37.335686 ===
+    msg: Open UDP socket on port
+    port: 42283
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="sasl"><pre><b>*** System report during eturnal_SUITE:start_eturnal/1 2021-12-10 20:04:37.336 ***</b>
+=INFO REPORT==== 10-Dec-2021::20:04:37.336197 ===
+Started mod_stats_influx
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="sasl"><pre><b>*** System report during eturnal_SUITE:start_eturnal/1 2021-12-10 20:04:37.336 ***</b>
+=DEBUG REPORT==== 10-Dec-2021::20:04:37.336317 ===
+Started 2 modules
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="sasl"><pre><b>*** System report during eturnal_SUITE:start_eturnal/1 2021-12-10 20:04:37.337 ***</b>
+=DEBUG REPORT==== 10-Dec-2021::20:04:37.336595 ===
+Starting listener 127.0.0.1:34780 (udp) with options:
+[{use_turn,true},
+ {auth_type,user},
+ {turn_ipv4_address,{10,1,0,6}},
+ {turn_ipv6_address,{0,0,0,0,0,0,0,1}},
+ {turn_min_port,49152},
+ {turn_max_port,65535},
+ {turn_max_allocations,10},
+ {turn_max_permissions,10},
+ {shaper,100000},
+ {turn_blacklist,[{{203,0,113,4},32},{{8193,3512,0,0,0,0,0,4},128}]},
+ {auth_realm,&lt;&lt;"eturnal.net"&gt;&gt;},
+ {server_name,&lt;&lt;"eturnal"&gt;&gt;},
+ {auth_fun,fun eturnal:get_password/2},
+ {hook_fun,fun eturnal:run_hook/2}]
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="sasl"><pre><b>*** System report during eturnal_SUITE:start_eturnal/1 2021-12-10 20:04:37.337 ***</b>
+=INFO REPORT==== 10-Dec-2021::20:04:37.337594 ===
+Listening on 127.0.0.1:34780 (udp) (STUN/TURN)
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="sasl"><pre><b>*** System report during eturnal_SUITE:start_eturnal/1 2021-12-10 20:04:37.337 ***</b>
+=DEBUG REPORT==== 10-Dec-2021::20:04:37.337746 ===
+Starting listener 127.0.0.1:34780 (tcp) with options:
+[{use_turn,false},
+ {auth_type,anonymous},
+ {turn_ipv4_address,{10,1,0,6}},
+ {turn_ipv6_address,{0,0,0,0,0,0,0,1}},
+ {turn_min_port,49152},
+ {turn_max_port,65535},
+ {turn_max_allocations,10},
+ {turn_max_permissions,10},
+ {shaper,100000},
+ {turn_blacklist,[{{203,0,113,4},32},{{8193,3512,0,0,0,0,0,4},128}]},
+ {auth_realm,&lt;&lt;"eturnal.net"&gt;&gt;},
+ {server_name,&lt;&lt;"eturnal"&gt;&gt;},
+ {auth_fun,fun eturnal:get_password/2},
+ {hook_fun,fun eturnal:run_hook/2}]
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="sasl"><pre><b>*** System report during eturnal_SUITE:start_eturnal/1 2021-12-10 20:04:37.394 ***</b>
+=INFO REPORT==== 10-Dec-2021::20:04:37.394570 ===
+Listening on 127.0.0.1:34780 (tcp) (STUN only)
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="sasl"><pre><b>*** System report during eturnal_SUITE:start_eturnal/1 2021-12-10 20:04:37.395 ***</b>
+=DEBUG REPORT==== 10-Dec-2021::20:04:37.394745 ===
+Starting listener 127.0.0.1:53490 (tls) with options:
+[{use_turn,false},
+ {auth_type,anonymous},
+ {tls,true},
+ {certfile,&lt;&lt;"run/cert.pem"&gt;&gt;},
+ {turn_ipv4_address,{10,1,0,6}},
+ {turn_ipv6_address,{0,0,0,0,0,0,0,1}},
+ {turn_min_port,49152},
+ {turn_max_port,65535},
+ {turn_max_allocations,10},
+ {turn_max_permissions,10},
+ {shaper,100000},
+ {turn_blacklist,[{{203,0,113,4},32},{{8193,3512,0,0,0,0,0,4},128}]},
+ {auth_realm,&lt;&lt;"eturnal.net"&gt;&gt;},
+ {server_name,&lt;&lt;"eturnal"&gt;&gt;},
+ {auth_fun,fun eturnal:get_password/2},
+ {hook_fun,fun eturnal:run_hook/2}]
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="sasl"><pre><b>*** System report during eturnal_SUITE:start_eturnal/1 2021-12-10 20:04:37.395 ***</b>
+=INFO REPORT==== 10-Dec-2021::20:04:37.395237 ===
+Listening on 127.0.0.1:53490 (tls) (STUN only)
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="sasl"><pre><b>*** System report during eturnal_SUITE:start_eturnal/1 2021-12-10 20:04:37.395 ***</b>
+=DEBUG REPORT==== 10-Dec-2021::20:04:37.395367 ===
+Starting listener 127.0.0.1:34781 (auto) with options:
+[{use_turn,false},
+ {auth_type,anonymous},
+ {tls,optional},
+ {certfile,&lt;&lt;"run/cert.pem"&gt;&gt;},
+ {turn_ipv4_address,{10,1,0,6}},
+ {turn_ipv6_address,{0,0,0,0,0,0,0,1}},
+ {turn_min_port,49152},
+ {turn_max_port,65535},
+ {turn_max_allocations,10},
+ {turn_max_permissions,10},
+ {shaper,100000},
+ {turn_blacklist,[{{203,0,113,4},32},{{8193,3512,0,0,0,0,0,4},128}]},
+ {auth_realm,&lt;&lt;"eturnal.net"&gt;&gt;},
+ {server_name,&lt;&lt;"eturnal"&gt;&gt;},
+ {auth_fun,fun eturnal:get_password/2},
+ {hook_fun,fun eturnal:run_hook/2}]
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="sasl"><pre><b>*** System report during eturnal_SUITE:start_eturnal/1 2021-12-10 20:04:37.395 ***</b>
+=INFO REPORT==== 10-Dec-2021::20:04:37.395797 ===
+Listening on 127.0.0.1:34781 (auto) (STUN only)
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="sasl"><pre><b>*** System report during eturnal_SUITE:start_eturnal/1 2021-12-10 20:04:37.395 ***</b>
+=DEBUG REPORT==== 10-Dec-2021::20:04:37.395913 ===
+Started 4 listeners
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="sasl"><pre><b>*** System report during eturnal_SUITE:start_eturnal/1 2021-12-10 20:04:37.396 ***</b>
+=DEBUG REPORT==== 10-Dec-2021::20:04:37.396132 ===
+No NOTIFY_SOCKET, dropping READY=1 notification
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="sasl"><pre><b>*** System report during eturnal_SUITE:start_eturnal/1 2021-12-10 20:04:37.396 ***</b>
+=DEBUG REPORT==== 10-Dec-2021::20:04:37.396252 ===
+Watchdog interval is undefined, hibernating
+
+</pre></div>
+<pre>
+<a name="end"></a>
+
+
+=== Ended at 2021-12-10 20:04:37
+=== successfully completed test case
+=== === Returned value: {ok,[p1_utils,fast_yaml,yval,conf,fast_tls,stun,eturnal]}
+</pre>
+<center>
+<br /><hr /><p>
+<a href="../../../all_runs.html">Test run history
+</a>  |  <a href="../../../index.html">Top level test index
+</a>  |  <a href="../../../suite.log.latest.html">Latest test result</a>
+</p>
+<div class="copyright">Copyright &copy; 2021 <a href="http://www.erlang.org">Open Telecom Platform</a><br />
+Updated: <!--date-->Fri Dec 10 2021 20:04:35<!--/date--><br />
+</div>
+</center>
+</body>
+</html>
