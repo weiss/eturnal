@@ -103,7 +103,7 @@ td.source {
 </head>
 <body>
 <h1><code>/home/runner/work/eturnal/eturnal/_build/test/cover/aggregate/eturnal_yaml.html</code></h1>
-<footer><p>File generated from <code>/home/runner/work/eturnal/eturnal/_build/test/lib/eturnal/ebin/../src/eturnal_yaml.erl</code> by <a href="http://erlang.org/doc/man/cover.html">cover</a> at 2021-12-12 at 13:04:19</p></footer>
+<footer><p>File generated from <code>/home/runner/work/eturnal/eturnal/_build/test/lib/eturnal/ebin/../src/eturnal_yaml.erl</code> by <a href="http://erlang.org/doc/man/cover.html">cover</a> at 2021-12-12 at 13:19:54</p></footer>
 <table>
 <tbody>
 <tr>
@@ -249,7 +249,7 @@ td.source {
 <tr>
 <td class="line" id="L29"><a href="#L29">29</a></td>
 <td class="hits"></td>
-<td class="source"><code>                     boolean()}.</code></td>
+<td class="source"><code>                     boolean(), boolean()}.</code></td>
 </tr>
 <tr>
 <td class="line" id="L30"><a href="#L30">30</a></td>
@@ -679,405 +679,420 @@ td.source {
 <tr>
 <td class="line" id="L115"><a href="#L115">115</a></td>
 <td class="hits"></td>
-<td class="source"><code>              enable_turn =&gt; bool()},</code></td>
+<td class="source"><code>              proxy_protocol =&gt; bool(),</code></td>
 </tr>
 <tr>
 <td class="line" id="L116"><a href="#L116">116</a></td>
 <td class="hits"></td>
-<td class="source"><code>            [unique,</code></td>
+<td class="source"><code>              enable_turn =&gt; bool()},</code></td>
 </tr>
 <tr>
 <td class="line" id="L117"><a href="#L117">117</a></td>
 <td class="hits"></td>
-<td class="source"><code>             {required, [ip]}]),</code></td>
+<td class="source"><code>            [unique,</code></td>
 </tr>
 <tr>
 <td class="line" id="L118"><a href="#L118">118</a></td>
 <td class="hits"></td>
+<td class="source"><code>             {required, [ip]}]),</code></td>
+</tr>
+<tr>
+<td class="line" id="L119"><a href="#L119">119</a></td>
+<td class="hits"></td>
 <td class="source"><code>          fun(Opts) -&gt;</code></td>
 </tr>
 <tr class="hit">
-<td class="line" id="L119"><a href="#L119">119</a></td>
+<td class="line" id="L120"><a href="#L120">120</a></td>
 <td class="hits">8</td>
 <td class="source"><code>                  DefP = fun(udp) -&gt; 3478;</code></td>
 </tr>
 <tr class="hit">
-<td class="line" id="L120"><a href="#L120">120</a></td>
+<td class="line" id="L121"><a href="#L121">121</a></td>
 <td class="hits">2</td>
 <td class="source"><code>                            (tcp) -&gt; 3478;</code></td>
 </tr>
 <tr class="hit">
-<td class="line" id="L121"><a href="#L121">121</a></td>
+<td class="line" id="L122"><a href="#L122">122</a></td>
 <td class="hits">2</td>
 <td class="source"><code>                            (tls) -&gt; 5349;</code></td>
 </tr>
 <tr class="hit">
-<td class="line" id="L122"><a href="#L122">122</a></td>
+<td class="line" id="L123"><a href="#L123">123</a></td>
 <td class="hits">2</td>
 <td class="source"><code>                            (auto) -&gt; 3478</code></td>
 </tr>
 <tr>
-<td class="line" id="L123"><a href="#L123">123</a></td>
+<td class="line" id="L124"><a href="#L124">124</a></td>
 <td class="hits"></td>
 <td class="source"><code>                         end,</code></td>
 </tr>
 <tr class="hit">
-<td class="line" id="L124"><a href="#L124">124</a></td>
+<td class="line" id="L125"><a href="#L125">125</a></td>
 <td class="hits">8</td>
 <td class="source"><code>                  I = proplists:get_value(ip, Opts),</code></td>
 </tr>
 <tr class="hit">
-<td class="line" id="L125"><a href="#L125">125</a></td>
+<td class="line" id="L126"><a href="#L126">126</a></td>
 <td class="hits">8</td>
 <td class="source"><code>                  T = proplists:get_value(transport, Opts, udp),</code></td>
 </tr>
 <tr class="hit">
-<td class="line" id="L126"><a href="#L126">126</a></td>
+<td class="line" id="L127"><a href="#L127">127</a></td>
 <td class="hits">8</td>
 <td class="source"><code>                  P = proplists:get_value(port, Opts, DefP(T)),</code></td>
 </tr>
 <tr class="hit">
-<td class="line" id="L127"><a href="#L127">127</a></td>
+<td class="line" id="L128"><a href="#L128">128</a></td>
+<td class="hits">8</td>
+<td class="source"><code>                  X = proplists:get_value(proxy_protocol, Opts, false),</code></td>
+</tr>
+<tr class="hit">
+<td class="line" id="L129"><a href="#L129">129</a></td>
 <td class="hits">8</td>
 <td class="source"><code>                  E = proplists:get_value(enable_turn, Opts, true),</code></td>
 </tr>
 <tr class="hit">
-<td class="line" id="L128"><a href="#L128">128</a></td>
-<td class="hits">8</td>
-<td class="source"><code>                  {I, P, T, E}</code></td>
-</tr>
-<tr>
-<td class="line" id="L129"><a href="#L129">129</a></td>
-<td class="hits"></td>
-<td class="source"><code>          end)),</code></td>
-</tr>
-<tr>
 <td class="line" id="L130"><a href="#L130">130</a></td>
-<td class="hits"></td>
-<td class="source"><code>      fun check_overlapping_listeners/1).</code></td>
+<td class="hits">8</td>
+<td class="source"><code>                  {I, P, T, X, E}</code></td>
 </tr>
 <tr>
 <td class="line" id="L131"><a href="#L131">131</a></td>
 <td class="hits"></td>
-<td class="source"><code></code></td>
+<td class="source"><code>          end)),</code></td>
 </tr>
 <tr>
 <td class="line" id="L132"><a href="#L132">132</a></td>
 <td class="hits"></td>
-<td class="source"><code>-spec check_overlapping_listeners([listener()]) -&gt; [listener()].</code></td>
+<td class="source"><code>      fun check_overlapping_listeners/1).</code></td>
 </tr>
 <tr>
 <td class="line" id="L133"><a href="#L133">133</a></td>
 <td class="hits"></td>
-<td class="source"><code>check_overlapping_listeners(Listeners) -&gt;</code></td>
+<td class="source"><code></code></td>
 </tr>
-<tr class="hit">
+<tr>
 <td class="line" id="L134"><a href="#L134">134</a></td>
-<td class="hits">2</td>
-<td class="source"><code>    ok = check_overlapping_listeners(Listeners, fun(L) -&gt; L end),</code></td>
+<td class="hits"></td>
+<td class="source"><code>-spec check_overlapping_listeners([listener()]) -&gt; [listener()].</code></td>
 </tr>
-<tr class="hit">
+<tr>
 <td class="line" id="L135"><a href="#L135">135</a></td>
-<td class="hits">2</td>
-<td class="source"><code>    ok = check_overlapping_listeners(Listeners, fun lists:reverse/1),</code></td>
+<td class="hits"></td>
+<td class="source"><code>check_overlapping_listeners(Listeners) -&gt;</code></td>
 </tr>
 <tr class="hit">
 <td class="line" id="L136"><a href="#L136">136</a></td>
 <td class="hits">2</td>
-<td class="source"><code>    Listeners.</code></td>
+<td class="source"><code>    ok = check_overlapping_listeners(Listeners, fun(L) -&gt; L end),</code></td>
 </tr>
-<tr>
+<tr class="hit">
 <td class="line" id="L137"><a href="#L137">137</a></td>
-<td class="hits"></td>
-<td class="source"><code></code></td>
+<td class="hits">2</td>
+<td class="source"><code>    ok = check_overlapping_listeners(Listeners, fun lists:reverse/1),</code></td>
 </tr>
-<tr>
+<tr class="hit">
 <td class="line" id="L138"><a href="#L138">138</a></td>
-<td class="hits"></td>
-<td class="source"><code>-spec check_overlapping_listeners([listener()],</code></td>
+<td class="hits">2</td>
+<td class="source"><code>    Listeners.</code></td>
 </tr>
 <tr>
 <td class="line" id="L139"><a href="#L139">139</a></td>
 <td class="hits"></td>
-<td class="source"><code>                                  fun(([listener()]) -&gt; [listener()]))</code></td>
+<td class="source"><code></code></td>
 </tr>
 <tr>
 <td class="line" id="L140"><a href="#L140">140</a></td>
 <td class="hits"></td>
-<td class="source"><code>      -&gt; ok | no_return().</code></td>
+<td class="source"><code>-spec check_overlapping_listeners([listener()],</code></td>
 </tr>
 <tr>
 <td class="line" id="L141"><a href="#L141">141</a></td>
 <td class="hits"></td>
-<td class="source"><code>check_overlapping_listeners(Listeners, PrepareFun) -&gt;</code></td>
+<td class="source"><code>                                  fun(([listener()]) -&gt; [listener()]))</code></td>
 </tr>
-<tr class="hit">
+<tr>
 <td class="line" id="L142"><a href="#L142">142</a></td>
-<td class="hits">4</td>
-<td class="source"><code>    _ = lists:foldl(</code></td>
+<td class="hits"></td>
+<td class="source"><code>      -&gt; ok | no_return().</code></td>
 </tr>
 <tr>
 <td class="line" id="L143"><a href="#L143">143</a></td>
 <td class="hits"></td>
-<td class="source"><code>          fun({IP, Port, Transport, _EnableTURN} = Listener, Acc) -&gt;</code></td>
+<td class="source"><code>check_overlapping_listeners(Listeners, PrepareFun) -&gt;</code></td>
 </tr>
 <tr class="hit">
 <td class="line" id="L144"><a href="#L144">144</a></td>
-<td class="hits">16</td>
-<td class="source"><code>                  Key = case Transport of</code></td>
+<td class="hits">4</td>
+<td class="source"><code>    _ = lists:foldl(</code></td>
 </tr>
 <tr>
 <td class="line" id="L145"><a href="#L145">145</a></td>
 <td class="hits"></td>
+<td class="source"><code>          fun({IP, Port, Transport, _ProxyProtocol, _EnableTURN} = Listener,</code></td>
+</tr>
+<tr>
+<td class="line" id="L146"><a href="#L146">146</a></td>
+<td class="hits"></td>
+<td class="source"><code>              Acc) -&gt;</code></td>
+</tr>
+<tr class="hit">
+<td class="line" id="L147"><a href="#L147">147</a></td>
+<td class="hits">16</td>
+<td class="source"><code>                  Key = case Transport of</code></td>
+</tr>
+<tr>
+<td class="line" id="L148"><a href="#L148">148</a></td>
+<td class="hits"></td>
 <td class="source"><code>                            udp -&gt;</code></td>
 </tr>
 <tr class="hit">
-<td class="line" id="L146"><a href="#L146">146</a></td>
+<td class="line" id="L149"><a href="#L149">149</a></td>
 <td class="hits">4</td>
 <td class="source"><code>                                {IP, Port, udp};</code></td>
 </tr>
 <tr>
-<td class="line" id="L147"><a href="#L147">147</a></td>
+<td class="line" id="L150"><a href="#L150">150</a></td>
 <td class="hits"></td>
 <td class="source"><code>                            _ -&gt;</code></td>
 </tr>
 <tr class="hit">
-<td class="line" id="L148"><a href="#L148">148</a></td>
+<td class="line" id="L151"><a href="#L151">151</a></td>
 <td class="hits">12</td>
 <td class="source"><code>                                {IP, Port, tcp}</code></td>
 </tr>
 <tr>
-<td class="line" id="L149"><a href="#L149">149</a></td>
+<td class="line" id="L152"><a href="#L152">152</a></td>
 <td class="hits"></td>
 <td class="source"><code>                        end,</code></td>
 </tr>
 <tr class="hit">
-<td class="line" id="L150"><a href="#L150">150</a></td>
+<td class="line" id="L153"><a href="#L153">153</a></td>
 <td class="hits">16</td>
 <td class="source"><code>                  case lists:member(Key, Acc) of</code></td>
 </tr>
 <tr>
-<td class="line" id="L151"><a href="#L151">151</a></td>
+<td class="line" id="L154"><a href="#L154">154</a></td>
 <td class="hits"></td>
 <td class="source"><code>                      true -&gt;</code></td>
 </tr>
 <tr class="miss">
-<td class="line" id="L152"><a href="#L152">152</a></td>
+<td class="line" id="L155"><a href="#L155">155</a></td>
 <td class="hits"><pre style="display: inline;">:-(</pre></td>
 <td class="source"><code>                          fail({duplicated_value,</code></td>
 </tr>
 <tr>
-<td class="line" id="L153"><a href="#L153">153</a></td>
+<td class="line" id="L156"><a href="#L156">156</a></td>
 <td class="hits"></td>
 <td class="source"><code>                                format_listener(Listener)});</code></td>
 </tr>
 <tr>
-<td class="line" id="L154"><a href="#L154">154</a></td>
+<td class="line" id="L157"><a href="#L157">157</a></td>
 <td class="hits"></td>
 <td class="source"><code>                      false -&gt;</code></td>
 </tr>
 <tr>
-<td class="line" id="L155"><a href="#L155">155</a></td>
+<td class="line" id="L158"><a href="#L158">158</a></td>
 <td class="hits"></td>
 <td class="source"><code>                          % With dual-stack sockets, we won't detect conflicts</code></td>
 </tr>
 <tr>
-<td class="line" id="L156"><a href="#L156">156</a></td>
+<td class="line" id="L159"><a href="#L159">159</a></td>
 <td class="hits"></td>
 <td class="source"><code>                          % of IPv4 addresses with "::".</code></td>
 </tr>
 <tr class="hit">
-<td class="line" id="L157"><a href="#L157">157</a></td>
+<td class="line" id="L160"><a href="#L160">160</a></td>
 <td class="hits">16</td>
 <td class="source"><code>                          AnyIP = case tuple_size(IP) of</code></td>
 </tr>
 <tr class="miss">
-<td class="line" id="L158"><a href="#L158">158</a></td>
+<td class="line" id="L161"><a href="#L161">161</a></td>
 <td class="hits"><pre style="display: inline;">:-(</pre></td>
 <td class="source"><code>                                       8 -&gt; {0, 0, 0, 0, 0, 0, 0, 0};</code></td>
 </tr>
 <tr class="hit">
-<td class="line" id="L159"><a href="#L159">159</a></td>
+<td class="line" id="L162"><a href="#L162">162</a></td>
 <td class="hits">16</td>
 <td class="source"><code>                                       4 -&gt; {0, 0, 0, 0}</code></td>
 </tr>
 <tr>
-<td class="line" id="L160"><a href="#L160">160</a></td>
+<td class="line" id="L163"><a href="#L163">163</a></td>
 <td class="hits"></td>
 <td class="source"><code>                                   end,</code></td>
 </tr>
 <tr class="hit">
-<td class="line" id="L161"><a href="#L161">161</a></td>
+<td class="line" id="L164"><a href="#L164">164</a></td>
 <td class="hits">16</td>
 <td class="source"><code>                          Key1 = {AnyIP, Port, Transport},</code></td>
 </tr>
 <tr class="hit">
-<td class="line" id="L162"><a href="#L162">162</a></td>
+<td class="line" id="L165"><a href="#L165">165</a></td>
 <td class="hits">16</td>
 <td class="source"><code>                          case lists:member(Key1, Acc) of</code></td>
 </tr>
 <tr>
-<td class="line" id="L163"><a href="#L163">163</a></td>
+<td class="line" id="L166"><a href="#L166">166</a></td>
 <td class="hits"></td>
 <td class="source"><code>                              true -&gt;</code></td>
 </tr>
 <tr class="miss">
-<td class="line" id="L164"><a href="#L164">164</a></td>
+<td class="line" id="L167"><a href="#L167">167</a></td>
 <td class="hits"><pre style="display: inline;">:-(</pre></td>
 <td class="source"><code>                                  fail({duplicated_value,</code></td>
 </tr>
 <tr>
-<td class="line" id="L165"><a href="#L165">165</a></td>
+<td class="line" id="L168"><a href="#L168">168</a></td>
 <td class="hits"></td>
 <td class="source"><code>                                        format_listener(Listener)});</code></td>
 </tr>
 <tr>
-<td class="line" id="L166"><a href="#L166">166</a></td>
+<td class="line" id="L169"><a href="#L169">169</a></td>
 <td class="hits"></td>
 <td class="source"><code>                              false -&gt;</code></td>
 </tr>
 <tr class="hit">
-<td class="line" id="L167"><a href="#L167">167</a></td>
+<td class="line" id="L170"><a href="#L170">170</a></td>
 <td class="hits">16</td>
 <td class="source"><code>                                  [Key | Acc]</code></td>
 </tr>
 <tr>
-<td class="line" id="L168"><a href="#L168">168</a></td>
+<td class="line" id="L171"><a href="#L171">171</a></td>
 <td class="hits"></td>
 <td class="source"><code>                          end</code></td>
 </tr>
 <tr>
-<td class="line" id="L169"><a href="#L169">169</a></td>
+<td class="line" id="L172"><a href="#L172">172</a></td>
 <td class="hits"></td>
 <td class="source"><code>                  end</code></td>
 </tr>
 <tr>
-<td class="line" id="L170"><a href="#L170">170</a></td>
+<td class="line" id="L173"><a href="#L173">173</a></td>
 <td class="hits"></td>
 <td class="source"><code>          end, [], PrepareFun(Listeners)),</code></td>
 </tr>
 <tr class="hit">
-<td class="line" id="L171"><a href="#L171">171</a></td>
+<td class="line" id="L174"><a href="#L174">174</a></td>
 <td class="hits">4</td>
 <td class="source"><code>    ok.</code></td>
 </tr>
 <tr>
-<td class="line" id="L172"><a href="#L172">172</a></td>
+<td class="line" id="L175"><a href="#L175">175</a></td>
 <td class="hits"></td>
 <td class="source"><code></code></td>
 </tr>
 <tr>
-<td class="line" id="L173"><a href="#L173">173</a></td>
+<td class="line" id="L176"><a href="#L176">176</a></td>
 <td class="hits"></td>
 <td class="source"><code>-spec format_listener(listener()) -&gt; binary().</code></td>
 </tr>
 <tr>
-<td class="line" id="L174"><a href="#L174">174</a></td>
+<td class="line" id="L177"><a href="#L177">177</a></td>
 <td class="hits"></td>
-<td class="source"><code>format_listener({IP, Port, Transport, _EnableTURN}) -&gt;</code></td>
+<td class="source"><code>format_listener({IP, Port, Transport, _ProxyProtocol, _EnableTURN}) -&gt;</code></td>
 </tr>
 <tr class="miss">
-<td class="line" id="L175"><a href="#L175">175</a></td>
+<td class="line" id="L178"><a href="#L178">178</a></td>
 <td class="hits"><pre style="display: inline;">:-(</pre></td>
 <td class="source"><code>    Addr = eturnal_misc:addr_to_str(IP, Port),</code></td>
 </tr>
 <tr class="miss">
-<td class="line" id="L176"><a href="#L176">176</a></td>
+<td class="line" id="L179"><a href="#L179">179</a></td>
 <td class="hits"><pre style="display: inline;">:-(</pre></td>
 <td class="source"><code>    list_to_binary(io_lib:format("~s (~s)", [Addr, Transport])).</code></td>
 </tr>
 <tr>
-<td class="line" id="L177"><a href="#L177">177</a></td>
+<td class="line" id="L180"><a href="#L180">180</a></td>
 <td class="hits"></td>
 <td class="source"><code></code></td>
-</tr>
-<tr>
-<td class="line" id="L178"><a href="#L178">178</a></td>
-<td class="hits"></td>
-<td class="source"><code>-spec get_env_name(atom()) -&gt; string().</code></td>
-</tr>
-<tr>
-<td class="line" id="L179"><a href="#L179">179</a></td>
-<td class="hits"></td>
-<td class="source"><code>get_env_name(Opt) -&gt;</code></td>
-</tr>
-<tr class="hit">
-<td class="line" id="L180"><a href="#L180">180</a></td>
-<td class="hits">2</td>
-<td class="source"><code>    "ETURNAL_" ++ string:uppercase(atom_to_list(Opt)).</code></td>
 </tr>
 <tr>
 <td class="line" id="L181"><a href="#L181">181</a></td>
 <td class="hits"></td>
-<td class="source"><code></code></td>
+<td class="source"><code>-spec get_env_name(atom()) -&gt; string().</code></td>
 </tr>
 <tr>
 <td class="line" id="L182"><a href="#L182">182</a></td>
 <td class="hits"></td>
-<td class="source"><code>-spec get_default(atom() | string(), Term) -&gt; binary() | Term.</code></td>
+<td class="source"><code>get_env_name(Opt) -&gt;</code></td>
 </tr>
-<tr>
+<tr class="hit">
 <td class="line" id="L183"><a href="#L183">183</a></td>
-<td class="hits"></td>
-<td class="source"><code>get_default(Opt, Default) when is_atom(Opt) -&gt;</code></td>
-</tr>
-<tr class="hit">
-<td class="line" id="L184"><a href="#L184">184</a></td>
 <td class="hits">2</td>
-<td class="source"><code>    get_default(get_env_name(Opt), Default);</code></td>
+<td class="source"><code>    "ETURNAL_" ++ string:uppercase(atom_to_list(Opt)).</code></td>
 </tr>
 <tr>
-<td class="line" id="L185"><a href="#L185">185</a></td>
-<td class="hits"></td>
-<td class="source"><code>get_default(Var, Default) -&gt;</code></td>
-</tr>
-<tr class="hit">
-<td class="line" id="L186"><a href="#L186">186</a></td>
-<td class="hits">6</td>
-<td class="source"><code>    case os:getenv(Var) of</code></td>
-</tr>
-<tr>
-<td class="line" id="L187"><a href="#L187">187</a></td>
-<td class="hits"></td>
-<td class="source"><code>        Val when is_list(Val), length(Val) &gt; 0 -&gt;</code></td>
-</tr>
-<tr class="miss">
-<td class="line" id="L188"><a href="#L188">188</a></td>
-<td class="hits"><pre style="display: inline;">:-(</pre></td>
-<td class="source"><code>            unicode:characters_to_binary(Val);</code></td>
-</tr>
-<tr>
-<td class="line" id="L189"><a href="#L189">189</a></td>
-<td class="hits"></td>
-<td class="source"><code>        _ -&gt;</code></td>
-</tr>
-<tr class="hit">
-<td class="line" id="L190"><a href="#L190">190</a></td>
-<td class="hits">6</td>
-<td class="source"><code>            Default</code></td>
-</tr>
-<tr>
-<td class="line" id="L191"><a href="#L191">191</a></td>
-<td class="hits"></td>
-<td class="source"><code>    end.</code></td>
-</tr>
-<tr>
-<td class="line" id="L192"><a href="#L192">192</a></td>
+<td class="line" id="L184"><a href="#L184">184</a></td>
 <td class="hits"></td>
 <td class="source"><code></code></td>
 </tr>
 <tr>
-<td class="line" id="L193"><a href="#L193">193</a></td>
+<td class="line" id="L185"><a href="#L185">185</a></td>
 <td class="hits"></td>
-<td class="source"><code>-spec fail({atom(), term()}) -&gt; no_return().</code></td>
+<td class="source"><code>-spec get_default(atom() | string(), Term) -&gt; binary() | Term.</code></td>
+</tr>
+<tr>
+<td class="line" id="L186"><a href="#L186">186</a></td>
+<td class="hits"></td>
+<td class="source"><code>get_default(Opt, Default) when is_atom(Opt) -&gt;</code></td>
+</tr>
+<tr class="hit">
+<td class="line" id="L187"><a href="#L187">187</a></td>
+<td class="hits">2</td>
+<td class="source"><code>    get_default(get_env_name(Opt), Default);</code></td>
+</tr>
+<tr>
+<td class="line" id="L188"><a href="#L188">188</a></td>
+<td class="hits"></td>
+<td class="source"><code>get_default(Var, Default) -&gt;</code></td>
+</tr>
+<tr class="hit">
+<td class="line" id="L189"><a href="#L189">189</a></td>
+<td class="hits">6</td>
+<td class="source"><code>    case os:getenv(Var) of</code></td>
+</tr>
+<tr>
+<td class="line" id="L190"><a href="#L190">190</a></td>
+<td class="hits"></td>
+<td class="source"><code>        Val when is_list(Val), length(Val) &gt; 0 -&gt;</code></td>
+</tr>
+<tr class="miss">
+<td class="line" id="L191"><a href="#L191">191</a></td>
+<td class="hits"><pre style="display: inline;">:-(</pre></td>
+<td class="source"><code>            unicode:characters_to_binary(Val);</code></td>
+</tr>
+<tr>
+<td class="line" id="L192"><a href="#L192">192</a></td>
+<td class="hits"></td>
+<td class="source"><code>        _ -&gt;</code></td>
+</tr>
+<tr class="hit">
+<td class="line" id="L193"><a href="#L193">193</a></td>
+<td class="hits">6</td>
+<td class="source"><code>            Default</code></td>
 </tr>
 <tr>
 <td class="line" id="L194"><a href="#L194">194</a></td>
 <td class="hits"></td>
+<td class="source"><code>    end.</code></td>
+</tr>
+<tr>
+<td class="line" id="L195"><a href="#L195">195</a></td>
+<td class="hits"></td>
+<td class="source"><code></code></td>
+</tr>
+<tr>
+<td class="line" id="L196"><a href="#L196">196</a></td>
+<td class="hits"></td>
+<td class="source"><code>-spec fail({atom(), term()}) -&gt; no_return().</code></td>
+</tr>
+<tr>
+<td class="line" id="L197"><a href="#L197">197</a></td>
+<td class="hits"></td>
 <td class="source"><code>fail(Reason) -&gt;</code></td>
 </tr>
 <tr class="miss">
-<td class="line" id="L195"><a href="#L195">195</a></td>
+<td class="line" id="L198"><a href="#L198">198</a></td>
 <td class="hits"><pre style="display: inline;">:-(</pre></td>
 <td class="source"><code>   yval:fail(yval, Reason).</code></td>
 </tr>
