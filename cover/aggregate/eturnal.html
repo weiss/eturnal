@@ -103,7 +103,7 @@ td.source {
 </head>
 <body>
 <h1><code>/home/runner/work/eturnal/eturnal/_build/test/cover/aggregate/eturnal.html</code></h1>
-<footer><p>File generated from <code>/home/runner/work/eturnal/eturnal/_build/test/lib/eturnal/ebin/../src/eturnal.erl</code> by <a href="http://erlang.org/doc/man/cover.html">cover</a> at 2021-12-25 at 17:14:32</p></footer>
+<footer><p>File generated from <code>/home/runner/work/eturnal/eturnal/_build/test/lib/eturnal/ebin/../src/eturnal.erl</code> by <a href="http://erlang.org/doc/man/cover.html">cover</a> at 2021-12-25 at 17:32:42</p></footer>
 <table>
 <tbody>
 <tr>
@@ -458,12 +458,12 @@ td.source {
 </tr>
 <tr class="hit">
 <td class="line" id="L71"><a href="#L71">71</a></td>
-<td class="hits">62</td>
+<td class="hits">65</td>
 <td class="source"><code>    {ok, Val} = application:get_env(eturnal, Opt),</code></td>
 </tr>
 <tr class="hit">
 <td class="line" id="L72"><a href="#L72">72</a></td>
-<td class="hits">62</td>
+<td class="hits">65</td>
 <td class="source"><code>    Val.</code></td>
 </tr>
 <tr>
@@ -933,7 +933,7 @@ td.source {
 </tr>
 <tr class="hit">
 <td class="line" id="L166"><a href="#L166">166</a></td>
-<td class="hits">1</td>
+<td class="hits">2</td>
 <td class="source"><code>    case conf:reload_file() of</code></td>
 </tr>
 <tr>
@@ -943,7 +943,7 @@ td.source {
 </tr>
 <tr class="hit">
 <td class="line" id="L168"><a href="#L168">168</a></td>
-<td class="hits">1</td>
+<td class="hits">2</td>
 <td class="source"><code>            case check_pem_file() of</code></td>
 </tr>
 <tr>
@@ -966,9 +966,9 @@ td.source {
 <td class="hits"></td>
 <td class="source"><code>                unmodified -&gt;</code></td>
 </tr>
-<tr class="miss">
+<tr class="hit">
 <td class="line" id="L173"><a href="#L173">173</a></td>
-<td class="hits"><pre style="display: inline;">:-(</pre></td>
+<td class="hits">1</td>
 <td class="source"><code>                    ?LOG_DEBUG("TLS certificate unchanged");</code></td>
 </tr>
 <tr>
@@ -988,12 +988,12 @@ td.source {
 </tr>
 <tr class="hit">
 <td class="line" id="L177"><a href="#L177">177</a></td>
-<td class="hits">1</td>
+<td class="hits">2</td>
 <td class="source"><code>            ?LOG_DEBUG("Reloaded configuration"),</code></td>
 </tr>
 <tr class="hit">
 <td class="line" id="L178"><a href="#L178">178</a></td>
-<td class="hits">1</td>
+<td class="hits">2</td>
 <td class="source"><code>            {reply, ok, State};</code></td>
 </tr>
 <tr>
@@ -1963,12 +1963,12 @@ td.source {
 </tr>
 <tr class="hit">
 <td class="line" id="L372"><a href="#L372">372</a></td>
-<td class="hits">2</td>
+<td class="hits">3</td>
 <td class="source"><code>    lists:any(fun({_IP, _Port, Transport, _ProxyProtocol, _EnableTURN}) -&gt;</code></td>
 </tr>
 <tr class="hit">
 <td class="line" id="L373"><a href="#L373">373</a></td>
-<td class="hits">6</td>
+<td class="hits">9</td>
 <td class="source"><code>                      (Transport =:= tls) or (Transport =:= auto)</code></td>
 </tr>
 <tr>
@@ -2573,7 +2573,7 @@ td.source {
 </tr>
 <tr class="hit">
 <td class="line" id="L494"><a href="#L494">494</a></td>
-<td class="hits">5</td>
+<td class="hits">6</td>
 <td class="source"><code>    filename:join(get_opt(run_dir), &lt;&lt;?PEM_FILE_NAME&gt;&gt;).</code></td>
 </tr>
 <tr>
@@ -2593,7 +2593,7 @@ td.source {
 </tr>
 <tr class="hit">
 <td class="line" id="L498"><a href="#L498">498</a></td>
-<td class="hits">2</td>
+<td class="hits">3</td>
 <td class="source"><code>    case tls_enabled() of</code></td>
 </tr>
 <tr>
@@ -2603,12 +2603,12 @@ td.source {
 </tr>
 <tr class="hit">
 <td class="line" id="L500"><a href="#L500">500</a></td>
-<td class="hits">2</td>
+<td class="hits">3</td>
 <td class="source"><code>            OutFile = get_pem_file_path(),</code></td>
 </tr>
 <tr class="hit">
 <td class="line" id="L501"><a href="#L501">501</a></td>
-<td class="hits">2</td>
+<td class="hits">3</td>
 <td class="source"><code>            case {get_opt(tls_crt_file), filelib:last_modified(OutFile)} of</code></td>
 </tr>
 <tr>
@@ -2616,14 +2616,14 @@ td.source {
 <td class="hits"></td>
 <td class="source"><code>                {none, OutTime} when OutTime =/= 0 -&gt;</code></td>
 </tr>
-<tr class="miss">
+<tr class="hit">
 <td class="line" id="L503"><a href="#L503">503</a></td>
-<td class="hits"><pre style="display: inline;">:-(</pre></td>
+<td class="hits">1</td>
 <td class="source"><code>                    ?LOG_DEBUG("Keeping PEM file (~ts)", [OutFile]),</code></td>
 </tr>
-<tr class="miss">
+<tr class="hit">
 <td class="line" id="L504"><a href="#L504">504</a></td>
-<td class="hits"><pre style="display: inline;">:-(</pre></td>
+<td class="hits">1</td>
 <td class="source"><code>                    unmodified;</code></td>
 </tr>
 <tr>
