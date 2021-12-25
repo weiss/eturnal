@@ -103,7 +103,7 @@ td.source {
 </head>
 <body>
 <h1><code>/home/runner/work/eturnal/eturnal/_build/test/cover/ct/eturnal.html</code></h1>
-<footer><p>File generated from <code>/home/runner/work/eturnal/eturnal/_build/test/lib/eturnal/ebin/../src/eturnal.erl</code> by <a href="http://erlang.org/doc/man/cover.html">cover</a> at 2021-12-24 at 16:52:45</p></footer>
+<footer><p>File generated from <code>/home/runner/work/eturnal/eturnal/_build/test/lib/eturnal/ebin/../src/eturnal.erl</code> by <a href="http://erlang.org/doc/man/cover.html">cover</a> at 2021-12-25 at 17:14:32</p></footer>
 <table>
 <tbody>
 <tr>
@@ -458,12 +458,12 @@ td.source {
 </tr>
 <tr class="hit">
 <td class="line" id="L71"><a href="#L71">71</a></td>
-<td class="hits">61</td>
+<td class="hits">62</td>
 <td class="source"><code>    {ok, Val} = application:get_env(eturnal, Opt),</code></td>
 </tr>
 <tr class="hit">
 <td class="line" id="L72"><a href="#L72">72</a></td>
-<td class="hits">61</td>
+<td class="hits">62</td>
 <td class="source"><code>    Val.</code></td>
 </tr>
 <tr>
@@ -951,14 +951,14 @@ td.source {
 <td class="hits"></td>
 <td class="source"><code>                ok -&gt;</code></td>
 </tr>
-<tr class="miss">
+<tr class="hit">
 <td class="line" id="L170"><a href="#L170">170</a></td>
-<td class="hits"><pre style="display: inline;">:-(</pre></td>
+<td class="hits">1</td>
 <td class="source"><code>                    ok = fast_tls:clear_cache(),</code></td>
 </tr>
-<tr class="miss">
+<tr class="hit">
 <td class="line" id="L171"><a href="#L171">171</a></td>
-<td class="hits"><pre style="display: inline;">:-(</pre></td>
+<td class="hits">1</td>
 <td class="source"><code>                    ?LOG_INFO("Using new TLS certificate");</code></td>
 </tr>
 <tr>
@@ -966,9 +966,9 @@ td.source {
 <td class="hits"></td>
 <td class="source"><code>                unmodified -&gt;</code></td>
 </tr>
-<tr class="hit">
+<tr class="miss">
 <td class="line" id="L173"><a href="#L173">173</a></td>
-<td class="hits">1</td>
+<td class="hits"><pre style="display: inline;">:-(</pre></td>
 <td class="source"><code>                    ?LOG_DEBUG("TLS certificate unchanged");</code></td>
 </tr>
 <tr>
@@ -2616,14 +2616,14 @@ td.source {
 <td class="hits"></td>
 <td class="source"><code>                {none, OutTime} when OutTime =/= 0 -&gt;</code></td>
 </tr>
-<tr class="hit">
+<tr class="miss">
 <td class="line" id="L503"><a href="#L503">503</a></td>
-<td class="hits">1</td>
+<td class="hits"><pre style="display: inline;">:-(</pre></td>
 <td class="source"><code>                    ?LOG_DEBUG("Keeping PEM file (~ts)", [OutFile]),</code></td>
 </tr>
-<tr class="hit">
+<tr class="miss">
 <td class="line" id="L504"><a href="#L504">504</a></td>
-<td class="hits">1</td>
+<td class="hits"><pre style="display: inline;">:-(</pre></td>
 <td class="source"><code>                    unmodified;</code></td>
 </tr>
 <tr>
@@ -2633,7 +2633,7 @@ td.source {
 </tr>
 <tr class="hit">
 <td class="line" id="L506"><a href="#L506">506</a></td>
-<td class="hits">1</td>
+<td class="hits">2</td>
 <td class="source"><code>                    ?LOG_WARNING("TLS enabled without 'tls_crt_file', creating "</code></td>
 </tr>
 <tr class="miss">
@@ -2643,7 +2643,7 @@ td.source {
 </tr>
 <tr class="hit">
 <td class="line" id="L508"><a href="#L508">508</a></td>
-<td class="hits">1</td>
+<td class="hits">2</td>
 <td class="source"><code>                    create_self_signed(OutFile);</code></td>
 </tr>
 <tr>
@@ -2858,22 +2858,22 @@ td.source {
 </tr>
 <tr class="hit">
 <td class="line" id="L551"><a href="#L551">551</a></td>
-<td class="hits">1</td>
+<td class="hits">2</td>
 <td class="source"><code>    try</code></td>
 </tr>
 <tr class="hit">
 <td class="line" id="L552"><a href="#L552">552</a></td>
-<td class="hits">1</td>
+<td class="hits">2</td>
 <td class="source"><code>        PEM = eturnal_cert:create(get_opt(realm)),</code></td>
 </tr>
 <tr class="hit">
 <td class="line" id="L553"><a href="#L553">553</a></td>
-<td class="hits">1</td>
+<td class="hits">2</td>
 <td class="source"><code>        ok = touch(File),</code></td>
 </tr>
 <tr class="hit">
 <td class="line" id="L554"><a href="#L554">554</a></td>
-<td class="hits">1</td>
+<td class="hits">2</td>
 <td class="source"><code>        ok = file:write_file(File, PEM, [raw])</code></td>
 </tr>
 <tr>
@@ -3078,17 +3078,17 @@ td.source {
 </tr>
 <tr class="hit">
 <td class="line" id="L595"><a href="#L595">595</a></td>
-<td class="hits">1</td>
+<td class="hits">2</td>
 <td class="source"><code>    {ok, Fd} = file:open(File, [append, binary, raw]),</code></td>
 </tr>
 <tr class="hit">
 <td class="line" id="L596"><a href="#L596">596</a></td>
-<td class="hits">1</td>
+<td class="hits">2</td>
 <td class="source"><code>    ok = file:close(Fd),</code></td>
 </tr>
 <tr class="hit">
 <td class="line" id="L597"><a href="#L597">597</a></td>
-<td class="hits">1</td>
+<td class="hits">2</td>
 <td class="source"><code>    ok = file:change_mode(File, 8#00600).</code></td>
 </tr>
 <tr>

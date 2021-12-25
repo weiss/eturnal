@@ -103,7 +103,7 @@ td.source {
 </head>
 <body>
 <h1><code>/home/runner/work/eturnal/eturnal/_build/test/cover/ct/eturnal_cert.html</code></h1>
-<footer><p>File generated from <code>/home/runner/work/eturnal/eturnal/_build/test/lib/eturnal/ebin/../src/eturnal_cert.erl</code> by <a href="http://erlang.org/doc/man/cover.html">cover</a> at 2021-12-24 at 16:52:45</p></footer>
+<footer><p>File generated from <code>/home/runner/work/eturnal/eturnal/_build/test/lib/eturnal/ebin/../src/eturnal_cert.erl</code> by <a href="http://erlang.org/doc/man/cover.html">cover</a> at 2021-12-25 at 17:14:32</p></footer>
 <table>
 <tbody>
 <tr>
@@ -278,7 +278,7 @@ td.source {
 </tr>
 <tr class="hit">
 <td class="line" id="L35"><a href="#L35">35</a></td>
-<td class="hits">1</td>
+<td class="hits">2</td>
 <td class="source"><code>    create(binary_to_list(Domain));</code></td>
 </tr>
 <tr>
@@ -288,17 +288,17 @@ td.source {
 </tr>
 <tr class="hit">
 <td class="line" id="L37"><a href="#L37">37</a></td>
-<td class="hits">1</td>
+<td class="hits">2</td>
 <td class="source"><code>    Key = private_key(),</code></td>
 </tr>
 <tr class="hit">
 <td class="line" id="L38"><a href="#L38">38</a></td>
-<td class="hits">1</td>
+<td class="hits">2</td>
 <td class="source"><code>    Crt = certificate(Domain, Key),</code></td>
 </tr>
 <tr class="hit">
 <td class="line" id="L39"><a href="#L39">39</a></td>
-<td class="hits">1</td>
+<td class="hits">2</td>
 <td class="source"><code>    public_key:pem_encode([pem_entry(Key), pem_entry(Crt)]).</code></td>
 </tr>
 <tr>
@@ -328,7 +328,7 @@ td.source {
 </tr>
 <tr class="hit">
 <td class="line" id="L45"><a href="#L45">45</a></td>
-<td class="hits">1</td>
+<td class="hits">2</td>
 <td class="source"><code>    public_key:generate_key({rsa, ?ETURNAL_KEY_SIZE, 65537}).</code></td>
 </tr>
 <tr>
@@ -348,7 +348,7 @@ td.source {
 </tr>
 <tr class="hit">
 <td class="line" id="L49"><a href="#L49">49</a></td>
-<td class="hits">1</td>
+<td class="hits">2</td>
 <td class="source"><code>    TBS = #'OTPTBSCertificate'{</code></td>
 </tr>
 <tr>
@@ -388,7 +388,7 @@ td.source {
 </tr>
 <tr class="hit">
 <td class="line" id="L57"><a href="#L57">57</a></td>
-<td class="hits">1</td>
+<td class="hits">2</td>
 <td class="source"><code>    public_key:pkix_sign(TBS, Key).</code></td>
 </tr>
 <tr>
@@ -408,7 +408,7 @@ td.source {
 </tr>
 <tr class="hit">
 <td class="line" id="L61"><a href="#L61">61</a></td>
-<td class="hits">1</td>
+<td class="hits">2</td>
 <td class="source"><code>    rand:uniform(1000000000).</code></td>
 </tr>
 <tr>
@@ -428,7 +428,7 @@ td.source {
 </tr>
 <tr class="hit">
 <td class="line" id="L65"><a href="#L65">65</a></td>
-<td class="hits">1</td>
+<td class="hits">2</td>
 <td class="source"><code>    #'SignatureAlgorithm'{</code></td>
 </tr>
 <tr>
@@ -458,7 +458,7 @@ td.source {
 </tr>
 <tr class="hit">
 <td class="line" id="L71"><a href="#L71">71</a></td>
-<td class="hits">1</td>
+<td class="hits">2</td>
 <td class="source"><code>    subject(Domain).</code></td>
 </tr>
 <tr>
@@ -478,7 +478,7 @@ td.source {
 </tr>
 <tr class="hit">
 <td class="line" id="L75"><a href="#L75">75</a></td>
-<td class="hits">1</td>
+<td class="hits">2</td>
 <td class="source"><code>    #'Validity'{</code></td>
 </tr>
 <tr>
@@ -508,7 +508,7 @@ td.source {
 </tr>
 <tr class="hit">
 <td class="line" id="L81"><a href="#L81">81</a></td>
-<td class="hits">2</td>
+<td class="hits">4</td>
 <td class="source"><code>    {rdnSequence,</code></td>
 </tr>
 <tr>
@@ -543,7 +543,7 @@ td.source {
 </tr>
 <tr class="hit">
 <td class="line" id="L88"><a href="#L88">88</a></td>
-<td class="hits">1</td>
+<td class="hits">2</td>
 <td class="source"><code>    #'OTPSubjectPublicKeyInfo'{</code></td>
 </tr>
 <tr>
@@ -603,7 +603,7 @@ td.source {
 </tr>
 <tr class="hit">
 <td class="line" id="L100"><a href="#L100">100</a></td>
-<td class="hits">1</td>
+<td class="hits">2</td>
 <td class="source"><code>    [#'Extension'{</code></td>
 </tr>
 <tr>
@@ -663,7 +663,7 @@ td.source {
 </tr>
 <tr class="hit">
 <td class="line" id="L112"><a href="#L112">112</a></td>
-<td class="hits">1</td>
+<td class="hits">2</td>
 <td class="source"><code>    public_key:pem_entry_encode('RSAPrivateKey', Key);</code></td>
 </tr>
 <tr>
@@ -673,7 +673,7 @@ td.source {
 </tr>
 <tr class="hit">
 <td class="line" id="L114"><a href="#L114">114</a></td>
-<td class="hits">1</td>
+<td class="hits">2</td>
 <td class="source"><code>    {'Certificate', Crt, not_encrypted}.</code></td>
 </tr>
 <tr>
@@ -693,7 +693,7 @@ td.source {
 </tr>
 <tr class="hit">
 <td class="line" id="L118"><a href="#L118">118</a></td>
-<td class="hits">2</td>
+<td class="hits">4</td>
 <td class="source"><code>    {utcTime,</code></td>
 </tr>
 <tr>
@@ -728,7 +728,7 @@ td.source {
 </tr>
 <tr class="hit">
 <td class="line" id="L125"><a href="#L125">125</a></td>
-<td class="hits">1</td>
+<td class="hits">2</td>
 <td class="source"><code>    format_date(Y, M, D).</code></td>
 </tr>
 </tbody>
