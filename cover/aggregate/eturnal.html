@@ -103,7 +103,7 @@ td.source {
 </head>
 <body>
 <h1><code>/home/runner/work/eturnal/eturnal/_build/test/cover/aggregate/eturnal.html</code></h1>
-<footer><p>File generated from <code>/home/runner/work/eturnal/eturnal/_build/test/lib/eturnal/ebin/../src/eturnal.erl</code> by <a href="http://erlang.org/doc/man/cover.html">cover</a> at 2022-01-03 at 00:14:48</p></footer>
+<footer><p>File generated from <code>/home/runner/work/eturnal/eturnal/_build/test/lib/eturnal/ebin/../src/eturnal.erl</code> by <a href="http://erlang.org/doc/man/cover.html">cover</a> at 2022-01-03 at 10:28:02</p></footer>
 <table>
 <tbody>
 <tr>
@@ -504,7 +504,7 @@ td.source {
 <tr class="hit">
 <td class="line" id="L80"><a href="#L80">80</a></td>
 <td class="hits">1</td>
-<td class="source"><code>    log_control_listener(),</code></td>
+<td class="source"><code>    ok = log_control_listener(),</code></td>
 </tr>
 <tr class="hit">
 <td class="line" id="L81"><a href="#L81">81</a></td>
@@ -1444,12 +1444,12 @@ td.source {
 <tr>
 <td class="line" id="L268"><a href="#L268">268</a></td>
 <td class="hits"></td>
-<td class="source"><code>-dialyzer({nowarn_function, log_control_listener/0}). % For Erlang/OTP 21/22.</code></td>
+<td class="source"><code>-spec log_control_listener() -&gt; ok.</code></td>
 </tr>
 <tr>
 <td class="line" id="L269"><a href="#L269">269</a></td>
 <td class="hits"></td>
-<td class="source"><code>-spec log_control_listener() -&gt; ok.</code></td>
+<td class="source"><code>-dialyzer({[no_fail_call, no_match], log_control_listener/0}). % OTP 21/22.</code></td>
 </tr>
 <tr>
 <td class="line" id="L270"><a href="#L270">270</a></td>
@@ -1464,7 +1464,7 @@ td.source {
 <tr>
 <td class="line" id="L272"><a href="#L272">272</a></td>
 <td class="hits"></td>
-<td class="source"><code>    % The 'catch' is just to make Dialyzer happy on Erlang/OTP 21.</code></td>
+<td class="source"><code>    % The 'catch' calms Dialyzer on OTP 21 (even though we don't match 'EXIT').</code></td>
 </tr>
 <tr class="hit">
 <td class="line" id="L273"><a href="#L273">273</a></td>
@@ -1474,7 +1474,7 @@ td.source {
 <tr>
 <td class="line" id="L274"><a href="#L274">274</a></td>
 <td class="hits"></td>
-<td class="source"><code>        {Tag, Port, Version} when Tag =:= ok; Tag =:= port -&gt;</code></td>
+<td class="source"><code>        {port, Port, Version} -&gt;</code></td>
 </tr>
 <tr class="miss">
 <td class="line" id="L275"><a href="#L275">275</a></td>
@@ -1499,12 +1499,12 @@ td.source {
 <tr>
 <td class="line" id="L279"><a href="#L279">279</a></td>
 <td class="hits"></td>
-<td class="source"><code>        Reason -&gt;</code></td>
+<td class="source"><code>        Reason when is_atom(Reason) -&gt;</code></td>
 </tr>
 <tr class="hit">
 <td class="line" id="L280"><a href="#L280">280</a></td>
 <td class="hits">1</td>
-<td class="source"><code>            ?LOG_INFO("Cannot determine control query port: ~p", [Reason])</code></td>
+<td class="source"><code>            ?LOG_INFO("Cannot determine control query port: ~s", [Reason])</code></td>
 </tr>
 <tr>
 <td class="line" id="L281"><a href="#L281">281</a></td>
