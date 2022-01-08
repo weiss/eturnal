@@ -3,12 +3,12 @@ Common Test starting (cwd is /home/runner/work/eturnal/eturnal)
 
 
 
-CWD set to: "/home/runner/work/eturnal/eturnal/_build/test/logs/ct_run.nonode@nohost.2022-01-08_14.06.34"
+CWD set to: "/home/runner/work/eturnal/eturnal/_build/test/logs/ct_run.nonode@nohost.2022-01-08_20.11.39"
 
-TEST INFO: 1 test(s), 16 case(s) in 1 suite(s)
+TEST INFO: 1 test(s), 18 case(s) in 1 suite(s)
 
-Testing lib.eturnal: Starting test, 16 test cases
-Testing lib.eturnal: TEST COMPLETE, 16 ok, 0 failed of 16 test cases
+Testing lib.eturnal: Starting test, 18 test cases
+Testing lib.eturnal: TEST COMPLETE, 18 ok, 0 failed of 18 test cases
 
 Updating /home/runner/work/eturnal/eturnal/_build/test/logs/index.html ... done
 Updating /home/runner/work/eturnal/eturnal/_build/test/logs/all_runs.html ... done
