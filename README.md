@@ -2,9 +2,26 @@
 
 [![CI](https://github.com/processone/eturnal/actions/workflows/ci.yml/badge.svg)][1]
 
-[eturnal][2] is a modern, straightforward STUN and TURN server with full IPv6
-support. For TURN authentication, the mechanism described in the [REST API for
-Access to TURN Services specification][3] is implemented.
+[eturnal][2] is a modern, straightforward STUN and TURN server. For
+authentication, the [REST API for Access to TURN Services][3] is supported.
+
+## Quick Test
+
+On Linux/64, this provides a STUN service on port 3478 (UDP and TCP):
+
+    curl https://eturnal.net/eturnal-1.8.1-linux-x64.tar.gz | tar -xzf -
+    ETURNAL_SECRET=cryptic eturnal/bin/eturnalctl foreground
+
+For TURN support, the system's public IP address can be
+[configured](https://eturnal.net/documentation/#relay_ipv4_addr) in
+`eturnal/etc/eturnal.yml` (only necessary if the system's
+[hostname](https://net-tools.sourceforge.io/man/hostname.1.html) doesn't
+resolve to that address), and the UDP port range
+[49152](https://eturnal.net/documentation/#relay_min_port)-[65535](https://eturnal.net/documentation/#relay_max_port)
+must be accessible in addition to port
+[3478](https://eturnal.net/documentation/#listen). Use `eturnal/bin/eturnalctl credentials`
+(in another shell) to retrieve a temporary username and password. The service
+can be stopped with `Ctrl`+`c` and deleted by removing the `eturnal` directory.
 
 ## Installation
 
