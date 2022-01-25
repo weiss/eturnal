@@ -103,7 +103,7 @@ td.source {
 </head>
 <body>
 <h1><code>/home/runner/work/eturnal/eturnal/_build/test/cover/ct/eturnal_module.html</code></h1>
-<footer><p>File generated from <code>/home/runner/work/eturnal/eturnal/_build/test/lib/eturnal/ebin/../src/eturnal_module.erl</code> by <a href="http://erlang.org/doc/man/cover.html">cover</a> at 2022-01-24 at 18:12:36</p></footer>
+<footer><p>File generated from <code>/home/runner/work/eturnal/eturnal/_build/test/lib/eturnal/ebin/../src/eturnal_module.erl</code> by <a href="http://erlang.org/doc/man/cover.html">cover</a> at 2022-01-25 at 09:36:26</p></footer>
 <table>
 <tbody>
 <tr>
@@ -889,21 +889,21 @@ td.source {
 <tr class="hit">
 <td class="line" id="L157"><a href="#L157">157</a></td>
 <td class="hits">2</td>
-<td class="source"><code>    case erlang:function_exported(Mod, stop, 1) of</code></td>
+<td class="source"><code>    case erlang:function_exported(Mod, stop, 0) of</code></td>
 </tr>
 <tr>
 <td class="line" id="L158"><a href="#L158">158</a></td>
 <td class="hits"></td>
 <td class="source"><code>        true -&gt;</code></td>
 </tr>
-<tr class="miss">
+<tr class="hit">
 <td class="line" id="L159"><a href="#L159">159</a></td>
-<td class="hits"><pre style="display: inline;">:-(</pre></td>
+<td class="hits">2</td>
 <td class="source"><code>            ?LOG_DEBUG("Calling ~s:stop/1", [Mod]),</code></td>
 </tr>
-<tr class="miss">
+<tr class="hit">
 <td class="line" id="L160"><a href="#L160">160</a></td>
-<td class="hits"><pre style="display: inline;">:-(</pre></td>
+<td class="hits">2</td>
 <td class="source"><code>            try ok = Mod:stop()</code></td>
 </tr>
 <tr>
@@ -936,14 +936,14 @@ td.source {
 <td class="hits"></td>
 <td class="source"><code>        false -&gt;</code></td>
 </tr>
-<tr class="hit">
+<tr class="miss">
 <td class="line" id="L167"><a href="#L167">167</a></td>
-<td class="hits">2</td>
+<td class="hits"><pre style="display: inline;">:-(</pre></td>
 <td class="source"><code>            ?LOG_DEBUG("Module ~s doesn't export stop/1", [Mod]),</code></td>
 </tr>
-<tr class="hit">
+<tr class="miss">
 <td class="line" id="L168"><a href="#L168">168</a></td>
-<td class="hits">2</td>
+<td class="hits"><pre style="display: inline;">:-(</pre></td>
 <td class="source"><code>            ok</code></td>
 </tr>
 <tr>
