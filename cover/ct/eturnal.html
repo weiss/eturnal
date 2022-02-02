@@ -103,7 +103,7 @@ td.source {
 </head>
 <body>
 <h1><code>/home/runner/work/eturnal/eturnal/_build/test/cover/ct/eturnal.html</code></h1>
-<footer><p>File generated from <code>/home/runner/work/eturnal/eturnal/_build/test/lib/eturnal/ebin/../src/eturnal.erl</code> by <a href="http://erlang.org/doc/man/cover.html">cover</a> at 2022-01-28 at 22:40:42</p></footer>
+<footer><p>File generated from <code>/home/runner/work/eturnal/eturnal/_build/test/lib/eturnal/ebin/../src/eturnal.erl</code> by <a href="http://erlang.org/doc/man/cover.html">cover</a> at 2022-02-02 at 16:43:56</p></footer>
 <table>
 <tbody>
 <tr>
@@ -1364,7 +1364,7 @@ td.source {
 <tr class="miss">
 <td class="line" id="L252"><a href="#L252">252</a></td>
 <td class="hits"><pre style="display: inline;">:-(</pre></td>
-<td class="source"><code>            ?LOG_ALERT("Stopping eturnal STUN/TURN server (~p)", [Reason]),</code></td>
+<td class="source"><code>            ?LOG_ALERT("Stopping eturnal: ~s", [format_error(Reason)]),</code></td>
 </tr>
 <tr class="miss">
 <td class="line" id="L253"><a href="#L253">253</a></td>
@@ -1379,7 +1379,7 @@ td.source {
 <tr class="miss">
 <td class="line" id="L255"><a href="#L255">255</a></td>
 <td class="hits"><pre style="display: inline;">:-(</pre></td>
-<td class="source"><code>            ?LOG_ALERT("Aborting eturnal STUN/TURN server (~p)", [Reason]),</code></td>
+<td class="source"><code>            ?LOG_ALERT("Aborting eturnal: ~s", [format_error(Reason)]),</code></td>
 </tr>
 <tr class="miss">
 <td class="line" id="L256"><a href="#L256">256</a></td>
@@ -3690,6 +3690,96 @@ td.source {
 <td class="line" id="L717"><a href="#L717">717</a></td>
 <td class="hits"></td>
 <td class="source"><code>    end.</code></td>
+</tr>
+<tr>
+<td class="line" id="L718"><a href="#L718">718</a></td>
+<td class="hits"></td>
+<td class="source"><code></code></td>
+</tr>
+<tr>
+<td class="line" id="L719"><a href="#L719">719</a></td>
+<td class="hits"></td>
+<td class="source"><code>%% Internal functions: error message formatting.</code></td>
+</tr>
+<tr>
+<td class="line" id="L720"><a href="#L720">720</a></td>
+<td class="hits"></td>
+<td class="source"><code></code></td>
+</tr>
+<tr>
+<td class="line" id="L721"><a href="#L721">721</a></td>
+<td class="hits"></td>
+<td class="source"><code>-spec format_error(atom()) -&gt; binary().</code></td>
+</tr>
+<tr>
+<td class="line" id="L722"><a href="#L722">722</a></td>
+<td class="hits"></td>
+<td class="source"><code>format_error(certificate_failure) -&gt;</code></td>
+</tr>
+<tr class="miss">
+<td class="line" id="L723"><a href="#L723">723</a></td>
+<td class="hits"><pre style="display: inline;">:-(</pre></td>
+<td class="source"><code>    &lt;&lt;"PEM file failure"&gt;&gt;;</code></td>
+</tr>
+<tr>
+<td class="line" id="L724"><a href="#L724">724</a></td>
+<td class="hits"></td>
+<td class="source"><code>format_error(dependency_failure) -&gt;</code></td>
+</tr>
+<tr class="miss">
+<td class="line" id="L725"><a href="#L725">725</a></td>
+<td class="hits"><pre style="display: inline;">:-(</pre></td>
+<td class="source"><code>    &lt;&lt;"Dependency failure"&gt;&gt;;</code></td>
+</tr>
+<tr>
+<td class="line" id="L726"><a href="#L726">726</a></td>
+<td class="hits"></td>
+<td class="source"><code>format_error(listener_failure) -&gt;</code></td>
+</tr>
+<tr class="miss">
+<td class="line" id="L727"><a href="#L727">727</a></td>
+<td class="hits"><pre style="display: inline;">:-(</pre></td>
+<td class="source"><code>    &lt;&lt;"Listener startup failure"&gt;&gt;;</code></td>
+</tr>
+<tr>
+<td class="line" id="L728"><a href="#L728">728</a></td>
+<td class="hits"></td>
+<td class="source"><code>format_error(module_failure) -&gt;</code></td>
+</tr>
+<tr class="miss">
+<td class="line" id="L729"><a href="#L729">729</a></td>
+<td class="hits"><pre style="display: inline;">:-(</pre></td>
+<td class="source"><code>    &lt;&lt;"Module startup failure"&gt;&gt;;</code></td>
+</tr>
+<tr>
+<td class="line" id="L730"><a href="#L730">730</a></td>
+<td class="hits"></td>
+<td class="source"><code>format_error(proxy_config_failure) -&gt;</code></td>
+</tr>
+<tr class="miss">
+<td class="line" id="L731"><a href="#L731">731</a></td>
+<td class="hits"><pre style="display: inline;">:-(</pre></td>
+<td class="source"><code>    &lt;&lt;"Proxy protocol configuration failure"&gt;&gt;;</code></td>
+</tr>
+<tr>
+<td class="line" id="L732"><a href="#L732">732</a></td>
+<td class="hits"></td>
+<td class="source"><code>format_error(run_dir_failure) -&gt;</code></td>
+</tr>
+<tr class="miss">
+<td class="line" id="L733"><a href="#L733">733</a></td>
+<td class="hits"><pre style="display: inline;">:-(</pre></td>
+<td class="source"><code>    &lt;&lt;"Run directory failure"&gt;&gt;;</code></td>
+</tr>
+<tr>
+<td class="line" id="L734"><a href="#L734">734</a></td>
+<td class="hits"></td>
+<td class="source"><code>format_error(_Unknown) -&gt;</code></td>
+</tr>
+<tr class="miss">
+<td class="line" id="L735"><a href="#L735">735</a></td>
+<td class="hits"><pre style="display: inline;">:-(</pre></td>
+<td class="source"><code>    &lt;&lt;"Unknown error"&gt;&gt;.</code></td>
 </tr>
 </tbody>
 <thead>
