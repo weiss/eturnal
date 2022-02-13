@@ -103,7 +103,7 @@ td.source {
 </head>
 <body>
 <h1><code>/home/runner/work/eturnal/eturnal/_build/test/cover/aggregate/eturnal_app.html</code></h1>
-<footer><p>File generated from <code>/home/runner/work/eturnal/eturnal/_build/test/lib/eturnal/ebin/../src/eturnal_app.erl</code> by <a href="http://erlang.org/doc/man/cover.html">cover</a> at 2022-02-10 at 12:33:45</p></footer>
+<footer><p>File generated from <code>/home/runner/work/eturnal/eturnal/_build/test/lib/eturnal/ebin/../src/eturnal_app.erl</code> by <a href="http://erlang.org/doc/man/cover.html">cover</a> at 2022-02-13 at 11:01:15</p></footer>
 <table>
 <tbody>
 <tr>
@@ -269,157 +269,227 @@ td.source {
 <tr class="hit">
 <td class="line" id="L33"><a href="#L33">33</a></td>
 <td class="hits">1</td>
-<td class="source"><code>    ok = eturnal_logger:start(),</code></td>
+<td class="source"><code>    ok = conf_init(),</code></td>
 </tr>
 <tr class="hit">
 <td class="line" id="L34"><a href="#L34">34</a></td>
 <td class="hits">1</td>
-<td class="source"><code>    ?LOG_NOTICE("Starting eturnal ~s on Erlang/OTP ~s (ERTS ~s)",</code></td>
+<td class="source"><code>    ok = eturnal_logger:start(),</code></td>
 </tr>
-<tr>
+<tr class="hit">
 <td class="line" id="L35"><a href="#L35">35</a></td>
-<td class="hits"></td>
-<td class="source"><code>                [eturnal_misc:version(),</code></td>
+<td class="hits">1</td>
+<td class="source"><code>    ?LOG_NOTICE("Starting eturnal ~s on Erlang/OTP ~s (ERTS ~s)",</code></td>
 </tr>
 <tr>
 <td class="line" id="L36"><a href="#L36">36</a></td>
 <td class="hits"></td>
+<td class="source"><code>                [eturnal_misc:version(),</code></td>
+</tr>
+<tr>
+<td class="line" id="L37"><a href="#L37">37</a></td>
+<td class="hits"></td>
 <td class="source"><code>                 erlang:system_info(otp_release),</code></td>
 </tr>
 <tr class="miss">
-<td class="line" id="L37"><a href="#L37">37</a></td>
+<td class="line" id="L38"><a href="#L38">38</a></td>
 <td class="hits"><pre style="display: inline;">:-(</pre></td>
 <td class="source"><code>                 erlang:system_info(version)]),</code></td>
 </tr>
 <tr class="hit">
-<td class="line" id="L38"><a href="#L38">38</a></td>
+<td class="line" id="L39"><a href="#L39">39</a></td>
 <td class="hits">1</td>
 <td class="source"><code>    case eturnal_sup:start_link() of</code></td>
 </tr>
 <tr>
-<td class="line" id="L39"><a href="#L39">39</a></td>
+<td class="line" id="L40"><a href="#L40">40</a></td>
 <td class="hits"></td>
 <td class="source"><code>        {ok, _PID} = Result -&gt;</code></td>
 </tr>
 <tr class="hit">
-<td class="line" id="L40"><a href="#L40">40</a></td>
+<td class="line" id="L41"><a href="#L41">41</a></td>
 <td class="hits">1</td>
 <td class="source"><code>            ok = eturnal_systemd:ready(),</code></td>
 </tr>
 <tr class="hit">
-<td class="line" id="L41"><a href="#L41">41</a></td>
+<td class="line" id="L42"><a href="#L42">42</a></td>
 <td class="hits">1</td>
 <td class="source"><code>            Result;</code></td>
 </tr>
 <tr>
-<td class="line" id="L42"><a href="#L42">42</a></td>
+<td class="line" id="L43"><a href="#L43">43</a></td>
 <td class="hits"></td>
 <td class="source"><code>        {error, _Reason} = Err -&gt;</code></td>
 </tr>
 <tr class="miss">
-<td class="line" id="L43"><a href="#L43">43</a></td>
+<td class="line" id="L44"><a href="#L44">44</a></td>
 <td class="hits"><pre style="display: inline;">:-(</pre></td>
 <td class="source"><code>            Err</code></td>
 </tr>
 <tr>
-<td class="line" id="L44"><a href="#L44">44</a></td>
+<td class="line" id="L45"><a href="#L45">45</a></td>
 <td class="hits"></td>
 <td class="source"><code>    end.</code></td>
 </tr>
 <tr>
-<td class="line" id="L45"><a href="#L45">45</a></td>
-<td class="hits"></td>
-<td class="source"><code></code></td>
-</tr>
-<tr>
 <td class="line" id="L46"><a href="#L46">46</a></td>
 <td class="hits"></td>
-<td class="source"><code>-spec prep_stop(term()) -&gt; term().</code></td>
+<td class="source"><code></code></td>
 </tr>
 <tr>
 <td class="line" id="L47"><a href="#L47">47</a></td>
 <td class="hits"></td>
-<td class="source"><code>prep_stop(State) -&gt;</code></td>
+<td class="source"><code>-spec prep_stop(term()) -&gt; term().</code></td>
 </tr>
-<tr class="hit">
+<tr>
 <td class="line" id="L48"><a href="#L48">48</a></td>
-<td class="hits">1</td>
-<td class="source"><code>    ok = eturnal_systemd:stopping(),</code></td>
+<td class="hits"></td>
+<td class="source"><code>prep_stop(State) -&gt;</code></td>
 </tr>
 <tr class="hit">
 <td class="line" id="L49"><a href="#L49">49</a></td>
 <td class="hits">1</td>
-<td class="source"><code>    State.</code></td>
+<td class="source"><code>    ok = eturnal_systemd:stopping(),</code></td>
 </tr>
-<tr>
+<tr class="hit">
 <td class="line" id="L50"><a href="#L50">50</a></td>
-<td class="hits"></td>
-<td class="source"><code></code></td>
+<td class="hits">1</td>
+<td class="source"><code>    State.</code></td>
 </tr>
 <tr>
 <td class="line" id="L51"><a href="#L51">51</a></td>
 <td class="hits"></td>
-<td class="source"><code>-spec stop(term()) -&gt; ok.</code></td>
+<td class="source"><code></code></td>
 </tr>
 <tr>
 <td class="line" id="L52"><a href="#L52">52</a></td>
 <td class="hits"></td>
+<td class="source"><code>-spec stop(term()) -&gt; ok.</code></td>
+</tr>
+<tr>
+<td class="line" id="L53"><a href="#L53">53</a></td>
+<td class="hits"></td>
 <td class="source"><code>stop(_State) -&gt;</code></td>
 </tr>
 <tr class="hit">
-<td class="line" id="L53"><a href="#L53">53</a></td>
+<td class="line" id="L54"><a href="#L54">54</a></td>
 <td class="hits">1</td>
 <td class="source"><code>    ?LOG_NOTICE("Stopping eturnal ~s on Erlang/OTP ~s (ERTS ~s)",</code></td>
 </tr>
 <tr>
-<td class="line" id="L54"><a href="#L54">54</a></td>
+<td class="line" id="L55"><a href="#L55">55</a></td>
 <td class="hits"></td>
 <td class="source"><code>                [eturnal_misc:version(),</code></td>
 </tr>
 <tr>
-<td class="line" id="L55"><a href="#L55">55</a></td>
+<td class="line" id="L56"><a href="#L56">56</a></td>
 <td class="hits"></td>
 <td class="source"><code>                 erlang:system_info(otp_release),</code></td>
 </tr>
 <tr class="miss">
-<td class="line" id="L56"><a href="#L56">56</a></td>
+<td class="line" id="L57"><a href="#L57">57</a></td>
 <td class="hits"><pre style="display: inline;">:-(</pre></td>
 <td class="source"><code>                 erlang:system_info(version)]),</code></td>
 </tr>
 <tr class="hit">
-<td class="line" id="L57"><a href="#L57">57</a></td>
+<td class="line" id="L58"><a href="#L58">58</a></td>
 <td class="hits">1</td>
 <td class="source"><code>    ok.</code></td>
 </tr>
 <tr>
-<td class="line" id="L58"><a href="#L58">58</a></td>
+<td class="line" id="L59"><a href="#L59">59</a></td>
 <td class="hits"></td>
 <td class="source"><code></code></td>
 </tr>
 <tr>
-<td class="line" id="L59"><a href="#L59">59</a></td>
+<td class="line" id="L60"><a href="#L60">60</a></td>
 <td class="hits"></td>
 <td class="source"><code>-spec config_change([{atom(), term()}], [{atom(), term()}], [atom()]) -&gt; ok.</code></td>
 </tr>
 <tr>
-<td class="line" id="L60"><a href="#L60">60</a></td>
+<td class="line" id="L61"><a href="#L61">61</a></td>
 <td class="hits"></td>
 <td class="source"><code>config_change(Changed, New, Removed) -&gt;</code></td>
 </tr>
 <tr class="miss">
-<td class="line" id="L61"><a href="#L61">61</a></td>
+<td class="line" id="L62"><a href="#L62">62</a></td>
 <td class="hits"><pre style="display: inline;">:-(</pre></td>
 <td class="source"><code>    ok = gen_server:cast(eturnal, {config_change, {Changed, New, Removed},</code></td>
 </tr>
 <tr>
-<td class="line" id="L62"><a href="#L62">62</a></td>
+<td class="line" id="L63"><a href="#L63">63</a></td>
 <td class="hits"></td>
 <td class="source"><code>                                   fun eturnal_systemd:reloading/0,</code></td>
 </tr>
 <tr>
-<td class="line" id="L63"><a href="#L63">63</a></td>
+<td class="line" id="L64"><a href="#L64">64</a></td>
 <td class="hits"></td>
 <td class="source"><code>                                   fun eturnal_systemd:ready/0}).</code></td>
+</tr>
+<tr>
+<td class="line" id="L65"><a href="#L65">65</a></td>
+<td class="hits"></td>
+<td class="source"><code></code></td>
+</tr>
+<tr>
+<td class="line" id="L66"><a href="#L66">66</a></td>
+<td class="hits"></td>
+<td class="source"><code>%% Internal functions.</code></td>
+</tr>
+<tr>
+<td class="line" id="L67"><a href="#L67">67</a></td>
+<td class="hits"></td>
+<td class="source"><code></code></td>
+</tr>
+<tr>
+<td class="line" id="L68"><a href="#L68">68</a></td>
+<td class="hits"></td>
+<td class="source"><code>-spec conf_init() -&gt; ok.</code></td>
+</tr>
+<tr>
+<td class="line" id="L69"><a href="#L69">69</a></td>
+<td class="hits"></td>
+<td class="source"><code>conf_init() -&gt; % Just to cope with an empty configuration file.</code></td>
+</tr>
+<tr class="hit">
+<td class="line" id="L70"><a href="#L70">70</a></td>
+<td class="hits">1</td>
+<td class="source"><code>    try eturnal:get_opt(realm) of</code></td>
+</tr>
+<tr>
+<td class="line" id="L71"><a href="#L71">71</a></td>
+<td class="hits"></td>
+<td class="source"><code>        Realm when is_binary(Realm) -&gt;</code></td>
+</tr>
+<tr class="hit">
+<td class="line" id="L72"><a href="#L72">72</a></td>
+<td class="hits">1</td>
+<td class="source"><code>            ?LOG_DEBUG("Configuration has been loaded successfully"),</code></td>
+</tr>
+<tr class="hit">
+<td class="line" id="L73"><a href="#L73">73</a></td>
+<td class="hits">1</td>
+<td class="source"><code>            ok</code></td>
+</tr>
+<tr>
+<td class="line" id="L74"><a href="#L74">74</a></td>
+<td class="hits"></td>
+<td class="source"><code>    catch error:{badmatch, undefined} -&gt;</code></td>
+</tr>
+<tr class="miss">
+<td class="line" id="L75"><a href="#L75">75</a></td>
+<td class="hits"><pre style="display: inline;">:-(</pre></td>
+<td class="source"><code>            ?LOG_DEBUG("Empty configuration, using defaults"),</code></td>
+</tr>
+<tr class="miss">
+<td class="line" id="L76"><a href="#L76">76</a></td>
+<td class="hits"><pre style="display: inline;">:-(</pre></td>
+<td class="source"><code>            ok = conf:load([{eturnal, []}])</code></td>
+</tr>
+<tr>
+<td class="line" id="L77"><a href="#L77">77</a></td>
+<td class="hits"></td>
+<td class="source"><code>    end.</code></td>
 </tr>
 </tbody>
 <thead>
