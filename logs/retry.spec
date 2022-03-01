@@ -1,1 +1,2 @@
-{cases,"/home/runner/work/eturnal/eturnal/test",eturnal_SUITE,[turn_udp]}.
+{cases,"/home/runner/work/eturnal/eturnal/test",eturnal_SUITE,
+       [turn_udp,stun_udp]}.

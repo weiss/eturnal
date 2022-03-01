@@ -3,7 +3,7 @@ Common Test starting (cwd is /home/runner/work/eturnal/eturnal)
 
 
 
-CWD set to: "/home/runner/work/eturnal/eturnal/_build/test/logs/ct_run.nonode@nohost.2022-03-01_19.52.13"
+CWD set to: "/home/runner/work/eturnal/eturnal/_build/test/logs/ct_run.nonode@nohost.2022-03-01_19.55.45"
 
 TEST INFO: 1 test(s), 18 case(s) in 1 suite(s)
 
@@ -11,11 +11,18 @@ Testing lib.eturnal: Starting test, 18 test cases
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 eturnal_SUITE:turn_udp failed on line 216
-Reason: {badmatch,{ok,{stun,error,3,554869826,6501791848331070771584...}
+Reason: {badmatch,{error,timeout}}
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 Testing lib.eturnal: *** FAILED test case 12 of 18 ***
-Testing lib.eturnal: TEST COMPLETE, 17 ok, 1 failed of 18 test cases
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+eturnal_SUITE:stun_udp failed on line 225
+Reason: {badmatch,false}
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Testing lib.eturnal: *** FAILED test case 13 of 18 ***
+Testing lib.eturnal: TEST COMPLETE, 16 ok, 2 failed of 18 test cases
 
 Updating /home/runner/work/eturnal/eturnal/_build/test/logs/index.html ... done
 Updating /home/runner/work/eturnal/eturnal/_build/test/logs/all_runs.html ... done
