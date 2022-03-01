@@ -1,0 +1,371 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>Test eturnal_SUITE:start_eturnal result</title>
+<meta http-equiv="cache-control" content="no-cache"></meta>
+<meta http-equiv="content-type" content="text/html; charset=utf-8"></meta>
+<link rel="stylesheet" href="../../ct_default.css" type="text/css"></link>
+<script type="text/javascript" src="../../jquery-latest.js"></script>
+<script type="text/javascript" src="../../jquery.tablesorter.min.js"></script>
+</head>
+<body>
+
+<a name="top"></a><pre>
+=== Test case: <a href="eturnal_suite.src.html#start_eturnal-1">eturnal_SUITE:start_eturnal/1</a> (click for source code)
+
+=== Config value:
+
+    [{watchdog,&lt;0.673.0&gt;},
+     {tc_logfile,"/home/runner/work/eturnal/eturnal/_build/test/logs/ct_run.nonode@nohost.2022-03-01_20.04.13/lib.eturnal.logs/run.2022-03-01_20.04.13/eturnal_suite.start_eturnal.html"},
+     {tc_group_properties,[]},
+     {tc_group_path,[]},
+     {data_dir,"/home/runner/work/eturnal/eturnal/_build/test/lib/eturnal/test/eturnal_SUITE_data/"},
+     {priv_dir,"/home/runner/work/eturnal/eturnal/_build/test/logs/ct_run.nonode@nohost.2022-03-01_20.04.13/lib.eturnal.logs/run.2022-03-01_20.04.13/log_private/"}]
+
+=== Current directory is "/home/runner/work/eturnal/eturnal/_build/test/logs/ct_run.nonode@nohost.2022-03-01_20.04.13"
+
+=== Started at 2022-03-01 20:04:13
+
+<br />
+
+</pre>
+<div class="default"><pre><b>*** User 2022-03-01 20:04:13.895 ***</b><a id=e-1 class="link-to-entry" href="#e-1">&#x1f517;</a>
+Starting up eturnal
+</pre></div>
+<pre>
+
+</pre>
+<div class="sasl"><pre><b>*** System report during eturnal_SUITE:start_eturnal/1 2022-03-01 20:04:13.971 ***</b><a id=e-2 class="link-to-entry" href="#e-2">&#x1f517;</a>
+=NOTICE REPORT==== 1-Mar-2022::20:04:13.971519 ===
+Starting eturnal 1.8.1 on Erlang/OTP 24 (ERTS 12.2)
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="sasl"><pre><b>*** System report during eturnal_SUITE:start_eturnal/1 2022-03-01 20:04:13.971 ***</b><a id=e-3 class="link-to-entry" href="#e-3">&#x1f517;</a>
+=DEBUG REPORT==== 1-Mar-2022::20:04:13.971735 ===
+Starting supervisor: eturnal_sup
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="sasl"><pre><b>*** System report during eturnal_SUITE:start_eturnal/1 2022-03-01 20:04:13.972 ***</b><a id=e-4 class="link-to-entry" href="#e-4">&#x1f517;</a>
+=DEBUG REPORT==== 1-Mar-2022::20:04:13.971881 ===
+Configuring eturnal_sup supervisor: [#{id =&gt; systemd,
+                                       start =&gt;
+                                           {eturnal_systemd,start_link,[]}},
+                                     #{id =&gt; eturnal,
+                                       start =&gt; {eturnal,start_link,[]}}]
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="sasl"><pre><b>*** System report during eturnal_SUITE:start_eturnal/1 2022-03-01 20:04:13.973 ***</b><a id=e-5 class="link-to-entry" href="#e-5">&#x1f517;</a>
+=INFO REPORT==== 1-Mar-2022::20:04:13.973517 ===
+Got no NOTIFY_SOCKET, notifications disabled
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="sasl"><pre><b>*** System report during eturnal_SUITE:start_eturnal/1 2022-03-01 20:04:13.988 ***</b><a id=e-6 class="link-to-entry" href="#e-6">&#x1f517;</a>
+=INFO REPORT==== 1-Mar-2022::20:04:13.988251 ===
+Cannot determine control query port: noport
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="sasl"><pre><b>*** System report during eturnal_SUITE:start_eturnal/1 2022-03-01 20:04:13.988 ***</b><a id=e-7 class="link-to-entry" href="#e-7">&#x1f517;</a>
+=DEBUG REPORT==== 1-Mar-2022::20:04:13.988400 ===
+TURN configuration seems fine
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="sasl"><pre><b>*** System report during eturnal_SUITE:start_eturnal/1 2022-03-01 20:04:13.988 ***</b><a id=e-8 class="link-to-entry" href="#e-8">&#x1f517;</a>
+=DEBUG REPORT==== 1-Mar-2022::20:04:13.988731 ===
+Using run directory run
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="sasl"><pre><b>*** System report during eturnal_SUITE:start_eturnal/1 2022-03-01 20:04:13.989 ***</b><a id=e-9 class="link-to-entry" href="#e-9">&#x1f517;</a>
+=WARNING REPORT==== 1-Mar-2022::20:04:13.988938 ===
+TLS enabled without 'tls_crt_file', creating self-signed certificate
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="sasl"><pre><b>*** System report during eturnal_SUITE:start_eturnal/1 2022-03-01 20:04:14.228 ***</b><a id=e-10 class="link-to-entry" href="#e-10">&#x1f517;</a>
+=DEBUG REPORT==== 1-Mar-2022::20:04:14.227901 ===
+Calling mod_log_stun:start/0
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="sasl"><pre><b>*** System report during eturnal_SUITE:start_eturnal/1 2022-03-01 20:04:14.228 ***</b><a id=e-11 class="link-to-entry" href="#e-11">&#x1f517;</a>
+=DEBUG REPORT==== 1-Mar-2022::20:04:14.228126 ===
+Starting mod_log_stun
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="sasl"><pre><b>*** System report during eturnal_SUITE:start_eturnal/1 2022-03-01 20:04:14.228 ***</b><a id=e-12 class="link-to-entry" href="#e-12">&#x1f517;</a>
+=INFO REPORT==== 1-Mar-2022::20:04:14.228316 ===
+Started mod_log_stun
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="sasl"><pre><b>*** System report during eturnal_SUITE:start_eturnal/1 2022-03-01 20:04:14.228 ***</b><a id=e-13 class="link-to-entry" href="#e-13">&#x1f517;</a>
+=DEBUG REPORT==== 1-Mar-2022::20:04:14.228399 ===
+Calling mod_stats_influx:start/0
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="sasl"><pre><b>*** System report during eturnal_SUITE:start_eturnal/1 2022-03-01 20:04:14.228 ***</b><a id=e-14 class="link-to-entry" href="#e-14">&#x1f517;</a>
+=DEBUG REPORT==== 1-Mar-2022::20:04:14.228470 ===
+Starting mod_stats_influx
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="sasl"><pre><b>*** System report during eturnal_SUITE:start_eturnal/1 2022-03-01 20:04:14.238 ***</b><a id=e-15 class="link-to-entry" href="#e-15">&#x1f517;</a>
+=INFO REPORT==== 1-Mar-2022::20:04:14.238310 ===
+    msg: Starting application: influx_udp
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="sasl"><pre><b>*** System report during eturnal_SUITE:start_eturnal/1 2022-03-01 20:04:14.241 ***</b><a id=e-16 class="link-to-entry" href="#e-16">&#x1f517;</a>
+=DEBUG REPORT==== 1-Mar-2022::20:04:14.241228 ===
+Dependency influx_udp was available already
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="sasl"><pre><b>*** System report during eturnal_SUITE:start_eturnal/1 2022-03-01 20:04:14.243 ***</b><a id=e-17 class="link-to-entry" href="#e-17">&#x1f517;</a>
+=INFO REPORT==== 1-Mar-2022::20:04:14.242948 ===
+    host: {127,0,0,1}
+    msg: Start clients pool
+    options: #{host =&gt; "localhost",max_overflow =&gt; 1,pool_size =&gt; 1,
+               port =&gt; 8089}
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="sasl"><pre><b>*** System report during eturnal_SUITE:start_eturnal/1 2022-03-01 20:04:14.251 ***</b><a id=e-18 class="link-to-entry" href="#e-18">&#x1f517;</a>
+=INFO REPORT==== 1-Mar-2022::20:04:14.251082 ===
+    msg: Open UDP socket on port
+    port: 49224
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="sasl"><pre><b>*** System report during eturnal_SUITE:start_eturnal/1 2022-03-01 20:04:14.252 ***</b><a id=e-19 class="link-to-entry" href="#e-19">&#x1f517;</a>
+=INFO REPORT==== 1-Mar-2022::20:04:14.251532 ===
+Started mod_stats_influx
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="sasl"><pre><b>*** System report during eturnal_SUITE:start_eturnal/1 2022-03-01 20:04:14.252 ***</b><a id=e-20 class="link-to-entry" href="#e-20">&#x1f517;</a>
+=DEBUG REPORT==== 1-Mar-2022::20:04:14.252286 ===
+Started 2 modules
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="sasl"><pre><b>*** System report during eturnal_SUITE:start_eturnal/1 2022-03-01 20:04:14.252 ***</b><a id=e-21 class="link-to-entry" href="#e-21">&#x1f517;</a>
+=DEBUG REPORT==== 1-Mar-2022::20:04:14.252394 ===
+Starting listener 127.0.0.1:34780 (udp) with options:
+[{use_turn,true},
+ {auth_type,user},
+ {turn_ipv4_address,{10,1,0,183}},
+ {turn_ipv6_address,{0,0,0,0,0,0,0,1}},
+ {turn_min_port,49152},
+ {turn_max_port,65535},
+ {turn_max_allocations,10},
+ {turn_max_permissions,10},
+ {shaper,100000},
+ {turn_blacklist,[{{203,0,113,0},24},{{8193,3512,0,0,0,0,0,0},32}]},
+ {turn_whitelist,[{{203,0,113,113},32},{{8193,3512,0,0,0,0,0,0},64}]},
+ {auth_realm,&lt;&lt;"eturnal.net"&gt;&gt;},
+ {server_name,&lt;&lt;"eturnal"&gt;&gt;},
+ {auth_fun,fun eturnal:get_password/2},
+ {hook_fun,fun eturnal:run_hook/2}]
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="sasl"><pre><b>*** System report during eturnal_SUITE:start_eturnal/1 2022-03-01 20:04:14.252 ***</b><a id=e-22 class="link-to-entry" href="#e-22">&#x1f517;</a>
+=INFO REPORT==== 1-Mar-2022::20:04:14.252847 ===
+Listening on 127.0.0.1:34780 (udp) (STUN/TURN)
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="sasl"><pre><b>*** System report during eturnal_SUITE:start_eturnal/1 2022-03-01 20:04:14.253 ***</b><a id=e-23 class="link-to-entry" href="#e-23">&#x1f517;</a>
+=DEBUG REPORT==== 1-Mar-2022::20:04:14.253058 ===
+Starting listener 127.0.0.1:34780 (tcp) with options:
+[{use_turn,false},
+ {auth_type,anonymous},
+ {turn_ipv4_address,{10,1,0,183}},
+ {turn_ipv6_address,{0,0,0,0,0,0,0,1}},
+ {turn_min_port,49152},
+ {turn_max_port,65535},
+ {turn_max_allocations,10},
+ {turn_max_permissions,10},
+ {shaper,100000},
+ {turn_blacklist,[{{203,0,113,0},24},{{8193,3512,0,0,0,0,0,0},32}]},
+ {turn_whitelist,[{{203,0,113,113},32},{{8193,3512,0,0,0,0,0,0},64}]},
+ {auth_realm,&lt;&lt;"eturnal.net"&gt;&gt;},
+ {server_name,&lt;&lt;"eturnal"&gt;&gt;},
+ {auth_fun,fun eturnal:get_password/2},
+ {hook_fun,fun eturnal:run_hook/2}]
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="sasl"><pre><b>*** System report during eturnal_SUITE:start_eturnal/1 2022-03-01 20:04:14.265 ***</b><a id=e-24 class="link-to-entry" href="#e-24">&#x1f517;</a>
+=INFO REPORT==== 1-Mar-2022::20:04:14.265822 ===
+Listening on 127.0.0.1:34780 (tcp) (STUN only)
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="sasl"><pre><b>*** System report during eturnal_SUITE:start_eturnal/1 2022-03-01 20:04:14.266 ***</b><a id=e-25 class="link-to-entry" href="#e-25">&#x1f517;</a>
+=DEBUG REPORT==== 1-Mar-2022::20:04:14.265960 ===
+Starting listener 127.0.0.1:53490 (tls) with options:
+[{use_turn,false},
+ {auth_type,anonymous},
+ {tls,true},
+ {certfile,&lt;&lt;"run/cert.pem"&gt;&gt;},
+ {ciphers,&lt;&lt;"HIGH:!aNULL:@STRENGTH"&gt;&gt;},
+ {protocol_options,&lt;&lt;"no_tlsv1|no_tlsv1_1|cipher_server_preference"&gt;&gt;},
+ {turn_ipv4_address,{10,1,0,183}},
+ {turn_ipv6_address,{0,0,0,0,0,0,0,1}},
+ {turn_min_port,49152},
+ {turn_max_port,65535},
+ {turn_max_allocations,10},
+ {turn_max_permissions,10},
+ {shaper,100000},
+ {turn_blacklist,[{{203,0,113,0},24},{{8193,3512,0,0,0,0,0,0},32}]},
+ {turn_whitelist,[{{203,0,113,113},32},{{8193,3512,0,0,0,0,0,0},64}]},
+ {auth_realm,&lt;&lt;"eturnal.net"&gt;&gt;},
+ {server_name,&lt;&lt;"eturnal"&gt;&gt;},
+ {auth_fun,fun eturnal:get_password/2},
+ {hook_fun,fun eturnal:run_hook/2}]
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="sasl"><pre><b>*** System report during eturnal_SUITE:start_eturnal/1 2022-03-01 20:04:14.266 ***</b><a id=e-26 class="link-to-entry" href="#e-26">&#x1f517;</a>
+=INFO REPORT==== 1-Mar-2022::20:04:14.266400 ===
+Listening on 127.0.0.1:53490 (tls) (STUN only)
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="sasl"><pre><b>*** System report during eturnal_SUITE:start_eturnal/1 2022-03-01 20:04:14.266 ***</b><a id=e-27 class="link-to-entry" href="#e-27">&#x1f517;</a>
+=DEBUG REPORT==== 1-Mar-2022::20:04:14.266525 ===
+Starting listener 127.0.0.1:34781 (auto) with options:
+[{use_turn,false},
+ {auth_type,anonymous},
+ {tls,optional},
+ {certfile,&lt;&lt;"run/cert.pem"&gt;&gt;},
+ {ciphers,&lt;&lt;"HIGH:!aNULL:@STRENGTH"&gt;&gt;},
+ {protocol_options,&lt;&lt;"no_tlsv1|no_tlsv1_1|cipher_server_preference"&gt;&gt;},
+ {turn_ipv4_address,{10,1,0,183}},
+ {turn_ipv6_address,{0,0,0,0,0,0,0,1}},
+ {turn_min_port,49152},
+ {turn_max_port,65535},
+ {turn_max_allocations,10},
+ {turn_max_permissions,10},
+ {shaper,100000},
+ {turn_blacklist,[{{203,0,113,0},24},{{8193,3512,0,0,0,0,0,0},32}]},
+ {turn_whitelist,[{{203,0,113,113},32},{{8193,3512,0,0,0,0,0,0},64}]},
+ {auth_realm,&lt;&lt;"eturnal.net"&gt;&gt;},
+ {server_name,&lt;&lt;"eturnal"&gt;&gt;},
+ {auth_fun,fun eturnal:get_password/2},
+ {hook_fun,fun eturnal:run_hook/2}]
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="sasl"><pre><b>*** System report during eturnal_SUITE:start_eturnal/1 2022-03-01 20:04:14.290 ***</b><a id=e-28 class="link-to-entry" href="#e-28">&#x1f517;</a>
+=INFO REPORT==== 1-Mar-2022::20:04:14.290614 ===
+Listening on 127.0.0.1:34781 (auto) (STUN only)
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="sasl"><pre><b>*** System report during eturnal_SUITE:start_eturnal/1 2022-03-01 20:04:14.290 ***</b><a id=e-29 class="link-to-entry" href="#e-29">&#x1f517;</a>
+=DEBUG REPORT==== 1-Mar-2022::20:04:14.290780 ===
+Started 4 listeners
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="sasl"><pre><b>*** System report during eturnal_SUITE:start_eturnal/1 2022-03-01 20:04:14.291 ***</b><a id=e-30 class="link-to-entry" href="#e-30">&#x1f517;</a>
+=DEBUG REPORT==== 1-Mar-2022::20:04:14.291093 ===
+No NOTIFY_SOCKET, dropping READY=1 notification
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="sasl"><pre><b>*** System report during eturnal_SUITE:start_eturnal/1 2022-03-01 20:04:14.291 ***</b><a id=e-31 class="link-to-entry" href="#e-31">&#x1f517;</a>
+=DEBUG REPORT==== 1-Mar-2022::20:04:14.291236 ===
+Watchdog interval is undefined, hibernating
+
+</pre></div>
+<pre>
+<a name="end"></a>
+
+
+=== Ended at 2022-03-01 20:04:14
+=== successfully completed test case
+=== === Returned value: ok
+</pre>
+<center>
+<br /><hr /><p>
+<a href="../../../all_runs.html">Test run history
+</a>  |  <a href="../../../index.html">Top level test index
+</a>  |  <a href="../../../suite.log.latest.html">Latest test result</a>
+</p>
+<div class="copyright">Copyright &copy; 2022 <a href="http://www.erlang.org">Open Telecom Platform</a><br />
+Updated: <!--date-->Tue Mar 01 2022 20:04:13<!--/date--><br />
+</div>
+</center>
+</body>
+</html>
