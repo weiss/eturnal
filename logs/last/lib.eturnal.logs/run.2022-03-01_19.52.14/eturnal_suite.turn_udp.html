@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>Test eturnal_SUITE:turn_udp result</title>
+<meta http-equiv="cache-control" content="no-cache"></meta>
+<meta http-equiv="content-type" content="text/html; charset=utf-8"></meta>
+<link rel="stylesheet" href="../../ct_default.css" type="text/css"></link>
+<script type="text/javascript" src="../../jquery-latest.js"></script>
+<script type="text/javascript" src="../../jquery.tablesorter.min.js"></script>
+</head>
+<body>
+
+<a name="top"></a><pre>
+=== Test case: <a href="eturnal_suite.src.html#turn_udp-1">eturnal_SUITE:turn_udp/1</a> (click for source code)
+
+=== Config value:
+
+    [{watchdog,&lt;0.673.0&gt;},
+     {tc_logfile,"/home/runner/work/eturnal/eturnal/_build/test/logs/ct_run.nonode@nohost.2022-03-01_19.52.13/lib.eturnal.logs/run.2022-03-01_19.52.14/eturnal_suite.turn_udp.html"},
+     {tc_group_properties,[]},
+     {tc_group_path,[]},
+     {data_dir,"/home/runner/work/eturnal/eturnal/_build/test/lib/eturnal/test/eturnal_SUITE_data/"},
+     {priv_dir,"/home/runner/work/eturnal/eturnal/_build/test/logs/ct_run.nonode@nohost.2022-03-01_19.52.13/lib.eturnal.logs/run.2022-03-01_19.52.14/log_private/"}]
+
+=== Current directory is "/home/runner/work/eturnal/eturnal/_build/test/logs/ct_run.nonode@nohost.2022-03-01_19.52.13"
+
+=== Started at 2022-03-01 19:52:15
+
+<br />
+
+</pre>
+<div class="default"><pre><b>*** User 2022-03-01 19:52:15.864 ***</b><a id=e-128 class="link-to-entry" href="#e-128">&#x1f517;</a>
+Allocating TURN relay on 127.0.0.1:34780 (UDP)
+</pre></div>
+<pre>
+
+</pre>
+<div class="ct_error_notify"><pre><b>*** CT Error Notification 2022-03-01 19:52:15.875 ***</b><a id=e-129 class="link-to-entry" href="#e-129">&#x1f517;</a>
+eturnal_SUITE:turn_udp failed on line 216
+Reason: {badmatch,{ok,{stun,error,3,554869826,6501791848331070771584...}
+
+<a href="#end">Full error description and stacktrace</a>
+</pre></div>
+<pre>
+<a name="end"></a>
+
+
+=== Ended at 2022-03-01 19:52:15
+=== Location: [{eturnal_SUITE,turn_udp,<a href="eturnal_suite.src.html#216">216</a>},
+              {test_server,ts_tc,1783},
+              {test_server,run_test_case_eval1,1292},
+              {test_server,run_test_case_eval,1224}]
+=== === Reason: no match of right hand side value 
+                 {ok,{stun,error,3,554869826,6501791848331070771584207339,
+                           &lt;&lt;&gt;&gt;,[],undefined,undefined,undefined,false,
+                           {405,&lt;&lt;"Method Not Allowed"&gt;&gt;},
+                           undefined,undefined,undefined,undefined,undefined,
+                           undefined,undefined,&lt;&lt;"P1 STUN library"&gt;&gt;,[],
+                           undefined,undefined,[],undefined}}
+  in function  eturnal_SUITE:turn_udp/1 (/home/runner/work/eturnal/eturnal/test/eturnal_SUITE.erl, line 216)
+  in call from test_server:ts_tc/3 (test_server.erl, line 1783)
+  in call from test_server:run_test_case_eval1/6 (test_server.erl, line 1292)
+  in call from test_server:run_test_case_eval/9 (test_server.erl, line 1224)
+</pre>
+<center>
+<br /><hr /><p>
+<a href="../../../all_runs.html">Test run history
+</a>  |  <a href="../../../index.html">Top level test index
+</a>  |  <a href="../../../suite.log.latest.html">Latest test result</a>
+</p>
+<div class="copyright">Copyright &copy; 2022 <a href="http://www.erlang.org">Open Telecom Platform</a><br />
+Updated: <!--date-->Tue Mar 01 2022 19:52:15<!--/date--><br />
+</div>
+</center>
+</body>
+</html>
