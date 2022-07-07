@@ -1,0 +1,535 @@
+2022-07-07 08:26:14.877665+00:00 [notice] Starting eturnal 1.8.3 on Erlang/OTP 25 (ERTS 13.0) (eturnal_app:start/2:35)
+2022-07-07 08:26:14.877917+00:00 [debug] Starting supervisor: eturnal_sup (eturnal_sup:start_link/0:32)
+2022-07-07 08:26:14.878075+00:00 [debug] Configuring eturnal_sup supervisor: [#{id => systemd,
+                                       start =>
+                                           {eturnal_systemd,start_link,[]}},
+                                     #{id => eturnal,
+                                       start => {eturnal,start_link,[]}}] (eturnal_sup:init/0:40)
+2022-07-07 08:26:14.879517+00:00 [info] Got no NOTIFY_SOCKET, notifications disabled (eturnal_systemd:init/1:95)
+2022-07-07 08:26:14.879682+00:00 [debug] PROGRESS REPORT:
+    supervisor: {local,eturnal_sup}
+    started: [{pid,<0.930.0>},
+              {id,systemd},
+              {mfargs,{eturnal_systemd,start_link,[]}},
+              {restart_type,permanent},
+              {significant,false},
+              {shutdown,5000},
+              {child_type,worker}]
+ (supervisor:report_progress/2:1557)
+2022-07-07 08:26:14.880059+00:00 [info] Relay IPv4 address: 127.0.0.1 (port range: 49152-65535) (eturnal:log_relay_addresses/0:287)
+2022-07-07 08:26:14.880203+00:00 [info] Relay IPv6 address not configured (eturnal:log_relay_addresses/0:297)
+2022-07-07 08:26:14.892938+00:00 [info] Cannot determine control query port: noport (eturnal:log_control_listener/0:312)
+2022-07-07 08:26:14.893093+00:00 [debug] TURN configuration seems fine (eturnal:check_turn_config/1:520)
+2022-07-07 08:26:14.893354+00:00 [debug] Using run directory run (eturnal:ensure_run_dir/0:713)
+2022-07-07 08:26:14.893504+00:00 [warning] TLS enabled without 'tls_crt_file', creating self-signed certificate (eturnal:check_pem_file/0:643)
+2022-07-07 08:26:15.278082+00:00 [debug] Calling mod_log_stun:start/0 (eturnal_module:start/1:142)
+2022-07-07 08:26:15.278361+00:00 [debug] Starting mod_log_stun (mod_log_stun:start/0:39)
+2022-07-07 08:26:15.278571+00:00 [info] Started mod_log_stun (eturnal:start_modules/0:323)
+2022-07-07 08:26:15.278663+00:00 [debug] Calling mod_stats_influx:start/0 (eturnal_module:start/1:142)
+2022-07-07 08:26:15.278742+00:00 [debug] Starting mod_stats_influx (mod_stats_influx:start/0:38)
+2022-07-07 08:26:15.283285+00:00 [debug] PROGRESS REPORT:
+    application: ulitos
+    started_at: nonode@nohost
+ (application_controller:info_started/2:2107)
+2022-07-07 08:26:15.286035+00:00 [debug] PROGRESS REPORT:
+    application: poolboy
+    started_at: nonode@nohost
+ (application_controller:info_started/2:2107)
+2022-07-07 08:26:15.287142+00:00 [info]     msg: Starting application: influx_udp (influx_udp_app:start/2:10)
+2022-07-07 08:26:15.289670+00:00 [debug] PROGRESS REPORT:
+    supervisor: {local,influx_udp_sup}
+    started: [{pid,<0.952.0>},
+              {id,influx_udp},
+              {mfargs,{influx_udp,start_link,[]}},
+              {restart_type,permanent},
+              {significant,false},
+              {shutdown,5000},
+              {child_type,worker}]
+ (supervisor:report_progress/2:1557)
+2022-07-07 08:26:15.289836+00:00 [debug] PROGRESS REPORT:
+    application: influx_udp
+    started_at: nonode@nohost
+ (application_controller:info_started/2:2107)
+2022-07-07 08:26:15.289905+00:00 [debug] Dependency influx_udp was available already (eturnal_module:ensure_dep/2:283)
+2022-07-07 08:26:15.292859+00:00 [info]     host: {127,0,0,1}
+    msg: Start clients pool
+    options: #{host => "localhost",max_overflow => 1,pool_size => 1,
+               port => 8089} (influx_udp:start_pool_/2:239)
+2022-07-07 08:26:15.302128+00:00 [info]     msg: Open UDP socket on port
+    port: 57011 (influx_udp_worker:init/1:43)
+2022-07-07 08:26:15.302344+00:00 [debug] PROGRESS REPORT:
+    supervisor: {local,influx_udp_sup}
+    started: [{pid,<0.955.0>},
+              {id,stats_influx_pool},
+              {mfargs,
+                  {poolboy,start_link,
+                      [[{name,{local,stats_influx_pool}},
+                        {worker_module,influx_udp_worker},
+                        {size,1},
+                        {max_overflow,1}],
+                       [{options,
+                            #{host => {127,0,0,1},
+                              max_overflow => 1,pool_size => 1,
+                              port => 8089}}]]}},
+              {restart_type,permanent},
+              {significant,false},
+              {shutdown,5000},
+              {child_type,worker}]
+ (supervisor:report_progress/2:1557)
+2022-07-07 08:26:15.302541+00:00 [info] Started mod_stats_influx (eturnal:start_modules/0:323)
+2022-07-07 08:26:15.302703+00:00 [debug] Started 2 modules (eturnal:init/1:113)
+2022-07-07 08:26:15.302811+00:00 [debug] Starting listener 127.0.0.1:34780 (udp) with options:
+[{use_turn,true},
+ {auth_type,user},
+ {turn_ipv4_address,{127,0,0,1}},
+ {turn_min_port,49152},
+ {turn_max_port,65535},
+ {turn_max_allocations,10},
+ {turn_max_permissions,10},
+ {shaper,100000},
+ {turn_blacklist,[{{203,0,113,0},24},{{8193,3512,0,0,0,0,0,0},32}]},
+ {turn_whitelist,[{{203,0,113,113},32},{{8193,3512,0,0,0,0,0,0},64}]},
+ {auth_realm,<<"eturnal.net">>},
+ {server_name,<<"eturnal">>},
+ {auth_fun,fun eturnal:get_password/2},
+ {hook_fun,fun eturnal:run_hook/2}] (eturnal:start_listeners/0:367)
+2022-07-07 08:26:15.322575+00:00 [info] Listening on 127.0.0.1:34780 (udp) (STUN/TURN) (eturnal:start_listeners/0:372)
+2022-07-07 08:26:15.322762+00:00 [debug] Starting listener 127.0.0.1:34780 (tcp) with options:
+[{use_turn,false},
+ {auth_type,anonymous},
+ {turn_ipv4_address,{127,0,0,1}},
+ {turn_min_port,49152},
+ {turn_max_port,65535},
+ {turn_max_allocations,10},
+ {turn_max_permissions,10},
+ {shaper,100000},
+ {turn_blacklist,[{{203,0,113,0},24},{{8193,3512,0,0,0,0,0,0},32}]},
+ {turn_whitelist,[{{203,0,113,113},32},{{8193,3512,0,0,0,0,0,0},64}]},
+ {auth_realm,<<"eturnal.net">>},
+ {server_name,<<"eturnal">>},
+ {auth_fun,fun eturnal:get_password/2},
+ {hook_fun,fun eturnal:run_hook/2}] (eturnal:start_listeners/0:367)
+2022-07-07 08:26:15.330251+00:00 [info] Listening on 127.0.0.1:34780 (tcp) (STUN only) (eturnal:start_listeners/0:372)
+2022-07-07 08:26:15.330392+00:00 [debug] Starting listener 127.0.0.1:53490 (tls) with options:
+[{use_turn,false},
+ {auth_type,anonymous},
+ {tls,true},
+ {certfile,<<"run/cert.pem">>},
+ {ciphers,<<"HIGH:!aNULL:@STRENGTH">>},
+ {protocol_options,<<"no_tlsv1|no_tlsv1_1|cipher_server_preference">>},
+ {turn_ipv4_address,{127,0,0,1}},
+ {turn_min_port,49152},
+ {turn_max_port,65535},
+ {turn_max_allocations,10},
+ {turn_max_permissions,10},
+ {shaper,100000},
+ {turn_blacklist,[{{203,0,113,0},24},{{8193,3512,0,0,0,0,0,0},32}]},
+ {turn_whitelist,[{{203,0,113,113},32},{{8193,3512,0,0,0,0,0,0},64}]},
+ {auth_realm,<<"eturnal.net">>},
+ {server_name,<<"eturnal">>},
+ {auth_fun,fun eturnal:get_password/2},
+ {hook_fun,fun eturnal:run_hook/2}] (eturnal:start_listeners/0:367)
+2022-07-07 08:26:15.330814+00:00 [info] Listening on 127.0.0.1:53490 (tls) (STUN only) (eturnal:start_listeners/0:372)
+2022-07-07 08:26:15.330956+00:00 [debug] Starting listener 127.0.0.1:34781 (auto) with options:
+[{use_turn,false},
+ {auth_type,anonymous},
+ {tls,optional},
+ {certfile,<<"run/cert.pem">>},
+ {ciphers,<<"HIGH:!aNULL:@STRENGTH">>},
+ {protocol_options,<<"no_tlsv1|no_tlsv1_1|cipher_server_preference">>},
+ {turn_ipv4_address,{127,0,0,1}},
+ {turn_min_port,49152},
+ {turn_max_port,65535},
+ {turn_max_allocations,10},
+ {turn_max_permissions,10},
+ {shaper,100000},
+ {turn_blacklist,[{{203,0,113,0},24},{{8193,3512,0,0,0,0,0,0},32}]},
+ {turn_whitelist,[{{203,0,113,113},32},{{8193,3512,0,0,0,0,0,0},64}]},
+ {auth_realm,<<"eturnal.net">>},
+ {server_name,<<"eturnal">>},
+ {auth_fun,fun eturnal:get_password/2},
+ {hook_fun,fun eturnal:run_hook/2}] (eturnal:start_listeners/0:367)
+2022-07-07 08:26:15.344804+00:00 [info] Listening on 127.0.0.1:34781 (auto) (STUN only) (eturnal:start_listeners/0:372)
+2022-07-07 08:26:15.344936+00:00 [debug] Started 4 listeners (eturnal:init/1:121)
+2022-07-07 08:26:15.345040+00:00 [debug] PROGRESS REPORT:
+    supervisor: {local,eturnal_sup}
+    started: [{pid,<0.932.0>},
+              {id,eturnal},
+              {mfargs,{eturnal,start_link,[]}},
+              {restart_type,permanent},
+              {significant,false},
+              {shutdown,5000},
+              {child_type,worker}]
+ (supervisor:report_progress/2:1557)
+2022-07-07 08:26:15.345118+00:00 [debug] No NOTIFY_SOCKET, dropping READY=1 notification (eturnal_systemd:handle_cast/2:109)
+2022-07-07 08:26:15.345136+00:00 [debug] PROGRESS REPORT:
+    application: eturnal
+    started_at: nonode@nohost
+ (application_controller:info_started/2:2107)
+2022-07-07 08:26:15.345218+00:00 [debug] Watchdog interval is undefined, hibernating (eturnal_systemd:get_timeout/1:162)
+2022-07-07 08:26:15.376364+00:00 [debug] Handling API call: get_info() (eturnal_ctl:get_info/0:135)
+2022-07-07 08:26:15.376899+00:00 [debug] eturnal call (get_info) returned {ok,
+                                  {eturnal_node_info,<<"1.8.3">>,
+                                   {"25","13.0"},
+                                   3779,0,137,111766798,1,39653224}} (eturnal_ctl:call/1:452)
+2022-07-07 08:26:15.402125+00:00 [debug] Handling API call: get_sessions() (eturnal_ctl:get_sessions/0:106)
+2022-07-07 08:26:15.427392+00:00 [debug] Handling API call: get_sessions("alice") (eturnal_ctl:get_sessions/1:116)
+2022-07-07 08:26:15.427666+00:00 [debug] Handling API call: disconnect(alice) (eturnal_ctl:disconnect/1:184)
+2022-07-07 08:26:15.427757+00:00 [debug] Cannot convert user name to binary: alice (eturnal_ctl:disconnect/1:194)
+2022-07-07 08:26:15.451520+00:00 [debug] Handling API call: disconnect("alice") (eturnal_ctl:disconnect/1:184)
+2022-07-07 08:26:15.451726+00:00 [debug] Handling API call: disconnect(alice) (eturnal_ctl:disconnect/1:184)
+2022-07-07 08:26:15.451818+00:00 [debug] Cannot convert user name to binary: alice (eturnal_ctl:disconnect/1:194)
+2022-07-07 08:26:15.476444+00:00 [debug] Handling API call: get_credentials("2009-10-30 11:00:00Z", []) (eturnal_ctl:get_credentials/2:60)
+2022-07-07 08:26:15.476647+00:00 [debug] eturnal call ({get_password,<<"1256900400">>}) returned {ok,
+                                                         <<"uEKlpcME7MNMMVRV8rUFPCTIFEs=">>} (eturnal_ctl:call/1:452)
+2022-07-07 08:26:15.482161+00:00 [debug] Handling API call: get_credentials("86400", "alice") (eturnal_ctl:get_credentials/2:60)
+2022-07-07 08:26:15.482681+00:00 [debug] eturnal call ({get_password,<<"1657268775:alice">>}) returned {ok,
+                                                               <<"rLJd7r3qN7rU331mDoIIRmfKSWs=">>} (eturnal_ctl:call/1:452)
+2022-07-07 08:26:15.482826+00:00 [debug] Handling API call: get_password("1657268775:alice") (eturnal_ctl:get_password/1:79)
+2022-07-07 08:26:15.482968+00:00 [debug] eturnal call ({get_password,<<"1657268775:alice">>}) returned {ok,
+                                                               <<"rLJd7r3qN7rU331mDoIIRmfKSWs=">>} (eturnal_ctl:call/1:452)
+2022-07-07 08:26:15.483164+00:00 [debug] Handling API call: get_credentials("86400s", "alice") (eturnal_ctl:get_credentials/2:60)
+2022-07-07 08:26:15.483300+00:00 [debug] eturnal call ({get_password,<<"1657268775:alice">>}) returned {ok,
+                                                               <<"rLJd7r3qN7rU331mDoIIRmfKSWs=">>} (eturnal_ctl:call/1:452)
+2022-07-07 08:26:15.483418+00:00 [debug] Handling API call: get_password("1657268775:alice") (eturnal_ctl:get_password/1:79)
+2022-07-07 08:26:15.483515+00:00 [debug] eturnal call ({get_password,<<"1657268775:alice">>}) returned {ok,
+                                                               <<"rLJd7r3qN7rU331mDoIIRmfKSWs=">>} (eturnal_ctl:call/1:452)
+2022-07-07 08:26:15.483661+00:00 [debug] Handling API call: get_credentials("1440m", "alice") (eturnal_ctl:get_credentials/2:60)
+2022-07-07 08:26:15.483787+00:00 [debug] eturnal call ({get_password,<<"1657268775:alice">>}) returned {ok,
+                                                               <<"rLJd7r3qN7rU331mDoIIRmfKSWs=">>} (eturnal_ctl:call/1:452)
+2022-07-07 08:26:15.483892+00:00 [debug] Handling API call: get_password("1657268775:alice") (eturnal_ctl:get_password/1:79)
+2022-07-07 08:26:15.483994+00:00 [debug] eturnal call ({get_password,<<"1657268775:alice">>}) returned {ok,
+                                                               <<"rLJd7r3qN7rU331mDoIIRmfKSWs=">>} (eturnal_ctl:call/1:452)
+2022-07-07 08:26:15.484122+00:00 [debug] Handling API call: get_credentials("24h", "alice") (eturnal_ctl:get_credentials/2:60)
+2022-07-07 08:26:15.484226+00:00 [debug] eturnal call ({get_password,<<"1657268775:alice">>}) returned {ok,
+                                                               <<"rLJd7r3qN7rU331mDoIIRmfKSWs=">>} (eturnal_ctl:call/1:452)
+2022-07-07 08:26:15.484315+00:00 [debug] Handling API call: get_password("1657268775:alice") (eturnal_ctl:get_password/1:79)
+2022-07-07 08:26:15.484388+00:00 [debug] eturnal call ({get_password,<<"1657268775:alice">>}) returned {ok,
+                                                               <<"rLJd7r3qN7rU331mDoIIRmfKSWs=">>} (eturnal_ctl:call/1:452)
+2022-07-07 08:26:15.484497+00:00 [debug] Handling API call: get_credentials("1d", "alice") (eturnal_ctl:get_credentials/2:60)
+2022-07-07 08:26:15.484579+00:00 [debug] eturnal call ({get_password,<<"1657268775:alice">>}) returned {ok,
+                                                               <<"rLJd7r3qN7rU331mDoIIRmfKSWs=">>} (eturnal_ctl:call/1:452)
+2022-07-07 08:26:15.484653+00:00 [debug] Handling API call: get_password("1657268775:alice") (eturnal_ctl:get_password/1:79)
+2022-07-07 08:26:15.484750+00:00 [debug] eturnal call ({get_password,<<"1657268775:alice">>}) returned {ok,
+                                                               <<"rLJd7r3qN7rU331mDoIIRmfKSWs=">>} (eturnal_ctl:call/1:452)
+2022-07-07 08:26:15.484915+00:00 [debug] Handling API call: get_password("Invalid") (eturnal_ctl:get_password/1:79)
+2022-07-07 08:26:15.485010+00:00 [debug] Invalid user name: Invalid (eturnal_ctl:get_password/1:93)
+2022-07-07 08:26:15.485102+00:00 [debug] Handling API call: get_credentials("Invalid", []) (eturnal_ctl:get_credentials/2:60)
+2022-07-07 08:26:15.485189+00:00 [debug] Invalid argument(s): "Invalid":[] (eturnal_ctl:get_credentials/2:73)
+2022-07-07 08:26:15.485259+00:00 [debug] Handling API call: get_password(invalid) (eturnal_ctl:get_password/1:79)
+2022-07-07 08:26:15.485327+00:00 [debug] Cannot convert user name to binary: invalid (eturnal_ctl:get_password/1:100)
+2022-07-07 08:26:15.485392+00:00 [debug] Handling API call: get_credentials(invalid, []) (eturnal_ctl:get_credentials/2:60)
+2022-07-07 08:26:15.485460+00:00 [debug] Invalid argument(s): invalid:[] (eturnal_ctl:get_credentials/2:73)
+2022-07-07 08:26:15.485530+00:00 [debug] Handling API call: get_password([invalid]) (eturnal_ctl:get_password/1:79)
+2022-07-07 08:26:15.485636+00:00 [debug] Cannot convert user name to binary: [invalid] (eturnal_ctl:get_password/1:100)
+2022-07-07 08:26:15.485716+00:00 [debug] Handling API call: get_credentials([invalid], []) (eturnal_ctl:get_credentials/2:60)
+2022-07-07 08:26:15.485785+00:00 [debug] Invalid argument(s): [invalid]:[] (eturnal_ctl:get_credentials/2:73)
+2022-07-07 08:26:15.485898+00:00 [debug] Handling API call: get_credentials(1256900400, invalid) (eturnal_ctl:get_credentials/2:60)
+2022-07-07 08:26:15.486640+00:00 [debug] Invalid argument(s): 1256900400:invalid (eturnal_ctl:get_credentials/2:73)
+2022-07-07 08:26:15.510832+00:00 [debug] Handling API call: set_loglevel(debug) (eturnal_ctl:set_loglevel/1:165)
+2022-07-07 08:26:15.510986+00:00 [debug] eturnal call ({set_loglevel,debug}) returned ok (eturnal_ctl:call/1:449)
+2022-07-07 08:26:15.511190+00:00 [debug] Handling API call: get_loglevel() (eturnal_ctl:get_loglevel/0:155)
+2022-07-07 08:26:15.511307+00:00 [debug] eturnal call (get_loglevel) returned {ok,debug} (eturnal_ctl:call/1:452)
+2022-07-07 08:26:15.511473+00:00 [debug] Handling API call: set_loglevel(invalid) (eturnal_ctl:set_loglevel/1:165)
+2022-07-07 08:26:15.511562+00:00 [debug] Invalid log level: invalid (eturnal_ctl:set_loglevel/1:175)
+2022-07-07 08:26:15.511699+00:00 [debug] Handling API call: get_loglevel() (eturnal_ctl:get_loglevel/0:155)
+2022-07-07 08:26:15.511778+00:00 [debug] eturnal call (get_loglevel) returned {ok,debug} (eturnal_ctl:call/1:452)
+2022-07-07 08:26:15.535781+00:00 [debug] Handling API call: get_version() (eturnal_ctl:get_version/0:145)
+2022-07-07 08:26:15.535933+00:00 [debug] eturnal call (get_version) returned {ok,<<"1.8.3">>} (eturnal_ctl:call/1:452)
+2022-07-07 08:26:15.560011+00:00 [debug] Handling API call: reload() (eturnal_ctl:reload/0:200)
+2022-07-07 08:26:15.561591+00:00 [debug] Calling mod_log_stun:options/0 (eturnal_module:options/1:191)
+2022-07-07 08:26:15.561728+00:00 [debug] Calling mod_stats_influx:options/0 (eturnal_module:options/1:191)
+2022-07-07 08:26:15.562413+00:00 [warning] TLS enabled without 'tls_crt_file', creating self-signed certificate (eturnal:check_pem_file/0:643)
+2022-07-07 08:26:16.490131+00:00 [info] Using new TLS certificate (eturnal:handle_call/3:140)
+2022-07-07 08:26:16.490287+00:00 [debug] Reloaded configuration (eturnal:handle_call/3:146)
+2022-07-07 08:26:16.490365+00:00 [debug] eturnal call (reload) returned ok (eturnal_ctl:call/1:449)
+2022-07-07 08:26:16.490620+00:00 [debug] Handling API call: reload() (eturnal_ctl:reload/0:200)
+2022-07-07 08:26:16.492203+00:00 [debug] Calling mod_log_stun:options/0 (eturnal_module:options/1:191)
+2022-07-07 08:26:16.492364+00:00 [debug] Calling mod_stats_influx:options/0 (eturnal_module:options/1:191)
+2022-07-07 08:26:16.492955+00:00 [debug] Keeping PEM file (run/cert.pem) (eturnal:check_pem_file/0:640)
+2022-07-07 08:26:16.493049+00:00 [debug] TLS certificate unchanged (eturnal:handle_call/3:142)
+2022-07-07 08:26:16.493145+00:00 [debug] Reloaded configuration (eturnal:handle_call/3:146)
+2022-07-07 08:26:16.493268+00:00 [debug] eturnal call (reload) returned ok (eturnal_ctl:call/1:449)
+2022-07-07 08:26:16.517108+00:00 [info] Accepting connection: 127.0.0.1:34224 -> 127.0.0.1:34780 [TCP, session 5uawn9owkqqa] (stun_acceptor:accept/3:148)
+2022-07-07 08:26:16.541288+00:00 [info] Accepting connection: 127.0.0.1:58540 -> 127.0.0.1:53490 [TLS, session so6rjy31uze4] (stun_acceptor:accept/3:148)
+2022-07-07 08:26:16.571268+00:00 [debug] Received:
+#stun{class = request,method = 3,magic = 554869826,
+      trid = 55533003852851787614677728587,raw = <<>>,unsupported = [],
+      'ALTERNATE-SERVER' = undefined,'CHANNEL-NUMBER' = undefined,
+      'DATA' = undefined,'DONT-FRAGMENT' = false,'ERROR-CODE' = undefined,
+      'LIFETIME' = undefined,'MAPPED-ADDRESS' = undefined,
+      'MESSAGE-INTEGRITY' = undefined,'NONCE' = undefined,'REALM' = undefined,
+      'REQUESTED-ADDRESS-FAMILY' = undefined,
+      'REQUESTED-TRANSPORT' = undefined,'SOFTWARE' = undefined,
+      'UNKNOWN-ATTRIBUTES' = [],'USERNAME' = undefined,
+      'XOR-MAPPED-ADDRESS' = undefined,'XOR-PEER-ADDRESS' = [],
+      'XOR-RELAYED-ADDRESS' = undefined} (stun:udp_recv/5:111)
+2022-07-07 08:26:16.571448+00:00 [debug] Sending:
+#stun{class = error,method = 3,magic = 554869826,
+      trid = 55533003852851787614677728587,raw = <<>>,unsupported = [],
+      'ALTERNATE-SERVER' = undefined,'CHANNEL-NUMBER' = undefined,
+      'DATA' = undefined,'DONT-FRAGMENT' = false,
+      'ERROR-CODE' = {401,<<"Unauthorized">>},
+      'LIFETIME' = undefined,'MAPPED-ADDRESS' = undefined,
+      'MESSAGE-INTEGRITY' = undefined,'NONCE' = <<"405363609">>,
+      'REALM' = <<"eturnal.net">>,'REQUESTED-ADDRESS-FAMILY' = undefined,
+      'REQUESTED-TRANSPORT' = undefined,'SOFTWARE' = <<"eturnal">>,
+      'UNKNOWN-ATTRIBUTES' = [],'USERNAME' = undefined,
+      'XOR-MAPPED-ADDRESS' = undefined,'XOR-PEER-ADDRESS' = [],
+      'XOR-RELAYED-ADDRESS' = undefined} (stun:send/3:445)
+2022-07-07 08:26:16.571756+00:00 [debug] Received:
+#stun{class = request,method = 3,magic = 554869826,
+      trid = 45533680499641054729891786199,
+      raw = <<0,3,0,80,33,18,164,66,147,32,147,229,242,214,103,28,254,180,173,
+              215,0,25,0,4,17,0,0,0,0,6,0,10,50,49,52,53,57,49,51,50,48,48,0,0,
+              0,20,0,11,101,116,117,114,110,97,108,46,110,101,116,0,0,21,0,9,
+              52,48,53,51,54,51,54,48,57,0,0,0>>,
+      unsupported = [],'ALTERNATE-SERVER' = undefined,
+      'CHANNEL-NUMBER' = undefined,'DATA' = undefined,'DONT-FRAGMENT' = false,
+      'ERROR-CODE' = undefined,'LIFETIME' = undefined,
+      'MAPPED-ADDRESS' = undefined,
+      'MESSAGE-INTEGRITY' = <<170,80,161,10,43,142,159,8,60,102,251,205,92,155,
+                              122,79,184,123,57,34>>,
+      'NONCE' = <<"405363609">>,'REALM' = <<"eturnal.net">>,
+      'REQUESTED-ADDRESS-FAMILY' = undefined,'REQUESTED-TRANSPORT' = udp,
+      'SOFTWARE' = undefined,'UNKNOWN-ATTRIBUTES' = [],
+      'USERNAME' = <<"2145913200">>,'XOR-MAPPED-ADDRESS' = undefined,
+      'XOR-PEER-ADDRESS' = [],'XOR-RELAYED-ADDRESS' = undefined} (stun:udp_recv/5:111)
+2022-07-07 08:26:16.571894+00:00 [debug] Looking up password for: 2145913200 [UDP, session xw5l7xprksnb, user 2145913200, client 127.0.0.1:46933] (eturnal:get_password/2:225)
+2022-07-07 08:26:16.571971+00:00 [info] Accepting long-term STUN/TURN authentication [UDP, session xw5l7xprksnb, user 2145913200, client 127.0.0.1:46933] (stun:process/2:249)
+2022-07-07 08:26:16.574807+00:00 [debug] Running 'turn_session_start' hook [UDP, session xw5l7xprksnb, user 2145913200, client 127.0.0.1:46933] (turn:run_hook/2:711)
+2022-07-07 08:26:16.574905+00:00 [debug] Got 'turn_session_start' event [UDP, session xw5l7xprksnb, user 2145913200, client 127.0.0.1:46933] (eturnal_module:handle_event/2:176)
+2022-07-07 08:26:16.575112+00:00 [notice] Creating TURN allocation (lifetime: 600 seconds) [UDP, session xw5l7xprksnb, user 2145913200, client 127.0.0.1:46933, relay 127.0.0.1:62221] (turn:wait_for_allocate/2:207)
+2022-07-07 08:26:16.575232+00:00 [debug] Sending:
+#stun{class = response,method = 3,magic = 554869826,
+      trid = 45533680499641054729891786199,raw = <<>>,unsupported = [],
+      'ALTERNATE-SERVER' = undefined,'CHANNEL-NUMBER' = undefined,
+      'DATA' = undefined,'DONT-FRAGMENT' = false,'ERROR-CODE' = undefined,
+      'LIFETIME' = 600,'MAPPED-ADDRESS' = undefined,
+      'MESSAGE-INTEGRITY' = undefined,'NONCE' = undefined,'REALM' = undefined,
+      'REQUESTED-ADDRESS-FAMILY' = undefined,
+      'REQUESTED-TRANSPORT' = undefined,'SOFTWARE' = <<"eturnal">>,
+      'UNKNOWN-ATTRIBUTES' = [],'USERNAME' = undefined,
+      'XOR-MAPPED-ADDRESS' = {{127,0,0,1},46933},
+      'XOR-PEER-ADDRESS' = [],
+      'XOR-RELAYED-ADDRESS' = {{127,0,0,1},62221}} (turn:send/2:521)
+2022-07-07 08:26:16.575501+00:00 [debug] Received:
+#stun{class = request,method = 4,magic = 554869826,
+      trid = 47380020959836144333624937303,
+      raw = <<0,4,0,80,33,18,164,66,153,23,213,178,218,104,79,54,106,199,139,
+              87,0,6,0,10,50,49,52,53,57,49,51,50,48,48,0,0,0,20,0,11,101,116,
+              117,114,110,97,108,46,110,101,116,0,0,21,0,9,52,48,53,51,54,51,
+              54,48,57,0,0,0,0,13,0,4,0,0,0,0>>,
+      unsupported = [],'ALTERNATE-SERVER' = undefined,
+      'CHANNEL-NUMBER' = undefined,'DATA' = undefined,'DONT-FRAGMENT' = false,
+      'ERROR-CODE' = undefined,'LIFETIME' = 0,'MAPPED-ADDRESS' = undefined,
+      'MESSAGE-INTEGRITY' = <<50,222,168,68,193,245,225,115,242,156,0,58,250,
+                              159,246,187,185,76,112,11>>,
+      'NONCE' = <<"405363609">>,'REALM' = <<"eturnal.net">>,
+      'REQUESTED-ADDRESS-FAMILY' = undefined,
+      'REQUESTED-TRANSPORT' = undefined,'SOFTWARE' = undefined,
+      'UNKNOWN-ATTRIBUTES' = [],'USERNAME' = <<"2145913200">>,
+      'XOR-MAPPED-ADDRESS' = undefined,'XOR-PEER-ADDRESS' = [],
+      'XOR-RELAYED-ADDRESS' = undefined} (stun:udp_recv/5:111)
+2022-07-07 08:26:16.575624+00:00 [debug] Looking up password for: 2145913200 [UDP, session k2fdetnsi20l, user 2145913200, client 127.0.0.1:46933] (eturnal:get_password/2:225)
+2022-07-07 08:26:16.575681+00:00 [info] Accepting long-term STUN/TURN authentication [UDP, session k2fdetnsi20l, user 2145913200, client 127.0.0.1:46933] (stun:process/2:249)
+2022-07-07 08:26:16.575736+00:00 [info] Client requested closing the TURN session [UDP, session xw5l7xprksnb, user 2145913200, client 127.0.0.1:46933, relay 127.0.0.1:62221] (turn:active/2:262)
+2022-07-07 08:26:16.575816+00:00 [debug] Sending:
+#stun{class = response,method = 4,magic = 554869826,
+      trid = 47380020959836144333624937303,raw = <<>>,unsupported = [],
+      'ALTERNATE-SERVER' = undefined,'CHANNEL-NUMBER' = undefined,
+      'DATA' = undefined,'DONT-FRAGMENT' = false,'ERROR-CODE' = undefined,
+      'LIFETIME' = 0,'MAPPED-ADDRESS' = undefined,
+      'MESSAGE-INTEGRITY' = undefined,'NONCE' = undefined,'REALM' = undefined,
+      'REQUESTED-ADDRESS-FAMILY' = undefined,
+      'REQUESTED-TRANSPORT' = undefined,'SOFTWARE' = <<"eturnal">>,
+      'UNKNOWN-ATTRIBUTES' = [],'USERNAME' = undefined,
+      'XOR-MAPPED-ADDRESS' = undefined,'XOR-PEER-ADDRESS' = [],
+      'XOR-RELAYED-ADDRESS' = undefined} (turn:send/2:521)
+2022-07-07 08:26:16.575919+00:00 [info] Deleting TURN allocation [UDP, session xw5l7xprksnb, user 2145913200, client 127.0.0.1:46933, relay 127.0.0.1:62221] (turn:terminate/3:454)
+2022-07-07 08:26:16.575977+00:00 [notice] Relayed 0 KiB (in 0 B / 0 packets, out 0 B / 0 packets), duration: 0 seconds [UDP, session xw5l7xprksnb, user 2145913200, client 127.0.0.1:46933, relay 127.0.0.1:62221] (turn:terminate/3:461)
+2022-07-07 08:26:16.576041+00:00 [debug] Running 'turn_session_stop' hook [UDP, session xw5l7xprksnb, user 2145913200, client 127.0.0.1:46933, relay 127.0.0.1:62221] (turn:run_hook/2:711)
+2022-07-07 08:26:16.576086+00:00 [debug] Got 'turn_session_stop' event [UDP, session xw5l7xprksnb, user 2145913200, client 127.0.0.1:46933, relay 127.0.0.1:62221] (eturnal_module:handle_event/2:176)
+2022-07-07 08:26:16.576127+00:00 [debug] Calling mod_stats_influx:handle_event/2 [UDP, session xw5l7xprksnb, user 2145913200, client 127.0.0.1:46933, relay 127.0.0.1:62221] (eturnal_module:handle_event/2:179)
+2022-07-07 08:26:16.576175+00:00 [debug] Writing stats of TURN session xw5l7xprksnb to InfluxDB [UDP, session xw5l7xprksnb, user 2145913200, client 127.0.0.1:46933, relay 127.0.0.1:62221] (mod_stats_influx:on_turn_session_stop/1:81)
+2022-07-07 08:26:16.599797+00:00 [debug] Received:
+#stun{class = request,method = 1,magic = 554869826,
+      trid = 10485861570871145385297428565,raw = <<>>,unsupported = [],
+      'ALTERNATE-SERVER' = undefined,'CHANNEL-NUMBER' = undefined,
+      'DATA' = undefined,'DONT-FRAGMENT' = false,'ERROR-CODE' = undefined,
+      'LIFETIME' = undefined,'MAPPED-ADDRESS' = undefined,
+      'MESSAGE-INTEGRITY' = undefined,'NONCE' = undefined,'REALM' = undefined,
+      'REQUESTED-ADDRESS-FAMILY' = undefined,
+      'REQUESTED-TRANSPORT' = undefined,'SOFTWARE' = undefined,
+      'UNKNOWN-ATTRIBUTES' = [],'USERNAME' = undefined,
+      'XOR-MAPPED-ADDRESS' = undefined,'XOR-PEER-ADDRESS' = [],
+      'XOR-RELAYED-ADDRESS' = undefined} (stun:udp_recv/5:111)
+2022-07-07 08:26:16.599878+00:00 [debug] Responding to STUN request [UDP, session vkda5xqv18q5, anonymous, client 127.0.0.1:51166] (stun:process/4:312)
+2022-07-07 08:26:16.599917+00:00 [debug] Running 'stun_query' hook [UDP, session vkda5xqv18q5, anonymous, client 127.0.0.1:51166] (stun:run_hook/3:820)
+2022-07-07 08:26:16.599961+00:00 [debug] Got 'stun_query' event [UDP, session vkda5xqv18q5, anonymous, client 127.0.0.1:51166] (eturnal_module:handle_event/2:176)
+2022-07-07 08:26:16.599994+00:00 [debug] Calling mod_log_stun:handle_event/2 [UDP, session vkda5xqv18q5, anonymous, client 127.0.0.1:51166] (eturnal_module:handle_event/2:179)
+2022-07-07 08:26:16.600023+00:00 [info] Responding to STUN request [UDP, session vkda5xqv18q5, anonymous, client 127.0.0.1:51166] (mod_log_stun:handle_event/2:45)
+2022-07-07 08:26:16.600123+00:00 [debug] Calling mod_stats_influx:handle_event/2 [UDP, session vkda5xqv18q5, anonymous, client 127.0.0.1:51166] (eturnal_module:handle_event/2:179)
+2022-07-07 08:26:16.600165+00:00 [debug] Writing STUN query event to InfluxDB [UDP, session vkda5xqv18q5, anonymous, client 127.0.0.1:51166] (mod_stats_influx:on_stun_query/1:70)
+2022-07-07 08:26:16.600339+00:00 [debug] Sending:
+#stun{class = response,method = 1,magic = 554869826,
+      trid = 10485861570871145385297428565,raw = <<>>,unsupported = [],
+      'ALTERNATE-SERVER' = undefined,'CHANNEL-NUMBER' = undefined,
+      'DATA' = undefined,'DONT-FRAGMENT' = false,'ERROR-CODE' = undefined,
+      'LIFETIME' = undefined,'MAPPED-ADDRESS' = undefined,
+      'MESSAGE-INTEGRITY' = undefined,'NONCE' = undefined,'REALM' = undefined,
+      'REQUESTED-ADDRESS-FAMILY' = undefined,
+      'REQUESTED-TRANSPORT' = undefined,'SOFTWARE' = <<"eturnal">>,
+      'UNKNOWN-ATTRIBUTES' = [],'USERNAME' = undefined,
+      'XOR-MAPPED-ADDRESS' = {{127,0,0,1},51166},
+      'XOR-PEER-ADDRESS' = [],'XOR-RELAYED-ADDRESS' = undefined} (stun:send/3:445)
+2022-07-07 08:26:16.623973+00:00 [info] Accepting connection: 127.0.0.1:34226 -> 127.0.0.1:34780 [TCP, session 0rzsbu8gd7xb] (stun_acceptor:accept/3:148)
+2022-07-07 08:26:16.624220+00:00 [debug] Received:
+#stun{class = request,method = 1,magic = 554869826,
+      trid = 73934717954400138428965781235,raw = <<>>,unsupported = [],
+      'ALTERNATE-SERVER' = undefined,'CHANNEL-NUMBER' = undefined,
+      'DATA' = undefined,'DONT-FRAGMENT' = false,'ERROR-CODE' = undefined,
+      'LIFETIME' = undefined,'MAPPED-ADDRESS' = undefined,
+      'MESSAGE-INTEGRITY' = undefined,'NONCE' = undefined,'REALM' = undefined,
+      'REQUESTED-ADDRESS-FAMILY' = undefined,
+      'REQUESTED-TRANSPORT' = undefined,'SOFTWARE' = undefined,
+      'UNKNOWN-ATTRIBUTES' = [],'USERNAME' = undefined,
+      'XOR-MAPPED-ADDRESS' = undefined,'XOR-PEER-ADDRESS' = [],
+      'XOR-RELAYED-ADDRESS' = undefined} (stun:process_data/3:404)
+2022-07-07 08:26:16.624348+00:00 [debug] Responding to STUN request [TCP, session 0rzsbu8gd7xb, anonymous, client 127.0.0.1:34226] (stun:process/4:312)
+2022-07-07 08:26:16.624389+00:00 [debug] Running 'stun_query' hook [TCP, session 0rzsbu8gd7xb, anonymous, client 127.0.0.1:34226] (stun:run_hook/3:820)
+2022-07-07 08:26:16.624425+00:00 [debug] Got 'stun_query' event [TCP, session 0rzsbu8gd7xb, anonymous, client 127.0.0.1:34226] (eturnal_module:handle_event/2:176)
+2022-07-07 08:26:16.624460+00:00 [debug] Calling mod_log_stun:handle_event/2 [TCP, session 0rzsbu8gd7xb, anonymous, client 127.0.0.1:34226] (eturnal_module:handle_event/2:179)
+2022-07-07 08:26:16.624499+00:00 [info] Responding to STUN request [TCP, session 0rzsbu8gd7xb, anonymous, client 127.0.0.1:34226] (mod_log_stun:handle_event/2:45)
+2022-07-07 08:26:16.624535+00:00 [debug] Calling mod_stats_influx:handle_event/2 [TCP, session 0rzsbu8gd7xb, anonymous, client 127.0.0.1:34226] (eturnal_module:handle_event/2:179)
+2022-07-07 08:26:16.624571+00:00 [debug] Writing STUN query event to InfluxDB [TCP, session 0rzsbu8gd7xb, anonymous, client 127.0.0.1:34226] (mod_stats_influx:on_stun_query/1:70)
+2022-07-07 08:26:16.624721+00:00 [debug] Sending:
+#stun{class = response,method = 1,magic = 554869826,
+      trid = 73934717954400138428965781235,raw = <<>>,unsupported = [],
+      'ALTERNATE-SERVER' = undefined,'CHANNEL-NUMBER' = undefined,
+      'DATA' = undefined,'DONT-FRAGMENT' = false,'ERROR-CODE' = undefined,
+      'LIFETIME' = undefined,'MAPPED-ADDRESS' = undefined,
+      'MESSAGE-INTEGRITY' = undefined,'NONCE' = undefined,'REALM' = undefined,
+      'REQUESTED-ADDRESS-FAMILY' = undefined,
+      'REQUESTED-TRANSPORT' = undefined,'SOFTWARE' = <<"P1 STUN library">>,
+      'UNKNOWN-ATTRIBUTES' = [],'USERNAME' = undefined,
+      'XOR-MAPPED-ADDRESS' = {{127,0,0,1},34226},
+      'XOR-PEER-ADDRESS' = [],'XOR-RELAYED-ADDRESS' = undefined} (stun:send/3:445)
+2022-07-07 08:26:16.624940+00:00 [info] Connection reset by peer [TCP, session 0rzsbu8gd7xb, anonymous, client 127.0.0.1:34226] (stun:handle_info/3:170)
+2022-07-07 08:26:16.649000+00:00 [info] Accepting connection: 127.0.0.1:58542 -> 127.0.0.1:53490 [TLS, session va2btv7u467u] (stun_acceptor:accept/3:148)
+2022-07-07 08:26:16.758440+00:00 [debug] Received:
+#stun{class = request,method = 1,magic = 554869826,
+      trid = 11582076214368664371801825433,raw = <<>>,unsupported = [],
+      'ALTERNATE-SERVER' = undefined,'CHANNEL-NUMBER' = undefined,
+      'DATA' = undefined,'DONT-FRAGMENT' = false,'ERROR-CODE' = undefined,
+      'LIFETIME' = undefined,'MAPPED-ADDRESS' = undefined,
+      'MESSAGE-INTEGRITY' = undefined,'NONCE' = undefined,'REALM' = undefined,
+      'REQUESTED-ADDRESS-FAMILY' = undefined,
+      'REQUESTED-TRANSPORT' = undefined,'SOFTWARE' = undefined,
+      'UNKNOWN-ATTRIBUTES' = [],'USERNAME' = undefined,
+      'XOR-MAPPED-ADDRESS' = undefined,'XOR-PEER-ADDRESS' = [],
+      'XOR-RELAYED-ADDRESS' = undefined} (stun:process_data/3:404)
+2022-07-07 08:26:16.758599+00:00 [debug] Responding to STUN request [TLS, session va2btv7u467u, anonymous, client 127.0.0.1:58542] (stun:process/4:312)
+2022-07-07 08:26:16.758663+00:00 [debug] Running 'stun_query' hook [TLS, session va2btv7u467u, anonymous, client 127.0.0.1:58542] (stun:run_hook/3:820)
+2022-07-07 08:26:16.758702+00:00 [debug] Got 'stun_query' event [TLS, session va2btv7u467u, anonymous, client 127.0.0.1:58542] (eturnal_module:handle_event/2:176)
+2022-07-07 08:26:16.758734+00:00 [debug] Calling mod_log_stun:handle_event/2 [TLS, session va2btv7u467u, anonymous, client 127.0.0.1:58542] (eturnal_module:handle_event/2:179)
+2022-07-07 08:26:16.758795+00:00 [info] Responding to STUN request [TLS, session va2btv7u467u, anonymous, client 127.0.0.1:58542] (mod_log_stun:handle_event/2:45)
+2022-07-07 08:26:16.758828+00:00 [debug] Calling mod_stats_influx:handle_event/2 [TLS, session va2btv7u467u, anonymous, client 127.0.0.1:58542] (eturnal_module:handle_event/2:179)
+2022-07-07 08:26:16.758931+00:00 [debug] Writing STUN query event to InfluxDB [TLS, session va2btv7u467u, anonymous, client 127.0.0.1:58542] (mod_stats_influx:on_stun_query/1:70)
+2022-07-07 08:26:16.759162+00:00 [debug] Sending:
+#stun{class = response,method = 1,magic = 554869826,
+      trid = 11582076214368664371801825433,raw = <<>>,unsupported = [],
+      'ALTERNATE-SERVER' = undefined,'CHANNEL-NUMBER' = undefined,
+      'DATA' = undefined,'DONT-FRAGMENT' = false,'ERROR-CODE' = undefined,
+      'LIFETIME' = undefined,'MAPPED-ADDRESS' = undefined,
+      'MESSAGE-INTEGRITY' = undefined,'NONCE' = undefined,'REALM' = undefined,
+      'REQUESTED-ADDRESS-FAMILY' = undefined,
+      'REQUESTED-TRANSPORT' = undefined,'SOFTWARE' = <<"P1 STUN library">>,
+      'UNKNOWN-ATTRIBUTES' = [],'USERNAME' = undefined,
+      'XOR-MAPPED-ADDRESS' = {{127,0,0,1},58542},
+      'XOR-PEER-ADDRESS' = [],'XOR-RELAYED-ADDRESS' = undefined} (stun:send/3:445)
+2022-07-07 08:26:16.759448+00:00 [info] Connection reset by peer [TLS, session va2btv7u467u, anonymous, client 127.0.0.1:58542] (stun:handle_info/3:170)
+2022-07-07 08:26:16.783284+00:00 [info] Accepting connection: 127.0.0.1:43328 -> 127.0.0.1:34781 [TCP|TLS, session iducmnfni91g] (stun_acceptor:accept/3:148)
+2022-07-07 08:26:16.783421+00:00 [debug] Determined transport protocol: TCP (stun:is_tls_handshake/1:768)
+2022-07-07 08:26:16.783690+00:00 [debug] Received:
+#stun{class = request,method = 1,magic = 554869826,
+      trid = 7983976532585957094125634534,raw = <<>>,unsupported = [],
+      'ALTERNATE-SERVER' = undefined,'CHANNEL-NUMBER' = undefined,
+      'DATA' = undefined,'DONT-FRAGMENT' = false,'ERROR-CODE' = undefined,
+      'LIFETIME' = undefined,'MAPPED-ADDRESS' = undefined,
+      'MESSAGE-INTEGRITY' = undefined,'NONCE' = undefined,'REALM' = undefined,
+      'REQUESTED-ADDRESS-FAMILY' = undefined,
+      'REQUESTED-TRANSPORT' = undefined,'SOFTWARE' = undefined,
+      'UNKNOWN-ATTRIBUTES' = [],'USERNAME' = undefined,
+      'XOR-MAPPED-ADDRESS' = undefined,'XOR-PEER-ADDRESS' = [],
+      'XOR-RELAYED-ADDRESS' = undefined} (stun:process_data/3:404)
+2022-07-07 08:26:16.783775+00:00 [debug] Responding to STUN request [TCP, session iducmnfni91g, anonymous, client 127.0.0.1:43328] (stun:process/4:312)
+2022-07-07 08:26:16.783823+00:00 [debug] Running 'stun_query' hook [TCP, session iducmnfni91g, anonymous, client 127.0.0.1:43328] (stun:run_hook/3:820)
+2022-07-07 08:26:16.783875+00:00 [debug] Got 'stun_query' event [TCP, session iducmnfni91g, anonymous, client 127.0.0.1:43328] (eturnal_module:handle_event/2:176)
+2022-07-07 08:26:16.783915+00:00 [debug] Calling mod_log_stun:handle_event/2 [TCP, session iducmnfni91g, anonymous, client 127.0.0.1:43328] (eturnal_module:handle_event/2:179)
+2022-07-07 08:26:16.783951+00:00 [info] Responding to STUN request [TCP, session iducmnfni91g, anonymous, client 127.0.0.1:43328] (mod_log_stun:handle_event/2:45)
+2022-07-07 08:26:16.783980+00:00 [debug] Calling mod_stats_influx:handle_event/2 [TCP, session iducmnfni91g, anonymous, client 127.0.0.1:43328] (eturnal_module:handle_event/2:179)
+2022-07-07 08:26:16.784011+00:00 [debug] Writing STUN query event to InfluxDB [TCP, session iducmnfni91g, anonymous, client 127.0.0.1:43328] (mod_stats_influx:on_stun_query/1:70)
+2022-07-07 08:26:16.784157+00:00 [debug] Sending:
+#stun{class = response,method = 1,magic = 554869826,
+      trid = 7983976532585957094125634534,raw = <<>>,unsupported = [],
+      'ALTERNATE-SERVER' = undefined,'CHANNEL-NUMBER' = undefined,
+      'DATA' = undefined,'DONT-FRAGMENT' = false,'ERROR-CODE' = undefined,
+      'LIFETIME' = undefined,'MAPPED-ADDRESS' = undefined,
+      'MESSAGE-INTEGRITY' = undefined,'NONCE' = undefined,'REALM' = undefined,
+      'REQUESTED-ADDRESS-FAMILY' = undefined,
+      'REQUESTED-TRANSPORT' = undefined,'SOFTWARE' = <<"P1 STUN library">>,
+      'UNKNOWN-ATTRIBUTES' = [],'USERNAME' = undefined,
+      'XOR-MAPPED-ADDRESS' = {{127,0,0,1},43328},
+      'XOR-PEER-ADDRESS' = [],'XOR-RELAYED-ADDRESS' = undefined} (stun:send/3:445)
+2022-07-07 08:26:16.784356+00:00 [info] Connection reset by peer [TCP, session iducmnfni91g, anonymous, client 127.0.0.1:43328] (stun:handle_info/3:170)
+2022-07-07 08:26:16.819095+00:00 [info] Accepting connection: 127.0.0.1:43330 -> 127.0.0.1:34781 [TCP|TLS, session qj2wyo7ucquz] (stun_acceptor:accept/3:148)
+2022-07-07 08:26:16.819273+00:00 [debug] Determined transport protocol: TLS (stun:is_tls_handshake/1:765)
+2022-07-07 08:26:16.928446+00:00 [debug] Received:
+#stun{class = request,method = 1,magic = 554869826,
+      trid = 14735111919810144429614563328,raw = <<>>,unsupported = [],
+      'ALTERNATE-SERVER' = undefined,'CHANNEL-NUMBER' = undefined,
+      'DATA' = undefined,'DONT-FRAGMENT' = false,'ERROR-CODE' = undefined,
+      'LIFETIME' = undefined,'MAPPED-ADDRESS' = undefined,
+      'MESSAGE-INTEGRITY' = undefined,'NONCE' = undefined,'REALM' = undefined,
+      'REQUESTED-ADDRESS-FAMILY' = undefined,
+      'REQUESTED-TRANSPORT' = undefined,'SOFTWARE' = undefined,
+      'UNKNOWN-ATTRIBUTES' = [],'USERNAME' = undefined,
+      'XOR-MAPPED-ADDRESS' = undefined,'XOR-PEER-ADDRESS' = [],
+      'XOR-RELAYED-ADDRESS' = undefined} (stun:process_data/3:404)
+2022-07-07 08:26:16.928600+00:00 [debug] Responding to STUN request [TLS, session qj2wyo7ucquz, anonymous, client 127.0.0.1:43330] (stun:process/4:312)
+2022-07-07 08:26:16.928643+00:00 [debug] Running 'stun_query' hook [TLS, session qj2wyo7ucquz, anonymous, client 127.0.0.1:43330] (stun:run_hook/3:820)
+2022-07-07 08:26:16.928685+00:00 [debug] Got 'stun_query' event [TLS, session qj2wyo7ucquz, anonymous, client 127.0.0.1:43330] (eturnal_module:handle_event/2:176)
+2022-07-07 08:26:16.928717+00:00 [debug] Calling mod_log_stun:handle_event/2 [TLS, session qj2wyo7ucquz, anonymous, client 127.0.0.1:43330] (eturnal_module:handle_event/2:179)
+2022-07-07 08:26:16.928773+00:00 [info] Responding to STUN request [TLS, session qj2wyo7ucquz, anonymous, client 127.0.0.1:43330] (mod_log_stun:handle_event/2:45)
+2022-07-07 08:26:16.928812+00:00 [debug] Calling mod_stats_influx:handle_event/2 [TLS, session qj2wyo7ucquz, anonymous, client 127.0.0.1:43330] (eturnal_module:handle_event/2:179)
+2022-07-07 08:26:16.928845+00:00 [debug] Writing STUN query event to InfluxDB [TLS, session qj2wyo7ucquz, anonymous, client 127.0.0.1:43330] (mod_stats_influx:on_stun_query/1:70)
+2022-07-07 08:26:16.929039+00:00 [debug] Sending:
+#stun{class = response,method = 1,magic = 554869826,
+      trid = 14735111919810144429614563328,raw = <<>>,unsupported = [],
+      'ALTERNATE-SERVER' = undefined,'CHANNEL-NUMBER' = undefined,
+      'DATA' = undefined,'DONT-FRAGMENT' = false,'ERROR-CODE' = undefined,
+      'LIFETIME' = undefined,'MAPPED-ADDRESS' = undefined,
+      'MESSAGE-INTEGRITY' = undefined,'NONCE' = undefined,'REALM' = undefined,
+      'REQUESTED-ADDRESS-FAMILY' = undefined,
+      'REQUESTED-TRANSPORT' = undefined,'SOFTWARE' = <<"P1 STUN library">>,
+      'UNKNOWN-ATTRIBUTES' = [],'USERNAME' = undefined,
+      'XOR-MAPPED-ADDRESS' = {{127,0,0,1},43330},
+      'XOR-PEER-ADDRESS' = [],'XOR-RELAYED-ADDRESS' = undefined} (stun:send/3:445)
+2022-07-07 08:26:16.929303+00:00 [info] Connection reset by peer [TLS, session qj2wyo7ucquz, anonymous, client 127.0.0.1:43330] (stun:handle_info/3:170)
+2022-07-07 08:26:16.953759+00:00 [debug] No NOTIFY_SOCKET, dropping STOPPING=1 notification (eturnal_systemd:handle_cast/2:109)
+2022-07-07 08:26:16.953933+00:00 [debug] Watchdog interval is undefined, hibernating (eturnal_systemd:get_timeout/1:162)
+2022-07-07 08:26:16.953772+00:00 [debug] Terminating eturnal (shutdown) (eturnal:terminate/2:200)
+2022-07-07 08:26:16.954658+00:00 [info] Stopped listening on 127.0.0.1:34780 (udp) (eturnal:stop_listeners/1:395)
+2022-07-07 08:26:16.954838+00:00 [info] Stopped listening on 127.0.0.1:34780 (tcp) (eturnal:stop_listeners/1:395)
+2022-07-07 08:26:16.954963+00:00 [info] Stopped listening on 127.0.0.1:53490 (tls) (eturnal:stop_listeners/1:395)
+2022-07-07 08:26:16.955056+00:00 [info] Stopped listening on 127.0.0.1:34781 (auto) (eturnal:stop_listeners/1:395)
+2022-07-07 08:26:16.955196+00:00 [debug] Calling mod_log_stun:stop/1 (eturnal_module:stop/1:162)
+2022-07-07 08:26:16.955294+00:00 [debug] Stopping mod_log_stun (mod_log_stun:stop/0:50)
+2022-07-07 08:26:16.955366+00:00 [info] Stopped mod_log_stun (eturnal:stop_modules/1:343)
+2022-07-07 08:26:16.956656+00:00 [debug] Calling mod_stats_influx:stop/1 (eturnal_module:stop/1:162)
+2022-07-07 08:26:16.956777+00:00 [debug] Stopping mod_stats_influx (mod_stats_influx:stop/0:55)
+2022-07-07 08:26:16.956849+00:00 [info] Stopped mod_stats_influx (eturnal:stop_modules/1:343)
+2022-07-07 08:26:16.957608+00:00 [debug] Removed run/cert.pem (eturnal:clean_run_dir/0:728)
+2022-07-07 08:26:16.957737+00:00 [debug] Terminating eturnal_systemd (shutdown) (eturnal_systemd:terminate/2:136)
+2022-07-07 08:26:16.957946+00:00 [notice] Stopping eturnal 1.8.3 on Erlang/OTP 25 (ERTS 13.0) (eturnal_app:stop/1:54)
