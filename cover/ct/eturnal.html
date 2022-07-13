@@ -103,7 +103,7 @@ td.source {
 </head>
 <body>
 <h1><code>/home/runner/work/eturnal/eturnal/_build/test/cover/ct/eturnal.html</code></h1>
-<footer><p>File generated from <code>/home/runner/work/eturnal/eturnal/_build/test/lib/eturnal/ebin/../src/eturnal.erl</code> by <a href="http://erlang.org/doc/man/cover.html">cover</a> at 2022-07-13 at 11:55:39</p></footer>
+<footer><p>File generated from <code>/home/runner/work/eturnal/eturnal/_build/test/lib/eturnal/ebin/../src/eturnal.erl</code> by <a href="http://erlang.org/doc/man/cover.html">cover</a> at 2022-07-13 at 13:32:18</p></footer>
 <table>
 <tbody>
 <tr>
@@ -504,7 +504,7 @@ td.source {
 <tr>
 <td class="line" id="L80"><a href="#L80">80</a></td>
 <td class="hits"></td>
-<td class="source"><code>-spec init(any()) -&gt; {ok, state()} | no_return().</code></td>
+<td class="source"><code>-spec init(any()) -&gt; {ok, state()}.</code></td>
 </tr>
 <tr>
 <td class="line" id="L81"><a href="#L81">81</a></td>
@@ -889,7 +889,7 @@ td.source {
 <tr>
 <td class="line" id="L157"><a href="#L157">157</a></td>
 <td class="hits"></td>
-<td class="source"><code>      -&gt; {noreply, state()} | no_return().</code></td>
+<td class="source"><code>      -&gt; {noreply, state()}.</code></td>
 </tr>
 <tr>
 <td class="line" id="L158"><a href="#L158">158</a></td>
@@ -1549,7 +1549,7 @@ td.source {
 <tr class="hit">
 <td class="line" id="L289"><a href="#L289">289</a></td>
 <td class="hits">1</td>
-<td class="source"><code>    case catch erl_epmd:port_please(Name, Host, 10000) of</code></td>
+<td class="source"><code>    case catch erl_epmd:port_please(Name, Host, timer:seconds(10)) of</code></td>
 </tr>
 <tr>
 <td class="line" id="L290"><a href="#L290">290</a></td>
@@ -2654,7 +2654,7 @@ td.source {
 <tr>
 <td class="line" id="L510"><a href="#L510">510</a></td>
 <td class="hits"></td>
-<td class="source"><code>-spec apply_config_changes(state(), config_changes()) -&gt; state() | no_return().</code></td>
+<td class="source"><code>-spec apply_config_changes(state(), config_changes()) -&gt; state().</code></td>
 </tr>
 <tr>
 <td class="line" id="L511"><a href="#L511">511</a></td>
@@ -4119,12 +4119,12 @@ td.source {
 <tr>
 <td class="line" id="L803"><a href="#L803">803</a></td>
 <td class="hits"></td>
-<td class="source"><code>        _ -&gt;</code></td>
+<td class="source"><code>        {_, _, _} = Err -&gt;</code></td>
 </tr>
 <tr class="miss">
 <td class="line" id="L804"><a href="#L804">804</a></td>
 <td class="hits"><pre style="display: inline;">:-(</pre></td>
-<td class="source"><code>            &lt;&lt;"(Cannot format string)"&gt;&gt;</code></td>
+<td class="source"><code>            erlang:error(Err)</code></td>
 </tr>
 <tr>
 <td class="line" id="L805"><a href="#L805">805</a></td>
