@@ -5,7 +5,7 @@
 %%% Created : 24 Jul 2004 by Alexey Shchepin <alexey@process-one.net>
 %%%
 %%%
-%%% Copyright (C) 2002-2020 ProcessOne, SARL. All Rights Reserved.
+%%% Copyright (C) 2002-2022 ProcessOne, SARL. All Rights Reserved.
 %%%
 %%% Licensed under the Apache License, Version 2.0 (the "License");
 %%% you may not use this file except in compliance with the License.
@@ -26,9 +26,10 @@
 
 -author('alexey@process-one.net').
 
--export([open_nif/8, loop_nif/4, get_peer_certificate_nif/1,
+-export([open_nif/10, loop_nif/4, get_peer_certificate_nif/1,
          get_verify_result_nif/1, invalidate_nif/1,
-         get_negotiated_cipher_nif/1]).
+         get_negotiated_cipher_nif/1, set_fips_mode_nif/1,
+         get_fips_mode_nif/0]).
 
 -export([tcp_to_tls/2,
          tls_to_tcp/1, send/2, recv/2, recv/3, recv_data/2,
@@ -38,7 +39,7 @@
          get_verify_result/1, get_cert_verify_string/2,
          add_certfile/2, get_certfile/1, delete_certfile/1,
          clear_cache/0, get_negotiated_cipher/1,
-         get_tls_last_message/2]).
+         get_tls_last_message/2, set_fips_mode/1, get_fips_mode/0]).
 
 -ifdef(TEST).
 -include_lib("eunit/include/eunit.hrl").
@@ -76,7 +77,7 @@
 
 -export_type([tls_socket/0]).
 
-open_nif(_Flags, _CertFile, _Ciphers, _ProtocolOpts, _DHFile, _CAFile, _SNI, _ALPN) ->
+open_nif(_Flags, _CertFile, _KeyFile, _Ciphers, _ProtocolOpts, _DH, _DHFile, _CAFile, _SNI, _ALPN) ->
     erlang:nif_error({nif_not_loaded, ?MODULE}).
 
 loop_nif(_Port, _ToSend, _Received, _ReceiveBytes) ->
@@ -110,6 +111,12 @@ tls_get_peer_finished_nif(_Port) ->
     erlang:nif_error({nif_not_loaded, ?MODULE}).
 
 tls_get_finished_nif(_Port) ->
+    erlang:nif_error({nif_not_loaded, ?MODULE}).
+
+set_fips_mode_nif(_Flag) ->
+    erlang:nif_error({nif_not_loaded, ?MODULE}).
+
+get_fips_mode_nif() ->
     erlang:nif_error({nif_not_loaded, ?MODULE}).
 
 %%% --------------------------------------------------------
@@ -147,6 +154,12 @@ tcp_to_tls(TCPSocket, Options) ->
                            false ->
                                <<>>
                        end,
+        DH = case lists:keysearch(dh, 1, Options) of
+                     {value, {dh, Der}} ->
+                         iolist_to_binary(Der);
+                     false ->
+                         <<>>
+                 end,
         DHFile = case lists:keysearch(dhfile, 1, Options) of
                      {value, {dhfile, D}} ->
                          iolist_to_binary(D);
@@ -159,6 +172,12 @@ tcp_to_tls(TCPSocket, Options) ->
                      false ->
                          <<>>
                  end,
+        KeyFile = case lists:keysearch(keyfile, 1, Options) of
+                      {value, {keyfile, KF}} when CertFile /= "" ->
+                          iolist_to_binary(KF);
+                      _ ->
+                          <<>>
+                  end,
         ServerName = case lists:keysearch(sni, 1, Options) of
                          {value, {sni, SNI}} ->
                              iolist_to_binary(SNI);
@@ -171,8 +190,8 @@ tcp_to_tls(TCPSocket, Options) ->
                    false ->
                        <<>>
                end,
-        case open_nif(Command bor Flags, CertFile, Ciphers, ProtocolOpts,
-                      DHFile, CAFile, ServerName, ALPN) of
+        case open_nif(Command bor Flags, CertFile, KeyFile, Ciphers,
+                      ProtocolOpts, DH, DHFile, CAFile, ServerName, ALPN) of
             {ok, Port} ->
                 {ok, #tlssock{tcpsock = TCPSocket, tlsport = Port}};
             Err = {error, _} ->
@@ -350,7 +369,7 @@ add_certfile(Domain, File) ->
 get_certfile(Domain) ->
     get_certfile_nif(Domain).
 
-%% @doc Returns `true` if element is deleted, `false` otherwise
+%% @doc Returns true if element is deleted, false otherwise
 -spec delete_certfile(iodata()) -> boolean().
 delete_certfile(Domain) ->
     delete_certfile_nif(Domain).
@@ -361,6 +380,18 @@ delete_certfile(Domain) ->
 -spec clear_cache() -> ok.
 clear_cache() ->
     clear_cache_nif().
+
+%% @doc Enables/disables FIPS mode
+-spec set_fips_mode(boolean()) -> ok | {error, binary()}.
+set_fips_mode(true) ->
+    set_fips_mode_nif(1);
+set_fips_mode(false) ->
+    set_fips_mode_nif(0).
+
+%% @doc Checks whether FIPS mode is enabled or not
+-spec get_fips_mode() -> boolean().
+get_fips_mode() ->
+    get_fips_mode_nif().
 
 cert_verify_code(0)  -> <<"ok">>;
 cert_verify_code(2) ->
@@ -428,13 +459,21 @@ encode_alpn(ProtoList) ->
     [<<(size(Proto)), Proto/binary>> || Proto <- ProtoList, Proto /= <<>>].
 
 load_nif() ->
+    case os:getenv("COVERALLS") of
+        "true" -> ok;
+        _ -> load_nif2()
+    end.
+load_nif2() ->
     SOPath = p1_nif_utils:get_so_path(fast_tls, [fast_tls], "fast_tls"),
-    ok = p1_sha:load_nif(),
     load_nif(SOPath).
 
 load_nif(SOPath) ->
     case erlang:load_nif(SOPath, 0) of
         ok ->
+            set_fips_mode();
+        {error, {reload, _}} -> % We don't support upgrade in this module so let's not crash
+            ok;
+        {error, {upgrade, _}} -> % We don't support upgrade in this module so let's not crash
             ok;
         {error, ErrorDesc} = Err ->
             error_logger:error_msg("failed to load TLS NIF: ~s~n",
@@ -442,7 +481,48 @@ load_nif(SOPath) ->
             Err
     end.
 
+-spec set_fips_mode() -> ok | {error, term()}.
+set_fips_mode() ->
+    case application:get_env(?MODULE, fips_mode) of
+        {ok, Flag} when Flag == true orelse Flag == false ->
+            case set_fips_mode(Flag) of
+                ok -> ok;
+                {error, Reason} = Err ->
+                    error_logger:error_msg("~s", [Reason]),
+                    Err
+            end;
+        _ ->
+            ok
+    end.
+
 -ifdef(TEST).
+
+%% DER encoded DH parameters (2048 bits)
+-define(DH, <<48,130,1,8,2,130,1,1,0,146,218,14,246,
+              227,231,225,122,39,149,89,115,73,249,41,
+              239,197,168,101,114,1,121,135,30,206,
+              169,127,254,204,228,53,170,194,229,198,
+              217,154,137,237,225,70,196,242,42,25,16,
+              129,6,212,231,247,91,254,86,232,151,113,
+              176,135,120,61,177,224,162,198,69,68,
+              120,113,192,110,70,64,129,180,122,160,
+              155,34,145,186,59,199,202,64,186,246,36,
+              145,192,24,51,9,255,128,224,249,184,241,
+              108,19,170,54,148,113,249,232,106,118,
+              228,15,95,90,29,67,140,245,210,158,147,
+              244,254,16,109,40,49,179,160,209,228,
+              204,21,57,197,168,138,78,22,197,141,183,
+              50,31,96,32,138,187,94,99,132,191,8,26,
+              98,43,229,49,132,164,146,145,161,232,
+              205,44,233,41,18,207,47,11,112,31,201,
+              163,151,71,179,128,78,129,38,32,133,165,
+              189,187,144,150,186,223,215,91,85,192,
+              214,31,143,66,194,29,184,23,60,134,74,
+              143,253,33,171,29,79,136,25,197,125,66,
+              177,186,76,206,61,138,152,91,88,86,231,
+              196,100,76,1,197,196,160,88,120,161,185,
+              212,240,103,92,198,221,189,102,246,17,
+              77,78,187,121,152,68,227,2,1,2>>).
 
 transmission_with_client_certificate_test() ->
     transmission_test_with_opts([certificate()], [certificate()]).
@@ -494,12 +574,11 @@ transmission_test_with_opts(ListenerOpts, SenderOpts) ->
     end.
 
 not_compatible_protocol_options_test() ->
-    {LPid, Port} = setup_listener([certificate(), {protocol_options, <<"no_sslv2|no_sslv3|no_tlsv1_1|no_tlsv1_2|no_tlsv1_3">>}]),
-    SPid = setup_sender(Port, [{protocol_options, <<"no_sslv2|no_sslv3|no_tlsv1|no_tlsv1_2|no_tlsv1_3">>}]),
+    {LPid, Port} = setup_listener([certificate(), {protocol_options, <<"no_sslv2|no_sslv3|no_tlsv1|no_tlsv1_1|no_tlsv1_2|no_tlsv1_3">>}]),
+    SPid = setup_sender(Port, [{protocol_options, <<"no_sslv2|no_sslv3|no_tlsv1|no_tlsv1_1|no_tlsv1_2">>}]),
     SPid ! {stop, self()},
     receive
-        {result, Res, _} ->
-            ?assertMatch({badmatch, {error, _}}, Res)
+        {result, _Res, _} -> ok
     end,
     LPid ! {stop, self()},
     receive
@@ -515,7 +594,7 @@ setup_listener(Opts) ->
                                          {reuseaddr, true}, {nodelay, true}]),
     Pid = spawn(fun() ->
         {ok, Socket} = gen_tcp:accept(ListenSocket),
-        {ok, TLSSock} = tcp_to_tls(Socket, Opts),
+        {ok, TLSSock} = tcp_to_tls(Socket, [{dh, ?DH}|Opts]),
         listener_loop(TLSSock, <<>>)
                 end),
     {ok, Port} = inet:port(ListenSocket),
@@ -580,7 +659,12 @@ sender_loop(TLSSock) ->
             Pid ! {result, Res, Finished}
     end.
 
+-ifdef(REBAR3).
+certificate() ->
+    {certfile, <<"tests/cert.pem">>}.
+-else.
 certificate() ->
     {certfile, <<"../tests/cert.pem">>}.
+-endif.
 
 -endif.

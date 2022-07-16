@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2002-2020 ProcessOne, SARL. All Rights Reserved.
+ * Copyright (C) 2002-2022 ProcessOne, SARL. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,6 +20,10 @@
 #include <erl_nif.h>
 #include <openssl/err.h>
 #include <openssl/ssl.h>
+#if OPENSSL_VERSION_NUMBER >= 0x30000000L
+#include <openssl/core_names.h>
+#include <openssl/decoder.h>
+#endif
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <stdint.h>
@@ -43,7 +47,10 @@ typedef struct {
     int valid;
     ioqueue *to_send_queue;
     char *cert_file;
+    char *key_file;
     char *ciphers;
+    unsigned char *dh;
+    size_t dh_size;
     char *dh_file;
     char *ca_file;
     long options;
@@ -61,7 +68,7 @@ typedef unsigned __int32 uint32_t;
 #define SSL_OP_NO_TICKET 0
 #endif
 
-#if OPENSSL_VERSION_NUMBER < 0x10100000L || defined LIBRESSL_VERSION_NUMBER
+#if OPENSSL_VERSION_NUMBER < 0x10100000L || (defined LIBRESSL_VERSION_NUMBER && LIBRESSL_VERSION_NUMBER < 0x30500000L)
 #define DH_set0_pqg(dh, dh_p, param, dh_g) (dh)->p = dh_p; (dh)->g = dh_g
 #endif
 
@@ -280,6 +287,7 @@ static void setup_ecdh(SSL_CTX *ctx) {
 /*
   2048-bit MODP Group with 256-bit Prime Order Subgroup (RFC5114)
 */
+
 static unsigned char dh2048_p[] = {
         0x87, 0xA8, 0xE6, 0x1D, 0xB4, 0xB6, 0x66, 0x3C,
         0xFF, 0xBB, 0xD1, 0x9C, 0x65, 0x19, 0x59, 0x99,
@@ -349,11 +357,17 @@ static unsigned char dh2048_g[] = {
         0x66, 0x4B, 0x4C, 0x0F, 0x6C, 0xC4, 0x16, 0x59,
 };
 
-static int setup_dh(SSL_CTX *ctx, char *dh_file) {
+static int setup_dh(SSL_CTX *ctx, const unsigned char *dh_der, size_t dh_size, char *dh_file) {
+#if OPENSSL_VERSION_NUMBER < 0x30000000L
     DH *dh;
     int res;
 
-    if (dh_file != NULL) {
+    if (dh_der != NULL) {
+        dh = d2i_DHparams(NULL, &dh_der, dh_size);
+        if (dh == NULL) {
+          return 0;
+        }
+    } else if (dh_file != NULL) {
         BIO *bio = BIO_new_file(dh_file, "r");
 
         if (bio == NULL) {
@@ -386,6 +400,65 @@ static int setup_dh(SSL_CTX *ctx, char *dh_file) {
 
     DH_free(dh);
     return res;
+#else
+    if (!dh_der && !dh_file) {
+        OSSL_PARAM params[] = {
+                OSSL_PARAM_BN(OSSL_PKEY_PARAM_FFC_P, dh2048_p, sizeof(dh2048_p)),
+                OSSL_PARAM_BN(OSSL_PKEY_PARAM_FFC_G, dh2048_g, sizeof(dh2048_g)),
+                OSSL_PARAM_END
+        };
+        EVP_PKEY *pkey = NULL;
+        EVP_PKEY_CTX *pctx = EVP_PKEY_CTX_new_from_name(NULL, "DH", NULL);
+
+        if (!pctx)
+            return 0;
+        if (EVP_PKEY_fromdata_init(pctx) <= 0 ||
+            EVP_PKEY_fromdata(pctx, &pkey, EVP_PKEY_KEY_PARAMETERS, params) <= 0) {
+            EVP_PKEY_CTX_free(pctx);
+        }
+        if (SSL_CTX_set0_tmp_dh_pkey(ctx, pkey) != 1) {
+            EVP_PKEY_free(pkey);
+            EVP_PKEY_CTX_free(pctx);
+            return 0;
+        }
+        EVP_PKEY_CTX_free(pctx);
+        return 1;
+    }
+
+    if (dh_der != NULL) {
+        OSSL_DECODER_CTX *dctx;
+        EVP_PKEY *pkey = NULL;
+        dctx = OSSL_DECODER_CTX_new_for_pkey(&pkey, "DER", NULL, "DH",
+                                             OSSL_KEYMGMT_SELECT_DOMAIN_PARAMETERS,
+                                             NULL, NULL);
+        if (!dctx)
+            return 0;
+        if (OSSL_DECODER_from_data(dctx, &dh_der, &dh_size) <= 0)
+            return 0;
+        if (SSL_CTX_set0_tmp_dh_pkey(ctx, pkey) != 1) {
+            EVP_PKEY_free(pkey);
+            return 0;
+        }
+        return 1;
+    }
+
+    BIO *bio = BIO_new_file(dh_file, "r");
+    if (!bio)
+        return 0;
+    EVP_PKEY *pkey = PEM_read_bio_Parameters(bio, NULL);
+    if (!pkey) {
+        BIO_free(bio);
+        return 0;
+    }
+
+    if (SSL_CTX_set0_tmp_dh_pkey(ctx, pkey) != 1) {
+        EVP_PKEY_free(pkey);
+        BIO_free(bio);
+        return 0;
+    }
+    BIO_free(bio);
+    return 1;
+#endif
 }
 
 #endif
@@ -408,7 +481,9 @@ static cert_info_t *lookup_certfile(const char *domain) {
     if (domain) {
         size_t len = strlen(domain);
         if (len) {
-            char name[len + 1];
+            char *name = enif_alloc(len + 1);
+            if (!name)
+                return ret;
             name[len] = 0;
             size_t i = 0;
             for (i = 0; i < len; i++)
@@ -427,6 +502,7 @@ static cert_info_t *lookup_certfile(const char *domain) {
                         ret = info;
                 }
             }
+            enif_free(name):
         }
     }
     return ret;
@@ -492,7 +568,8 @@ static ERL_NIF_TERM ssl_error(ErlNifEnv *env, const char *errstr) {
     return ERR_T(enif_make_binary(env, &err));
 }
 
-static SSL_CTX *create_new_ctx(char *cert_file, char *ciphers,
+static SSL_CTX *create_new_ctx(char *cert_file, char *key_file,
+                               char *ciphers, unsigned char *dh, size_t dh_size,
                                char *dh_file, char *ca_file,
                                unsigned int command,
                                char **err_str) {
@@ -511,7 +588,11 @@ static SSL_CTX *create_new_ctx(char *cert_file, char *ciphers,
             *err_str = "SSL_CTX_use_certificate_file failed";
             return NULL;
         }
-        res = SSL_CTX_use_PrivateKey_file(ctx, cert_file, SSL_FILETYPE_PEM);
+        if (key_file) {
+          res = SSL_CTX_use_PrivateKey_file(ctx, key_file, SSL_FILETYPE_PEM);
+        } else {
+          res = SSL_CTX_use_PrivateKey_file(ctx, cert_file, SSL_FILETYPE_PEM);
+        }
         if (res <= 0) {
             SSL_CTX_free(ctx);
             *err_str = "SSL_CTX_use_PrivateKey_file failed";
@@ -544,7 +625,7 @@ static SSL_CTX *create_new_ctx(char *cert_file, char *ciphers,
     setup_ecdh(ctx);
 #endif
 #ifndef OPENSSL_NO_DH
-    res = setup_dh(ctx, dh_file);
+    res = setup_dh(ctx, dh, dh_size, dh_file);
     if (res <= 0) {
         SSL_CTX_free(ctx);
         *err_str = "Setting DH parameters failed";
@@ -578,8 +659,20 @@ static void set_ctx(state_t *state, SSL_CTX *ctx) {
         state->ssl = SSL_new(ctx);
 }
 
+static const char *hex_encode(char *dst, const unsigned char *src, size_t size) {
+  size_t i;
+  for (i = 0; i < size; i++) {
+    sprintf(dst + 2*i, "%02x", (unsigned char)src[i]);
+  }
+  dst[size * 2] = 0;
+  return dst;
+}
+
 static char *create_ssl_for_cert(char *cert_file, state_t *state) {
+    char *key_file = state->key_file;
     char *ciphers = state->ciphers;
+    unsigned char *dh = state->dh;
+    size_t dh_size = state->dh_size;
     char *dh_file = state->dh_file;
     char *ca_file = state->ca_file;
     long options = state->options;
@@ -589,18 +682,30 @@ static char *create_ssl_for_cert(char *cert_file, state_t *state) {
     cert_info_t *info = NULL;
     cert_info_t *new_info = NULL;
     cert_info_t *old_info = NULL;
+    char *dh_hex = enif_alloc(dh_size * 2 + 1);
     size_t key_size =
-            strlen(cert_file) + strlen(ciphers) + 8 +
-            strlen(dh_file) + strlen(ca_file) + 1;
-    char key[key_size];
-    sprintf(key, "%s%s%08lx%s%s", cert_file, ciphers,
-            options, dh_file, ca_file);
+            strlen(cert_file) + strlen(key_file) + strlen(ciphers) + 8 +
+            dh_size * 2 + strlen(dh_file) + strlen(ca_file) + 1;
+    char *key = enif_alloc(key_size);
+
+    if (!dh_hex || !key) {
+        enif_free(dh_hex);
+        enif_free(key);
+        return "Memory allocation failed";
+    }
+
+    sprintf(key, "%s%s%s%08lx%s%s%s",
+            cert_file, key_file, ciphers,
+            options, dh_file, ca_file,
+            hex_encode(dh_hex, dh, dh_size));
 
     enif_rwlock_rlock(certs_map_lock);
 
     HASH_FIND_STR(certs_map, key, info);
 
     if (strlen(cert_file) == 0) cert_file = NULL;
+    if (strlen(key_file) == 0) key_file = NULL;
+    if (dh_size == 0) dh = NULL;
     if (strlen(dh_file) == 0) dh_file = NULL;
     if (strlen(ca_file) == 0) ca_file = NULL;
 
@@ -608,7 +713,8 @@ static char *create_ssl_for_cert(char *cert_file, state_t *state) {
         enif_rwlock_runlock(certs_map_lock);
 
         enif_rwlock_rwlock(certs_map_lock);
-        SSL_CTX *ctx = create_new_ctx(cert_file, ciphers, dh_file, ca_file, command, &ret);
+        SSL_CTX *ctx = create_new_ctx(cert_file, key_file, ciphers, dh, dh_size,
+                                      dh_file, ca_file, command, &ret);
         if (ret == NULL) {
             new_info = enif_alloc(sizeof(cert_info_t));
             if (new_info) {
@@ -635,6 +741,8 @@ static char *create_ssl_for_cert(char *cert_file, state_t *state) {
         set_ctx(state, info->ssl_ctx);
         enif_rwlock_runlock(certs_map_lock);
     }
+    enif_free(key);
+    enif_free(dh_hex);
     return ret;
 }
 
@@ -645,7 +753,9 @@ static ERL_NIF_TERM open_nif(ErlNifEnv *env, int argc,
     char *sni = NULL;
     ErlNifBinary ciphers_bin;
     ErlNifBinary certfile_bin;
+    ErlNifBinary keyfile_bin;
     ErlNifBinary protocol_options_bin;
+    ErlNifBinary dh_bin;
     ErlNifBinary dhfile_bin;
     ErlNifBinary cafile_bin;
     ErlNifBinary sni_bin;
@@ -657,24 +767,28 @@ static ERL_NIF_TERM open_nif(ErlNifEnv *env, int argc,
 
     ERR_clear_error();
 
-    if (argc != 8)
+    if (argc != 10)
         return enif_make_badarg(env);
 
     if (!enif_get_uint(env, argv[0], &flags))
         return enif_make_badarg(env);
     if (!enif_inspect_iolist_as_binary(env, argv[1], &certfile_bin))
         return enif_make_badarg(env);
-    if (!enif_inspect_iolist_as_binary(env, argv[2], &ciphers_bin))
+    if (!enif_inspect_iolist_as_binary(env, argv[2], &keyfile_bin))
         return enif_make_badarg(env);
-    if (!enif_inspect_iolist_as_binary(env, argv[3], &protocol_options_bin))
+    if (!enif_inspect_iolist_as_binary(env, argv[3], &ciphers_bin))
         return enif_make_badarg(env);
-    if (!enif_inspect_iolist_as_binary(env, argv[4], &dhfile_bin))
+    if (!enif_inspect_iolist_as_binary(env, argv[4], &protocol_options_bin))
         return enif_make_badarg(env);
-    if (!enif_inspect_iolist_as_binary(env, argv[5], &cafile_bin))
+    if (!enif_inspect_iolist_as_binary(env, argv[5], &dh_bin))
+      return enif_make_badarg(env);
+    if (!enif_inspect_iolist_as_binary(env, argv[6], &dhfile_bin))
         return enif_make_badarg(env);
-    if (!enif_inspect_iolist_as_binary(env, argv[6], &sni_bin))
+    if (!enif_inspect_iolist_as_binary(env, argv[7], &cafile_bin))
         return enif_make_badarg(env);
-    if (!enif_inspect_iolist_as_binary(env, argv[7], &alpn_bin))
+    if (!enif_inspect_iolist_as_binary(env, argv[8], &sni_bin))
+        return enif_make_badarg(env);
+    if (!enif_inspect_iolist_as_binary(env, argv[9], &alpn_bin))
         return enif_make_badarg(env);
 
     command = flags & 0xffff;
@@ -702,7 +816,9 @@ static ERL_NIF_TERM open_nif(ErlNifEnv *env, int argc,
     if (!state) return ERR_T(enif_make_atom(env, "enomem"));
 
     state->cert_file = enif_alloc(certfile_bin.size + 1 +
+                                  keyfile_bin.size + 1 +
                                   ciphers_bin.size + 1 +
+                                  dh_bin.size + 1 +
                                   dhfile_bin.size + 1 +
                                   cafile_bin.size + 1 +
                                   sni_bin.size + 1);
@@ -710,8 +826,10 @@ static ERL_NIF_TERM open_nif(ErlNifEnv *env, int argc,
         enif_release_resource(state);
         return ERR_T(enif_make_atom(env, "enomem"));
     }
-    state->ciphers = state->cert_file + certfile_bin.size + 1;
-    state->dh_file = state->ciphers + ciphers_bin.size + 1;
+    state->key_file = state->cert_file + certfile_bin.size + 1;
+    state->ciphers = state->key_file + keyfile_bin.size + 1;
+    state->dh = (unsigned char*)(state->ciphers + ciphers_bin.size + 1);
+    state->dh_file = (char*)(state->dh + dh_bin.size + 1);
     state->ca_file = state->dh_file + dhfile_bin.size + 1;
     sni = state->ca_file + cafile_bin.size + 1;
     state->options = options;
@@ -719,8 +837,13 @@ static ERL_NIF_TERM open_nif(ErlNifEnv *env, int argc,
 
     memcpy(state->cert_file, certfile_bin.data, certfile_bin.size);
     state->cert_file[certfile_bin.size] = 0;
+    memcpy(state->key_file, keyfile_bin.data, keyfile_bin.size);
+    state->key_file[keyfile_bin.size] = 0;
     memcpy(state->ciphers, ciphers_bin.data, ciphers_bin.size);
     state->ciphers[ciphers_bin.size] = 0;
+    memcpy(state->dh, dh_bin.data, dh_bin.size);
+    state->dh[dh_bin.size] = 0;
+    state->dh_size = dh_bin.size;
     memcpy(state->dh_file, dhfile_bin.data, dhfile_bin.size);
     state->dh_file[dhfile_bin.size] = 0;
     memcpy(state->ca_file, cafile_bin.data, cafile_bin.size);
@@ -1112,7 +1235,10 @@ static ERL_NIF_TERM delete_certfile_nif(ErlNifEnv *env, int argc,
     if (!enif_inspect_iolist_as_binary(env, argv[0], &domain))
         return enif_make_badarg(env);
 
-    char key[domain.size + 1];
+    char *key = enif_alloc(domain.size + 1);
+    if (!key)
+        return enif_make_atom(env, "false");
+
     memcpy(key, domain.data, domain.size);
     key[domain.size] = 0;
     enif_rwlock_rwlock(certfiles_map_lock);
@@ -1123,6 +1249,7 @@ static ERL_NIF_TERM delete_certfile_nif(ErlNifEnv *env, int argc,
         ret = "true";
     }
     enif_rwlock_rwunlock(certfiles_map_lock);
+    enif_free(key);
 
     return enif_make_atom(env, ret);
 }
@@ -1136,7 +1263,10 @@ static ERL_NIF_TERM get_certfile_nif(ErlNifEnv *env, int argc,
     if (!enif_inspect_iolist_as_binary(env, argv[0], &domain))
         return enif_make_badarg(env);
 
-    char key[domain.size + 1];
+    char *key = enif_alloc(domain.size + 1);
+    if (!key)
+        return enif_make_atom(env, "error");
+
     memcpy(key, domain.data, domain.size);
     key[domain.size] = 0;
     enif_rwlock_rlock(certfiles_map_lock);
@@ -1152,6 +1282,7 @@ static ERL_NIF_TERM get_certfile_nif(ErlNifEnv *env, int argc,
         result = enif_make_atom(env, "error");
     }
     enif_rwlock_runlock(certfiles_map_lock);
+    enif_free(key);
 
     return result;
 }
@@ -1233,7 +1364,7 @@ static ERL_NIF_TERM tls_get_peer_finished_nif(ErlNifEnv *env, int argc, const ER
     if (!buf)
         return ERR_T(enif_make_atom(env, "enomem"));
 
-	(void) SSL_get_peer_finished(state->ssl, buf, len);
+    (void) SSL_get_peer_finished(state->ssl, buf, len);
     return OK_T(bin);
 }
 
@@ -1250,24 +1381,66 @@ static ERL_NIF_TERM tls_get_finished_nif(ErlNifEnv *env, int argc, const ERL_NIF
     if (!buf)
         return ERR_T(enif_make_atom(env, "enomem"));
 
-	(void) SSL_get_finished(state->ssl, buf, len);
+    (void) SSL_get_finished(state->ssl, buf, len);
     return OK_T(bin);
+}
+
+static ERL_NIF_TERM set_fips_mode_nif(ErlNifEnv *env, int argc,
+                                      const ERL_NIF_TERM argv[]) {
+  int ret = 1;
+  int enable;
+
+  if (argc != 1)
+    return enif_make_badarg(env);
+
+  if (!enif_get_int(env, argv[0], &enable))
+    return enif_make_badarg(env);
+
+#if OPENSSL_VERSION_NUMBER < 0x30000000L
+  int fips_mode = FIPS_mode();
+
+  if ((fips_mode == 0 && enable != 0) ||
+      (fips_mode != 0 && enable == 0))
+    ret = FIPS_mode_set(enable);
+
+  if (ret != 1)
+    return ssl_error(env, "FIPS_mode_set() failed");
+#else
+#warning OpenSSL 3 FIPS support not implemented
+#endif
+
+  return enif_make_atom(env, "ok");
+}
+
+static ERL_NIF_TERM get_fips_mode_nif(ErlNifEnv *env, int argc,
+                                      const ERL_NIF_TERM argv[]) {
+
+#if OPENSSL_VERSION_NUMBER < 0x30000000L
+  const char *ret = FIPS_mode() ? "true" : "false";
+#else
+#warning OpenSSL 3 FIPS support not implemented
+  static const char *ret = "false";
+#endif
+
+  return enif_make_atom(env, ret);
 }
 
 static ErlNifFunc nif_funcs[] =
         {
-                {"open_nif",                  8, open_nif},
-                {"loop_nif",                  4, loop_nif},
-                {"get_verify_result_nif",     1, get_verify_result_nif},
-                {"get_peer_certificate_nif",  1, get_peer_certificate_nif},
-                {"add_certfile_nif",          2, add_certfile_nif},
-                {"delete_certfile_nif",       1, delete_certfile_nif},
-                {"get_certfile_nif",          1, get_certfile_nif},
-                {"clear_cache_nif",           0, clear_cache_nif},
-                {"invalidate_nif",            1, invalidate_nif},
-                {"get_negotiated_cipher_nif", 1, get_negotiated_cipher_nif},
-                {"tls_get_peer_finished_nif", 1, tls_get_peer_finished_nif},
-                {"tls_get_finished_nif",      1, tls_get_finished_nif}
+                {"open_nif",                  10, open_nif},
+                {"loop_nif",                  4,  loop_nif},
+                {"get_verify_result_nif",     1,  get_verify_result_nif},
+                {"get_peer_certificate_nif",  1,  get_peer_certificate_nif},
+                {"add_certfile_nif",          2,  add_certfile_nif},
+                {"delete_certfile_nif",       1,  delete_certfile_nif},
+                {"get_certfile_nif",          1,  get_certfile_nif},
+                {"clear_cache_nif",           0,  clear_cache_nif},
+                {"invalidate_nif",            1,  invalidate_nif},
+                {"get_negotiated_cipher_nif", 1,  get_negotiated_cipher_nif},
+                {"tls_get_peer_finished_nif", 1,  tls_get_peer_finished_nif},
+                {"tls_get_finished_nif",      1,  tls_get_finished_nif},
+                {"set_fips_mode_nif",         1,  set_fips_mode_nif},
+                {"get_fips_mode_nif",         0,  get_fips_mode_nif}
         };
 
 ERL_NIF_INIT(fast_tls, nif_funcs, load, NULL, NULL, unload)

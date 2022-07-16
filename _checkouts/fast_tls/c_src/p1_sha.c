@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2002-2020 ProcessOne, SARL. All Rights Reserved.
+ * Copyright (C) 2002-2022 ProcessOne, SARL. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,6 +19,12 @@
 #include <stdio.h>
 
 static int load(ErlNifEnv* env, void** priv, ERL_NIF_TERM load_info)
+{
+    return 0;
+}
+
+static int upgrade(ErlNifEnv* caller_env, void** priv_data,
+		   void** old_priv_data, ERL_NIF_TERM load_info)
 {
     return 0;
 }
@@ -50,4 +56,4 @@ static ErlNifFunc nif_funcs[] =
 	{"to_hexlist", 1, to_hexlist}
     };
 
-ERL_NIF_INIT(p1_sha, nif_funcs, load, NULL, NULL, NULL)
+ERL_NIF_INIT(p1_sha, nif_funcs, load, NULL, upgrade, NULL)

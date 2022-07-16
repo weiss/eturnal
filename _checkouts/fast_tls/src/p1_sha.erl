@@ -5,7 +5,7 @@
 %%% Created : 20 Dec 2002 by Alexey Shchepin <alexey@process-one.net>
 %%%
 %%%
-%%% Copyright (C) 2002-2020 ProcessOne, SARL. All Rights Reserved.
+%%% Copyright (C) 2002-2022 ProcessOne, SARL. All Rights Reserved.
 %%%
 %%% Licensed under the Apache License, Version 2.0 (the "License");
 %%% you may not use this file except in compliance with the License.
@@ -22,6 +22,7 @@
 %%%----------------------------------------------------------------------
 
 -module(p1_sha).
+-on_load(load_nif/0).
 
 -author('alexey@process-one.net').
 
@@ -42,6 +43,11 @@
 %%% API functions
 %%%===================================================================
 load_nif() ->
+    case os:getenv("COVERALLS") of
+        "true" -> ok;
+        _ -> load_nif2()
+    end.
+load_nif2() ->
     load_nif(p1_nif_utils:get_so_path(?MODULE, [fast_tls], "p1_sha")).
 
 load_nif(SOPath) ->
@@ -89,9 +95,6 @@ sha512(Text) ->
 %%% Unit tests
 %%%===================================================================
 -ifdef(TEST).
-
-load_nif_test() ->
-    ?assertEqual(ok, load_nif(p1_nif_utils:get_so_path(?MODULE, [], "p1_sha"))).
 
 sha1_test() ->
     ?assertEqual(
