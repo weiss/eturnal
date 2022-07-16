@@ -5,7 +5,7 @@
 %%% Created : 7 Aug 2013 by Evgeniy Khramtsov <ekhramtsov@process-one.net>
 %%%
 %%%
-%%% Copyright (C) 2002-2020 ProcessOne, SARL. All Rights Reserved.
+%%% Copyright (C) 2002-2022 ProcessOne, SARL. All Rights Reserved.
 %%%
 %%% Licensed under the Apache License, Version 2.0 (the "License");
 %%% you may not use this file except in compliance with the License.
@@ -31,7 +31,9 @@
 -export([decode/1, decode/2, start/0, stop/0,
          decode_from_file/1, decode_from_file/2, encode/1, format_error/1]).
 
--type option() :: {plain_as_atom, boolean()} | plain_as_atom | {sane_scalars, boolean()} | sane_scalars.
+-type option() :: {plain_as_atom, boolean()} | plain_as_atom |
+                  {sane_scalars, boolean()} | sane_scalars |
+                  {maps, boolean()} | maps.
 -type options() :: [option()].
 -type parser_error() :: {parser_error, binary(), integer(), integer()}.
 -type scanner_error() :: {scanner_error, binary(), integer(), integer()}.
@@ -52,6 +54,11 @@ stop() ->
     application:stop(fast_yaml).
 
 load_nif() ->
+    case os:getenv("COVERALLS") of
+        "true" -> ok;
+        _ -> load_nif2()
+    end.
+load_nif2() ->
     SOPath = p1_nif_utils:get_so_path(?MODULE, [fast_yaml], "fast_yaml"),
     erlang:load_nif(SOPath, 0).
 
@@ -116,6 +123,8 @@ encode(Term) ->
             T
     end.
 
+encode(Terms, N) when is_map(Terms) ->
+    encode(maps:to_list(Terms), N);
 encode([{_, _}|_] = Terms, N) ->
     [[io_lib:nl(), indent(N), encode_pair(T, N)] || T <- Terms];
 encode([_|_] = Terms, N) ->
@@ -342,6 +351,11 @@ encode_test1_test() ->
     ?assertEqual(
        list_to_binary(encode(<<"a">>)),
        <<"\"a\"">>).
+
+encode_map1_test() ->
+    ?assertEqual(
+       list_to_binary(encode(#{<<"key">> => <<"value">>})),
+       <<"\"key\": \"value\"">>).
 
 encode_unicode_test1_test() ->
     ?assertEqual(

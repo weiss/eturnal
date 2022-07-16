@@ -502,7 +502,7 @@ static cert_info_t *lookup_certfile(const char *domain) {
                         ret = info;
                 }
             }
-            enif_free(name):
+            enif_free(name);
         }
     }
     return ret;
