@@ -103,7 +103,7 @@ td.source {
 </head>
 <body>
 <h1><code>/home/runner/work/eturnal/eturnal/_build/test/cover/eunit/mod_stats_prometheus.html</code></h1>
-<footer><p>File generated from <code>/home/runner/work/eturnal/eturnal/_build/test/lib/eturnal/ebin/../src/mod_stats_prometheus.erl</code> by <a href="http://erlang.org/doc/man/cover.html">cover</a> at 2022-07-27 at 16:57:38</p></footer>
+<footer><p>File generated from <code>/home/runner/work/eturnal/eturnal/_build/test/lib/eturnal/ebin/../src/mod_stats_prometheus.erl</code> by <a href="http://erlang.org/doc/man/cover.html">cover</a> at 2022-07-29 at 18:10:22</p></footer>
 <table>
 <tbody>
 <tr>
@@ -1184,12 +1184,12 @@ td.source {
 <tr>
 <td class="line" id="L216"><a href="#L216">216</a></td>
 <td class="hits"></td>
-<td class="source"><code>                    reason := {Code, Text}}) -&gt;</code></td>
+<td class="source"><code>                    reason := {_Code, Text}}) -&gt;</code></td>
 </tr>
 <tr class="miss">
 <td class="line" id="L217"><a href="#L217">217</a></td>
 <td class="hits"><pre style="display: inline;">:-(</pre></td>
-<td class="source"><code>    ?LOG_NOTICE("Observing protocol error ~B for Prometheus", [Code]),</code></td>
+<td class="source"><code>    ?LOG_DEBUG("Observing protocol error for Prometheus: ~s", [Text]),</code></td>
 </tr>
 <tr class="miss">
 <td class="line" id="L218"><a href="#L218">218</a></td>
