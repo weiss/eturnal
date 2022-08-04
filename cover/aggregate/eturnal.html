@@ -103,7 +103,7 @@ td.source {
 </head>
 <body>
 <h1><code>/home/runner/work/eturnal/eturnal/_build/test/cover/aggregate/eturnal.html</code></h1>
-<footer><p>File generated from <code>/home/runner/work/eturnal/eturnal/_build/test/lib/eturnal/ebin/../src/eturnal.erl</code> by <a href="http://erlang.org/doc/man/cover.html">cover</a> at 2022-08-04 at 08:14:13</p></footer>
+<footer><p>File generated from <code>/home/runner/work/eturnal/eturnal/_build/test/lib/eturnal/ebin/../src/eturnal.erl</code> by <a href="http://erlang.org/doc/man/cover.html">cover</a> at 2022-08-04 at 08:20:00</p></footer>
 <table>
 <tbody>
 <tr>
@@ -1293,12 +1293,12 @@ td.source {
 </tr>
 <tr class="hit">
 <td class="line" id="L238"><a href="#L238">238</a></td>
-<td class="hits">107</td>
+<td class="hits">109</td>
 <td class="source"><code>    {ok, Val} = application:get_env(eturnal, Opt),</code></td>
 </tr>
 <tr class="hit">
 <td class="line" id="L239"><a href="#L239">239</a></td>
-<td class="hits">107</td>
+<td class="hits">109</td>
 <td class="source"><code>    Val.</code></td>
 </tr>
 <tr>
@@ -3639,137 +3639,137 @@ td.source {
 <tr class="hit">
 <td class="line" id="L707"><a href="#L707">707</a></td>
 <td class="hits">2</td>
-<td class="source"><code>        PEM = eturnal_cert:create(get_opt(realm)),</code></td>
+<td class="source"><code>        ?LOG_NOTICE("Going to create PEM data for ~s", [File]),</code></td>
 </tr>
 <tr class="hit">
 <td class="line" id="L708"><a href="#L708">708</a></td>
 <td class="hits">2</td>
-<td class="source"><code>        ?LOG_NOTICE("Got PEM data (~B)", [byte_size(PEM)]),</code></td>
+<td class="source"><code>        ?LOG_NOTICE("Realm: ~s", [get_opt(realm)]),</code></td>
 </tr>
 <tr class="hit">
 <td class="line" id="L709"><a href="#L709">709</a></td>
 <td class="hits">2</td>
-<td class="source"><code>        ok = touch(File),</code></td>
+<td class="source"><code>        PEM = eturnal_cert:create(get_opt(realm)),</code></td>
 </tr>
 <tr class="hit">
 <td class="line" id="L710"><a href="#L710">710</a></td>
 <td class="hits">2</td>
-<td class="source"><code>        ?LOG_NOTICE("Touched ~s", [File]),</code></td>
+<td class="source"><code>        ?LOG_NOTICE("Got PEM data (~B)", [byte_size(PEM)]),</code></td>
 </tr>
 <tr class="hit">
 <td class="line" id="L711"><a href="#L711">711</a></td>
 <td class="hits">2</td>
-<td class="source"><code>        ok = file:write_file(File, PEM, [raw]),</code></td>
+<td class="source"><code>        ok = touch(File),</code></td>
 </tr>
 <tr class="hit">
 <td class="line" id="L712"><a href="#L712">712</a></td>
 <td class="hits">2</td>
-<td class="source"><code>        ?LOG_NOTICE("Wrote ~s", [File])</code></td>
+<td class="source"><code>        ?LOG_NOTICE("Touched ~s", [File]),</code></td>
 </tr>
-<tr>
+<tr class="hit">
 <td class="line" id="L713"><a href="#L713">713</a></td>
-<td class="hits"></td>
-<td class="source"><code>    catch error:{_, {error, Reason}} -&gt;</code></td>
+<td class="hits">2</td>
+<td class="source"><code>        ok = file:write_file(File, PEM, [raw]),</code></td>
 </tr>
-<tr class="miss">
+<tr class="hit">
 <td class="line" id="L714"><a href="#L714">714</a></td>
-<td class="hits"><pre style="display: inline;">:-(</pre></td>
-<td class="source"><code>            exit({pem_failure, File, Reason})</code></td>
+<td class="hits">2</td>
+<td class="source"><code>        ?LOG_NOTICE("Wrote ~s", [File])</code></td>
 </tr>
 <tr>
 <td class="line" id="L715"><a href="#L715">715</a></td>
 <td class="hits"></td>
-<td class="source"><code>    end.</code></td>
+<td class="source"><code>    catch error:{_, {error, Reason}} -&gt;</code></td>
 </tr>
-<tr>
+<tr class="miss">
 <td class="line" id="L716"><a href="#L716">716</a></td>
-<td class="hits"></td>
-<td class="source"><code></code></td>
+<td class="hits"><pre style="display: inline;">:-(</pre></td>
+<td class="source"><code>            exit({pem_failure, File, Reason})</code></td>
 </tr>
 <tr>
 <td class="line" id="L717"><a href="#L717">717</a></td>
 <td class="hits"></td>
-<td class="source"><code>-spec copy_file(file:name_all(), file:name_all(), write | append) -&gt; ok.</code></td>
+<td class="source"><code>    end.</code></td>
 </tr>
 <tr>
 <td class="line" id="L718"><a href="#L718">718</a></td>
 <td class="hits"></td>
-<td class="source"><code>copy_file(Src, Dst, Mode) -&gt;</code></td>
+<td class="source"><code></code></td>
 </tr>
-<tr class="miss">
+<tr>
 <td class="line" id="L719"><a href="#L719">719</a></td>
-<td class="hits"><pre style="display: inline;">:-(</pre></td>
-<td class="source"><code>    SrcMode = [read, binary, raw],</code></td>
+<td class="hits"></td>
+<td class="source"><code>-spec copy_file(file:name_all(), file:name_all(), write | append) -&gt; ok.</code></td>
 </tr>
-<tr class="miss">
+<tr>
 <td class="line" id="L720"><a href="#L720">720</a></td>
-<td class="hits"><pre style="display: inline;">:-(</pre></td>
-<td class="source"><code>    DstMode = [Mode, binary, raw],</code></td>
+<td class="hits"></td>
+<td class="source"><code>copy_file(Src, Dst, Mode) -&gt;</code></td>
 </tr>
 <tr class="miss">
 <td class="line" id="L721"><a href="#L721">721</a></td>
 <td class="hits"><pre style="display: inline;">:-(</pre></td>
-<td class="source"><code>    {ok, _} = file:copy({Src, SrcMode}, {Dst, DstMode}),</code></td>
+<td class="source"><code>    SrcMode = [read, binary, raw],</code></td>
 </tr>
 <tr class="miss">
 <td class="line" id="L722"><a href="#L722">722</a></td>
 <td class="hits"><pre style="display: inline;">:-(</pre></td>
-<td class="source"><code>    ?LOG_DEBUG("Copied ~ts into ~ts", [Src, Dst]).</code></td>
+<td class="source"><code>    DstMode = [Mode, binary, raw],</code></td>
 </tr>
-<tr>
+<tr class="miss">
 <td class="line" id="L723"><a href="#L723">723</a></td>
-<td class="hits"></td>
-<td class="source"><code></code></td>
+<td class="hits"><pre style="display: inline;">:-(</pre></td>
+<td class="source"><code>    {ok, _} = file:copy({Src, SrcMode}, {Dst, DstMode}),</code></td>
 </tr>
-<tr>
+<tr class="miss">
 <td class="line" id="L724"><a href="#L724">724</a></td>
-<td class="hits"></td>
-<td class="source"><code>-spec touch(file:filename_all()) -&gt; ok.</code></td>
+<td class="hits"><pre style="display: inline;">:-(</pre></td>
+<td class="source"><code>    ?LOG_DEBUG("Copied ~ts into ~ts", [Src, Dst]).</code></td>
 </tr>
 <tr>
 <td class="line" id="L725"><a href="#L725">725</a></td>
 <td class="hits"></td>
-<td class="source"><code>touch(File) -&gt;</code></td>
+<td class="source"><code></code></td>
 </tr>
-<tr class="hit">
+<tr>
 <td class="line" id="L726"><a href="#L726">726</a></td>
-<td class="hits">2</td>
-<td class="source"><code>    ?LOG_NOTICE("Opening ~s", [File]),</code></td>
+<td class="hits"></td>
+<td class="source"><code>-spec touch(file:filename_all()) -&gt; ok.</code></td>
 </tr>
-<tr class="hit">
+<tr>
 <td class="line" id="L727"><a href="#L727">727</a></td>
-<td class="hits">2</td>
-<td class="source"><code>    {ok, Fd} = file:open(File, [append, binary, raw]),</code></td>
+<td class="hits"></td>
+<td class="source"><code>touch(File) -&gt;</code></td>
 </tr>
 <tr class="hit">
 <td class="line" id="L728"><a href="#L728">728</a></td>
 <td class="hits">2</td>
-<td class="source"><code>    ?LOG_NOTICE("Closing ~s", [File]),</code></td>
+<td class="source"><code>    ?LOG_NOTICE("Opening ~s", [File]),</code></td>
 </tr>
 <tr class="hit">
 <td class="line" id="L729"><a href="#L729">729</a></td>
 <td class="hits">2</td>
-<td class="source"><code>    ok = file:close(Fd),</code></td>
+<td class="source"><code>    {ok, Fd} = file:open(File, [append, binary, raw]),</code></td>
 </tr>
 <tr class="hit">
 <td class="line" id="L730"><a href="#L730">730</a></td>
 <td class="hits">2</td>
-<td class="source"><code>    ?LOG_NOTICE("Changing mode of ~s", [File]),</code></td>
+<td class="source"><code>    ?LOG_NOTICE("Closing ~s", [File]),</code></td>
 </tr>
 <tr class="hit">
 <td class="line" id="L731"><a href="#L731">731</a></td>
 <td class="hits">2</td>
-<td class="source"><code>    ok = file:write_file_info(File, #file_info{mode = 8#00600}, [raw]).</code></td>
+<td class="source"><code>    ok = file:close(Fd),</code></td>
 </tr>
-<tr>
+<tr class="hit">
 <td class="line" id="L732"><a href="#L732">732</a></td>
-<td class="hits"></td>
-<td class="source"><code></code></td>
+<td class="hits">2</td>
+<td class="source"><code>    ?LOG_NOTICE("Changing mode of ~s", [File]),</code></td>
 </tr>
-<tr>
+<tr class="hit">
 <td class="line" id="L733"><a href="#L733">733</a></td>
-<td class="hits"></td>
-<td class="source"><code>%% Internal functions: run directory.</code></td>
+<td class="hits">2</td>
+<td class="source"><code>    ok = file:write_file_info(File, #file_info{mode = 8#00600}, [raw]).</code></td>
 </tr>
 <tr>
 <td class="line" id="L734"><a href="#L734">734</a></td>
@@ -3779,132 +3779,132 @@ td.source {
 <tr>
 <td class="line" id="L735"><a href="#L735">735</a></td>
 <td class="hits"></td>
-<td class="source"><code>-spec ensure_run_dir() -&gt; ok.</code></td>
+<td class="source"><code>%% Internal functions: run directory.</code></td>
 </tr>
 <tr>
 <td class="line" id="L736"><a href="#L736">736</a></td>
 <td class="hits"></td>
+<td class="source"><code></code></td>
+</tr>
+<tr>
+<td class="line" id="L737"><a href="#L737">737</a></td>
+<td class="hits"></td>
+<td class="source"><code>-spec ensure_run_dir() -&gt; ok.</code></td>
+</tr>
+<tr>
+<td class="line" id="L738"><a href="#L738">738</a></td>
+<td class="hits"></td>
 <td class="source"><code>ensure_run_dir() -&gt;</code></td>
 </tr>
 <tr class="hit">
-<td class="line" id="L737"><a href="#L737">737</a></td>
+<td class="line" id="L739"><a href="#L739">739</a></td>
 <td class="hits">1</td>
 <td class="source"><code>    RunDir = get_opt(run_dir),</code></td>
 </tr>
 <tr class="hit">
-<td class="line" id="L738"><a href="#L738">738</a></td>
+<td class="line" id="L740"><a href="#L740">740</a></td>
 <td class="hits">1</td>
 <td class="source"><code>    case filelib:ensure_dir(filename:join(RunDir, &lt;&lt;"file"&gt;&gt;)) of</code></td>
 </tr>
 <tr>
-<td class="line" id="L739"><a href="#L739">739</a></td>
+<td class="line" id="L741"><a href="#L741">741</a></td>
 <td class="hits"></td>
 <td class="source"><code>        ok -&gt;</code></td>
 </tr>
 <tr class="hit">
-<td class="line" id="L740"><a href="#L740">740</a></td>
+<td class="line" id="L742"><a href="#L742">742</a></td>
 <td class="hits">1</td>
 <td class="source"><code>            ?LOG_DEBUG("Using run directory ~ts", [RunDir]);</code></td>
 </tr>
 <tr>
-<td class="line" id="L741"><a href="#L741">741</a></td>
+<td class="line" id="L743"><a href="#L743">743</a></td>
 <td class="hits"></td>
 <td class="source"><code>        {error, Reason} -&gt;</code></td>
 </tr>
 <tr class="miss">
-<td class="line" id="L742"><a href="#L742">742</a></td>
+<td class="line" id="L744"><a href="#L744">744</a></td>
 <td class="hits"><pre style="display: inline;">:-(</pre></td>
 <td class="source"><code>            exit({run_dir_failure, create, RunDir, Reason})</code></td>
 </tr>
 <tr>
-<td class="line" id="L743"><a href="#L743">743</a></td>
-<td class="hits"></td>
-<td class="source"><code>    end.</code></td>
-</tr>
-<tr>
-<td class="line" id="L744"><a href="#L744">744</a></td>
-<td class="hits"></td>
-<td class="source"><code></code></td>
-</tr>
-<tr>
 <td class="line" id="L745"><a href="#L745">745</a></td>
 <td class="hits"></td>
-<td class="source"><code>-spec clean_run_dir() -&gt; ok.</code></td>
+<td class="source"><code>    end.</code></td>
 </tr>
 <tr>
 <td class="line" id="L746"><a href="#L746">746</a></td>
 <td class="hits"></td>
+<td class="source"><code></code></td>
+</tr>
+<tr>
+<td class="line" id="L747"><a href="#L747">747</a></td>
+<td class="hits"></td>
+<td class="source"><code>-spec clean_run_dir() -&gt; ok.</code></td>
+</tr>
+<tr>
+<td class="line" id="L748"><a href="#L748">748</a></td>
+<td class="hits"></td>
 <td class="source"><code>clean_run_dir() -&gt;</code></td>
 </tr>
 <tr class="hit">
-<td class="line" id="L747"><a href="#L747">747</a></td>
+<td class="line" id="L749"><a href="#L749">749</a></td>
 <td class="hits">1</td>
 <td class="source"><code>    PEMFile = get_pem_file_path(),</code></td>
 </tr>
 <tr class="hit">
-<td class="line" id="L748"><a href="#L748">748</a></td>
+<td class="line" id="L750"><a href="#L750">750</a></td>
 <td class="hits">1</td>
 <td class="source"><code>    case filelib:is_regular(PEMFile) of</code></td>
 </tr>
 <tr>
-<td class="line" id="L749"><a href="#L749">749</a></td>
+<td class="line" id="L751"><a href="#L751">751</a></td>
 <td class="hits"></td>
 <td class="source"><code>        true -&gt;</code></td>
 </tr>
 <tr class="hit">
-<td class="line" id="L750"><a href="#L750">750</a></td>
+<td class="line" id="L752"><a href="#L752">752</a></td>
 <td class="hits">1</td>
 <td class="source"><code>            case file:delete(PEMFile) of</code></td>
 </tr>
 <tr>
-<td class="line" id="L751"><a href="#L751">751</a></td>
+<td class="line" id="L753"><a href="#L753">753</a></td>
 <td class="hits"></td>
 <td class="source"><code>                ok -&gt;</code></td>
 </tr>
 <tr class="hit">
-<td class="line" id="L752"><a href="#L752">752</a></td>
+<td class="line" id="L754"><a href="#L754">754</a></td>
 <td class="hits">1</td>
 <td class="source"><code>                    ?LOG_DEBUG("Removed ~ts", [PEMFile]);</code></td>
 </tr>
 <tr>
-<td class="line" id="L753"><a href="#L753">753</a></td>
+<td class="line" id="L755"><a href="#L755">755</a></td>
 <td class="hits"></td>
 <td class="source"><code>                {error, Reason} -&gt;</code></td>
 </tr>
 <tr class="miss">
-<td class="line" id="L754"><a href="#L754">754</a></td>
+<td class="line" id="L756"><a href="#L756">756</a></td>
 <td class="hits"><pre style="display: inline;">:-(</pre></td>
 <td class="source"><code>                    exit({run_dir_failure, clean, PEMFile, Reason})</code></td>
 </tr>
 <tr>
-<td class="line" id="L755"><a href="#L755">755</a></td>
+<td class="line" id="L757"><a href="#L757">757</a></td>
 <td class="hits"></td>
 <td class="source"><code>            end;</code></td>
 </tr>
 <tr>
-<td class="line" id="L756"><a href="#L756">756</a></td>
+<td class="line" id="L758"><a href="#L758">758</a></td>
 <td class="hits"></td>
 <td class="source"><code>        false -&gt;</code></td>
 </tr>
 <tr class="miss">
-<td class="line" id="L757"><a href="#L757">757</a></td>
+<td class="line" id="L759"><a href="#L759">759</a></td>
 <td class="hits"><pre style="display: inline;">:-(</pre></td>
 <td class="source"><code>            ?LOG_DEBUG("PEM file doesn't exist: ~ts", [PEMFile])</code></td>
 </tr>
 <tr>
-<td class="line" id="L758"><a href="#L758">758</a></td>
-<td class="hits"></td>
-<td class="source"><code>    end.</code></td>
-</tr>
-<tr>
-<td class="line" id="L759"><a href="#L759">759</a></td>
-<td class="hits"></td>
-<td class="source"><code></code></td>
-</tr>
-<tr>
 <td class="line" id="L760"><a href="#L760">760</a></td>
 <td class="hits"></td>
-<td class="source"><code>%% Internal functions: error message formatting.</code></td>
+<td class="source"><code>    end.</code></td>
 </tr>
 <tr>
 <td class="line" id="L761"><a href="#L761">761</a></td>
@@ -3914,182 +3914,182 @@ td.source {
 <tr>
 <td class="line" id="L762"><a href="#L762">762</a></td>
 <td class="hits"></td>
-<td class="source"><code>-spec format_error(atom() | tuple()) -&gt; binary().</code></td>
+<td class="source"><code>%% Internal functions: error message formatting.</code></td>
 </tr>
 <tr>
 <td class="line" id="L763"><a href="#L763">763</a></td>
 <td class="hits"></td>
-<td class="source"><code>format_error({module_failure, Action, Mod, Reason}) -&gt;</code></td>
+<td class="source"><code></code></td>
 </tr>
-<tr class="miss">
+<tr>
 <td class="line" id="L764"><a href="#L764">764</a></td>
-<td class="hits"><pre style="display: inline;">:-(</pre></td>
-<td class="source"><code>    format("Failed to ~s ~s: ~p", [Action, Mod, Reason]);</code></td>
+<td class="hits"></td>
+<td class="source"><code>-spec format_error(atom() | tuple()) -&gt; binary().</code></td>
 </tr>
 <tr>
 <td class="line" id="L765"><a href="#L765">765</a></td>
 <td class="hits"></td>
-<td class="source"><code>format_error({dependency_failure, Mod, Dep}) -&gt;</code></td>
+<td class="source"><code>format_error({module_failure, Action, Mod, Reason}) -&gt;</code></td>
 </tr>
 <tr class="miss">
 <td class="line" id="L766"><a href="#L766">766</a></td>
 <td class="hits"><pre style="display: inline;">:-(</pre></td>
-<td class="source"><code>    format("Dependency ~s is missing; install it below ~s, or point ERL_LIBS "</code></td>
+<td class="source"><code>    format("Failed to ~s ~s: ~p", [Action, Mod, Reason]);</code></td>
 </tr>
 <tr>
 <td class="line" id="L767"><a href="#L767">767</a></td>
 <td class="hits"></td>
-<td class="source"><code>           "to it, or disable ~s", [Dep, code:lib_dir(), Mod]);</code></td>
-</tr>
-<tr>
-<td class="line" id="L768"><a href="#L768">768</a></td>
-<td class="hits"></td>
-<td class="source"><code>format_error({listener_failure, Action, IP, Port, Transport, Reason}) -&gt;</code></td>
+<td class="source"><code>format_error({dependency_failure, Mod, Dep}) -&gt;</code></td>
 </tr>
 <tr class="miss">
-<td class="line" id="L769"><a href="#L769">769</a></td>
+<td class="line" id="L768"><a href="#L768">768</a></td>
 <td class="hits"><pre style="display: inline;">:-(</pre></td>
-<td class="source"><code>    format("Cannot ~s listening on ~s (~s): ~s",</code></td>
+<td class="source"><code>    format("Dependency ~s is missing; install it below ~s, or point ERL_LIBS "</code></td>
+</tr>
+<tr>
+<td class="line" id="L769"><a href="#L769">769</a></td>
+<td class="hits"></td>
+<td class="source"><code>           "to it, or disable ~s", [Dep, code:lib_dir(), Mod]);</code></td>
 </tr>
 <tr>
 <td class="line" id="L770"><a href="#L770">770</a></td>
 <td class="hits"></td>
-<td class="source"><code>           [Action, eturnal_misc:addr_to_str(IP, Port), Transport,</code></td>
+<td class="source"><code>format_error({listener_failure, Action, IP, Port, Transport, Reason}) -&gt;</code></td>
 </tr>
-<tr>
+<tr class="miss">
 <td class="line" id="L771"><a href="#L771">771</a></td>
-<td class="hits"></td>
-<td class="source"><code>            inet:format_error(Reason)]);</code></td>
+<td class="hits"><pre style="display: inline;">:-(</pre></td>
+<td class="source"><code>    format("Cannot ~s listening on ~s (~s): ~s",</code></td>
 </tr>
 <tr>
 <td class="line" id="L772"><a href="#L772">772</a></td>
 <td class="hits"></td>
-<td class="source"><code>format_error({run_dir_failure, Action, RunDir, Reason}) -&gt;</code></td>
+<td class="source"><code>           [Action, eturnal_misc:addr_to_str(IP, Port), Transport,</code></td>
 </tr>
-<tr class="miss">
+<tr>
 <td class="line" id="L773"><a href="#L773">773</a></td>
-<td class="hits"><pre style="display: inline;">:-(</pre></td>
-<td class="source"><code>    format("Cannot ~s run directory ~ts: ~ts",</code></td>
+<td class="hits"></td>
+<td class="source"><code>            inet:format_error(Reason)]);</code></td>
 </tr>
 <tr>
 <td class="line" id="L774"><a href="#L774">774</a></td>
 <td class="hits"></td>
-<td class="source"><code>           [Action, RunDir, file:format_error(Reason)]);</code></td>
-</tr>
-<tr>
-<td class="line" id="L775"><a href="#L775">775</a></td>
-<td class="hits"></td>
-<td class="source"><code>format_error({pem_failure, File, Reason}) -&gt;</code></td>
+<td class="source"><code>format_error({run_dir_failure, Action, RunDir, Reason}) -&gt;</code></td>
 </tr>
 <tr class="miss">
-<td class="line" id="L776"><a href="#L776">776</a></td>
+<td class="line" id="L775"><a href="#L775">775</a></td>
 <td class="hits"><pre style="display: inline;">:-(</pre></td>
-<td class="source"><code>    format("Cannot create PEM file ~ts: ~ts",</code></td>
+<td class="source"><code>    format("Cannot ~s run directory ~ts: ~ts",</code></td>
+</tr>
+<tr>
+<td class="line" id="L776"><a href="#L776">776</a></td>
+<td class="hits"></td>
+<td class="source"><code>           [Action, RunDir, file:format_error(Reason)]);</code></td>
 </tr>
 <tr>
 <td class="line" id="L777"><a href="#L777">777</a></td>
 <td class="hits"></td>
-<td class="source"><code>           [File, file:format_error(Reason)]);</code></td>
-</tr>
-<tr>
-<td class="line" id="L778"><a href="#L778">778</a></td>
-<td class="hits"></td>
-<td class="source"><code>format_error({otp_too_old, Key, Value, Vsn}) -&gt;</code></td>
+<td class="source"><code>format_error({pem_failure, File, Reason}) -&gt;</code></td>
 </tr>
 <tr class="miss">
-<td class="line" id="L779"><a href="#L779">779</a></td>
+<td class="line" id="L778"><a href="#L778">778</a></td>
 <td class="hits"><pre style="display: inline;">:-(</pre></td>
-<td class="source"><code>    format("Setting '~s: ~s' requires Erlang/OTP ~B or later",</code></td>
+<td class="source"><code>    format("Cannot create PEM file ~ts: ~ts",</code></td>
+</tr>
+<tr>
+<td class="line" id="L779"><a href="#L779">779</a></td>
+<td class="hits"></td>
+<td class="source"><code>           [File, file:format_error(Reason)]);</code></td>
 </tr>
 <tr>
 <td class="line" id="L780"><a href="#L780">780</a></td>
 <td class="hits"></td>
-<td class="source"><code>           [Key, Value, Vsn]);</code></td>
-</tr>
-<tr>
-<td class="line" id="L781"><a href="#L781">781</a></td>
-<td class="hits"></td>
-<td class="source"><code>format_error(proxy_config_failure) -&gt;</code></td>
+<td class="source"><code>format_error({otp_too_old, Key, Value, Vsn}) -&gt;</code></td>
 </tr>
 <tr class="miss">
-<td class="line" id="L782"><a href="#L782">782</a></td>
+<td class="line" id="L781"><a href="#L781">781</a></td>
 <td class="hits"><pre style="display: inline;">:-(</pre></td>
-<td class="source"><code>    &lt;&lt;"The 'proxy_protocol' ist not supported for 'udp'"&gt;&gt;;</code></td>
+<td class="source"><code>    format("Setting '~s: ~s' requires Erlang/OTP ~B or later",</code></td>
+</tr>
+<tr>
+<td class="line" id="L782"><a href="#L782">782</a></td>
+<td class="hits"></td>
+<td class="source"><code>           [Key, Value, Vsn]);</code></td>
 </tr>
 <tr>
 <td class="line" id="L783"><a href="#L783">783</a></td>
 <td class="hits"></td>
-<td class="source"><code>format_error(turn_config_failure) -&gt;</code></td>
+<td class="source"><code>format_error(proxy_config_failure) -&gt;</code></td>
 </tr>
 <tr class="miss">
 <td class="line" id="L784"><a href="#L784">784</a></td>
 <td class="hits"><pre style="display: inline;">:-(</pre></td>
-<td class="source"><code>    &lt;&lt;"The 'relay_max_port' must be larger than the 'relay_min_port'"&gt;&gt;;</code></td>
+<td class="source"><code>    &lt;&lt;"The 'proxy_protocol' ist not supported for 'udp'"&gt;&gt;;</code></td>
 </tr>
 <tr>
 <td class="line" id="L785"><a href="#L785">785</a></td>
 <td class="hits"></td>
-<td class="source"><code>format_error(_Unknown) -&gt;</code></td>
+<td class="source"><code>format_error(turn_config_failure) -&gt;</code></td>
 </tr>
 <tr class="miss">
 <td class="line" id="L786"><a href="#L786">786</a></td>
 <td class="hits"><pre style="display: inline;">:-(</pre></td>
-<td class="source"><code>    &lt;&lt;"Unknown error"&gt;&gt;.</code></td>
+<td class="source"><code>    &lt;&lt;"The 'relay_max_port' must be larger than the 'relay_min_port'"&gt;&gt;;</code></td>
 </tr>
 <tr>
 <td class="line" id="L787"><a href="#L787">787</a></td>
 <td class="hits"></td>
-<td class="source"><code></code></td>
+<td class="source"><code>format_error(_Unknown) -&gt;</code></td>
 </tr>
-<tr>
+<tr class="miss">
 <td class="line" id="L788"><a href="#L788">788</a></td>
-<td class="hits"></td>
-<td class="source"><code>-spec format(io:format(), [term()]) -&gt; binary().</code></td>
+<td class="hits"><pre style="display: inline;">:-(</pre></td>
+<td class="source"><code>    &lt;&lt;"Unknown error"&gt;&gt;.</code></td>
 </tr>
 <tr>
 <td class="line" id="L789"><a href="#L789">789</a></td>
 <td class="hits"></td>
-<td class="source"><code>format(Fmt, Data) -&gt;</code></td>
+<td class="source"><code></code></td>
 </tr>
-<tr class="miss">
+<tr>
 <td class="line" id="L790"><a href="#L790">790</a></td>
-<td class="hits"><pre style="display: inline;">:-(</pre></td>
-<td class="source"><code>    case unicode:characters_to_binary(io_lib:format(Fmt, Data)) of</code></td>
+<td class="hits"></td>
+<td class="source"><code>-spec format(io:format(), [term()]) -&gt; binary().</code></td>
 </tr>
 <tr>
 <td class="line" id="L791"><a href="#L791">791</a></td>
 <td class="hits"></td>
-<td class="source"><code>        Bin when is_binary(Bin) -&gt;</code></td>
+<td class="source"><code>format(Fmt, Data) -&gt;</code></td>
 </tr>
 <tr class="miss">
 <td class="line" id="L792"><a href="#L792">792</a></td>
 <td class="hits"><pre style="display: inline;">:-(</pre></td>
-<td class="source"><code>            Bin;</code></td>
+<td class="source"><code>    case unicode:characters_to_binary(io_lib:format(Fmt, Data)) of</code></td>
 </tr>
 <tr>
 <td class="line" id="L793"><a href="#L793">793</a></td>
 <td class="hits"></td>
-<td class="source"><code>        {_, _, _} = Err -&gt;</code></td>
+<td class="source"><code>        Bin when is_binary(Bin) -&gt;</code></td>
 </tr>
 <tr class="miss">
 <td class="line" id="L794"><a href="#L794">794</a></td>
 <td class="hits"><pre style="display: inline;">:-(</pre></td>
-<td class="source"><code>            erlang:error(Err)</code></td>
+<td class="source"><code>            Bin;</code></td>
 </tr>
 <tr>
 <td class="line" id="L795"><a href="#L795">795</a></td>
 <td class="hits"></td>
-<td class="source"><code>    end.</code></td>
+<td class="source"><code>        {_, _, _} = Err -&gt;</code></td>
 </tr>
-<tr>
+<tr class="miss">
 <td class="line" id="L796"><a href="#L796">796</a></td>
-<td class="hits"></td>
-<td class="source"><code></code></td>
+<td class="hits"><pre style="display: inline;">:-(</pre></td>
+<td class="source"><code>            erlang:error(Err)</code></td>
 </tr>
 <tr>
 <td class="line" id="L797"><a href="#L797">797</a></td>
 <td class="hits"></td>
-<td class="source"><code>%% EUnit tests.</code></td>
+<td class="source"><code>    end.</code></td>
 </tr>
 <tr>
 <td class="line" id="L798"><a href="#L798">798</a></td>
@@ -4099,55 +4099,65 @@ td.source {
 <tr>
 <td class="line" id="L799"><a href="#L799">799</a></td>
 <td class="hits"></td>
-<td class="source"><code>-ifdef(EUNIT).</code></td>
+<td class="source"><code>%% EUnit tests.</code></td>
 </tr>
 <tr>
 <td class="line" id="L800"><a href="#L800">800</a></td>
 <td class="hits"></td>
+<td class="source"><code></code></td>
+</tr>
+<tr>
+<td class="line" id="L801"><a href="#L801">801</a></td>
+<td class="hits"></td>
+<td class="source"><code>-ifdef(EUNIT).</code></td>
+</tr>
+<tr>
+<td class="line" id="L802"><a href="#L802">802</a></td>
+<td class="hits"></td>
 <td class="source"><code>config_change_test_() -&gt;</code></td>
 </tr>
 <tr class="hit">
-<td class="line" id="L801"><a href="#L801">801</a></td>
+<td class="line" id="L803"><a href="#L803">803</a></td>
 <td class="hits">4</td>
 <td class="source"><code>    [?_assert(logging_config_changed({[{log_level, info}], [], []})),</code></td>
 </tr>
 <tr class="hit">
-<td class="line" id="L802"><a href="#L802">802</a></td>
+<td class="line" id="L804"><a href="#L804">804</a></td>
 <td class="hits">1</td>
 <td class="source"><code>     ?_assert(run_dir_config_changed({[{run_dir, &lt;&lt;"run"&gt;&gt;}], [], []})),</code></td>
 </tr>
 <tr class="hit">
-<td class="line" id="L803"><a href="#L803">803</a></td>
+<td class="line" id="L805"><a href="#L805">805</a></td>
 <td class="hits">1</td>
 <td class="source"><code>     ?_assert(relay_config_changed({[{relay_min_port, 50000}], [], []})),</code></td>
 </tr>
 <tr class="hit">
-<td class="line" id="L804"><a href="#L804">804</a></td>
+<td class="line" id="L806"><a href="#L806">806</a></td>
 <td class="hits">1</td>
 <td class="source"><code>     ?_assert(listener_config_changed({[{max_bps, 42}], [], []})),</code></td>
 </tr>
 <tr class="hit">
-<td class="line" id="L805"><a href="#L805">805</a></td>
+<td class="line" id="L807"><a href="#L807">807</a></td>
 <td class="hits">1</td>
 <td class="source"><code>     ?_assertNot(logging_config_changed({[{strict_expiry, false}], [], []})),</code></td>
 </tr>
 <tr class="hit">
-<td class="line" id="L806"><a href="#L806">806</a></td>
+<td class="line" id="L808"><a href="#L808">808</a></td>
 <td class="hits">1</td>
 <td class="source"><code>     ?_assertNot(run_dir_config_changed({[{strict_expiry, false}], [], []})),</code></td>
 </tr>
 <tr class="hit">
-<td class="line" id="L807"><a href="#L807">807</a></td>
+<td class="line" id="L809"><a href="#L809">809</a></td>
 <td class="hits">1</td>
 <td class="source"><code>     ?_assertNot(relay_config_changed({[{strict_expiry, false}], [], []})),</code></td>
 </tr>
 <tr class="hit">
-<td class="line" id="L808"><a href="#L808">808</a></td>
+<td class="line" id="L810"><a href="#L810">810</a></td>
 <td class="hits">1</td>
 <td class="source"><code>     ?_assertNot(listener_config_changed({[{strict_expiry, false}], [], []}))].</code></td>
 </tr>
 <tr>
-<td class="line" id="L809"><a href="#L809">809</a></td>
+<td class="line" id="L811"><a href="#L811">811</a></td>
 <td class="hits"></td>
 <td class="source"><code>-endif.</code></td>
 </tr>
