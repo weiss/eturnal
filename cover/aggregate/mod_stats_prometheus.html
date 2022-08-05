@@ -103,7 +103,7 @@ td.source {
 </head>
 <body>
 <h1><code>/home/runner/work/eturnal/eturnal/_build/test/cover/aggregate/mod_stats_prometheus.html</code></h1>
-<footer><p>File generated from <code>/home/runner/work/eturnal/eturnal/_build/test/lib/eturnal/ebin/../src/mod_stats_prometheus.erl</code> by <a href="http://erlang.org/doc/man/cover.html">cover</a> at 2022-08-04 at 14:55:51</p></footer>
+<footer><p>File generated from <code>/home/runner/work/eturnal/eturnal/_build/test/lib/eturnal/ebin/../src/mod_stats_prometheus.erl</code> by <a href="http://erlang.org/doc/man/cover.html">cover</a> at 2022-08-05 at 06:39:07</p></footer>
 <table>
 <tbody>
 <tr>
@@ -489,7 +489,7 @@ td.source {
 <tr class="hit">
 <td class="line" id="L77"><a href="#L77">77</a></td>
 <td class="hits">3</td>
-<td class="source"><code>    ok = eturnal_module:ensure_deps(?MODULE, [prometheus_httpd]),</code></td>
+<td class="source"><code>    ok = eturnal_module:ensure_deps(?MODULE, get_deps()),</code></td>
 </tr>
 <tr class="hit">
 <td class="line" id="L78"><a href="#L78">78</a></td>
@@ -1184,280 +1184,325 @@ td.source {
 <tr>
 <td class="line" id="L216"><a href="#L216">216</a></td>
 <td class="hits"></td>
-<td class="source"><code>-spec get_pem_files() -&gt; {file:filename(), file:filename()}.</code></td>
+<td class="source"><code>-spec get_deps() -&gt; [eturnal_module:dep()].</code></td>
 </tr>
 <tr>
 <td class="line" id="L217"><a href="#L217">217</a></td>
 <td class="hits"></td>
-<td class="source"><code>get_pem_files() -&gt;</code></td>
+<td class="source"><code>get_deps() -&gt;</code></td>
 </tr>
-<tr class="miss">
+<tr class="hit">
 <td class="line" id="L218"><a href="#L218">218</a></td>
-<td class="hits"><pre style="display: inline;">:-(</pre></td>
-<td class="source"><code>    case get_module_or_global_opt(tls_crt_file) of</code></td>
+<td class="hits">3</td>
+<td class="source"><code>    case eturnal_module:get_opt(?MODULE, tls) of</code></td>
 </tr>
 <tr>
 <td class="line" id="L219"><a href="#L219">219</a></td>
 <td class="hits"></td>
-<td class="source"><code>        CrtFile when is_binary(CrtFile) -&gt;</code></td>
+<td class="source"><code>        true -&gt;</code></td>
 </tr>
 <tr class="miss">
 <td class="line" id="L220"><a href="#L220">220</a></td>
 <td class="hits"><pre style="display: inline;">:-(</pre></td>
-<td class="source"><code>            case get_module_or_global_opt(tls_key_file) of</code></td>
+<td class="source"><code>            [ssl, prometheus_httpd];</code></td>
 </tr>
 <tr>
 <td class="line" id="L221"><a href="#L221">221</a></td>
 <td class="hits"></td>
-<td class="source"><code>                KeyFile when is_binary(KeyFile) -&gt;</code></td>
+<td class="source"><code>        false -&gt;</code></td>
 </tr>
-<tr class="miss">
+<tr class="hit">
 <td class="line" id="L222"><a href="#L222">222</a></td>
-<td class="hits"><pre style="display: inline;">:-(</pre></td>
-<td class="source"><code>                    {CrtFile, KeyFile};</code></td>
+<td class="hits">3</td>
+<td class="source"><code>            [prometheus_httpd]</code></td>
 </tr>
 <tr>
 <td class="line" id="L223"><a href="#L223">223</a></td>
 <td class="hits"></td>
-<td class="source"><code>                none -&gt;</code></td>
+<td class="source"><code>    end.</code></td>
 </tr>
-<tr class="miss">
+<tr>
 <td class="line" id="L224"><a href="#L224">224</a></td>
-<td class="hits"><pre style="display: inline;">:-(</pre></td>
-<td class="source"><code>                    {CrtFile, CrtFile}</code></td>
+<td class="hits"></td>
+<td class="source"><code></code></td>
 </tr>
 <tr>
 <td class="line" id="L225"><a href="#L225">225</a></td>
 <td class="hits"></td>
-<td class="source"><code>            end;</code></td>
+<td class="source"><code>-spec get_pem_files() -&gt; {file:filename(), file:filename()}.</code></td>
 </tr>
 <tr>
 <td class="line" id="L226"><a href="#L226">226</a></td>
 <td class="hits"></td>
-<td class="source"><code>        none -&gt;</code></td>
+<td class="source"><code>get_pem_files() -&gt;</code></td>
 </tr>
 <tr class="miss">
 <td class="line" id="L227"><a href="#L227">227</a></td>
 <td class="hits"><pre style="display: inline;">:-(</pre></td>
-<td class="source"><code>            ?LOG_WARNING("TLS enabled for ~s without 'tls_crt_file', creating "</code></td>
+<td class="source"><code>    case get_module_or_global_opt(tls_crt_file) of</code></td>
 </tr>
-<tr class="miss">
+<tr>
 <td class="line" id="L228"><a href="#L228">228</a></td>
-<td class="hits"><pre style="display: inline;">:-(</pre></td>
-<td class="source"><code>                         "self-signed certificate", [?MODULE]),</code></td>
+<td class="hits"></td>
+<td class="source"><code>        CrtFile when is_binary(CrtFile) -&gt;</code></td>
 </tr>
 <tr class="miss">
 <td class="line" id="L229"><a href="#L229">229</a></td>
 <td class="hits"><pre style="display: inline;">:-(</pre></td>
-<td class="source"><code>            File = get_pem_file_path(),</code></td>
+<td class="source"><code>            case get_module_or_global_opt(tls_key_file) of</code></td>
 </tr>
-<tr class="miss">
+<tr>
 <td class="line" id="L230"><a href="#L230">230</a></td>
-<td class="hits"><pre style="display: inline;">:-(</pre></td>
-<td class="source"><code>            ok = eturnal:create_self_signed(File),</code></td>
+<td class="hits"></td>
+<td class="source"><code>                KeyFile when is_binary(KeyFile) -&gt;</code></td>
 </tr>
 <tr class="miss">
 <td class="line" id="L231"><a href="#L231">231</a></td>
 <td class="hits"><pre style="display: inline;">:-(</pre></td>
-<td class="source"><code>            {File, File}</code></td>
+<td class="source"><code>                    {CrtFile, KeyFile};</code></td>
 </tr>
 <tr>
 <td class="line" id="L232"><a href="#L232">232</a></td>
 <td class="hits"></td>
-<td class="source"><code>    end.</code></td>
+<td class="source"><code>                none -&gt;</code></td>
 </tr>
-<tr>
+<tr class="miss">
 <td class="line" id="L233"><a href="#L233">233</a></td>
-<td class="hits"></td>
-<td class="source"><code></code></td>
+<td class="hits"><pre style="display: inline;">:-(</pre></td>
+<td class="source"><code>                    {CrtFile, CrtFile}</code></td>
 </tr>
 <tr>
 <td class="line" id="L234"><a href="#L234">234</a></td>
 <td class="hits"></td>
-<td class="source"><code>-spec get_pem_file_path() -&gt; file:filename().</code></td>
+<td class="source"><code>            end;</code></td>
 </tr>
 <tr>
 <td class="line" id="L235"><a href="#L235">235</a></td>
 <td class="hits"></td>
-<td class="source"><code>get_pem_file_path() -&gt;</code></td>
+<td class="source"><code>        none -&gt;</code></td>
 </tr>
 <tr class="miss">
 <td class="line" id="L236"><a href="#L236">236</a></td>
 <td class="hits"><pre style="display: inline;">:-(</pre></td>
-<td class="source"><code>    Path = filename:join(get_module_run_dir(), &lt;&lt;?PEM_FILE_NAME&gt;&gt;),</code></td>
+<td class="source"><code>            ?LOG_WARNING("TLS enabled for ~s without 'tls_crt_file', creating "</code></td>
 </tr>
 <tr class="miss">
 <td class="line" id="L237"><a href="#L237">237</a></td>
 <td class="hits"><pre style="display: inline;">:-(</pre></td>
-<td class="source"><code>    unicode:characters_to_list(Path).</code></td>
+<td class="source"><code>                         "self-signed certificate", [?MODULE]),</code></td>
 </tr>
-<tr>
+<tr class="miss">
 <td class="line" id="L238"><a href="#L238">238</a></td>
-<td class="hits"></td>
-<td class="source"><code></code></td>
+<td class="hits"><pre style="display: inline;">:-(</pre></td>
+<td class="source"><code>            File = get_pem_file_path(),</code></td>
 </tr>
-<tr>
+<tr class="miss">
 <td class="line" id="L239"><a href="#L239">239</a></td>
-<td class="hits"></td>
-<td class="source"><code>-spec get_document_root() -&gt; file:filename().</code></td>
+<td class="hits"><pre style="display: inline;">:-(</pre></td>
+<td class="source"><code>            ok = eturnal:create_self_signed(File),</code></td>
 </tr>
-<tr>
+<tr class="miss">
 <td class="line" id="L240"><a href="#L240">240</a></td>
-<td class="hits"></td>
-<td class="source"><code>get_document_root() -&gt;</code></td>
+<td class="hits"><pre style="display: inline;">:-(</pre></td>
+<td class="source"><code>            {File, File}</code></td>
 </tr>
-<tr class="hit">
+<tr>
 <td class="line" id="L241"><a href="#L241">241</a></td>
-<td class="hits">3</td>
-<td class="source"><code>    DocDir = filename:join(get_module_run_dir(), &lt;&lt;"doc"&gt;&gt;),</code></td>
-</tr>
-<tr class="hit">
-<td class="line" id="L242"><a href="#L242">242</a></td>
-<td class="hits">3</td>
-<td class="source"><code>    ok = filelib:ensure_dir(filename:join(DocDir, &lt;&lt;"file"&gt;&gt;)),</code></td>
-</tr>
-<tr class="hit">
-<td class="line" id="L243"><a href="#L243">243</a></td>
-<td class="hits">3</td>
-<td class="source"><code>    unicode:characters_to_list(DocDir).</code></td>
-</tr>
-<tr>
-<td class="line" id="L244"><a href="#L244">244</a></td>
-<td class="hits"></td>
-<td class="source"><code></code></td>
-</tr>
-<tr>
-<td class="line" id="L245"><a href="#L245">245</a></td>
-<td class="hits"></td>
-<td class="source"><code>-spec get_module_run_dir() -&gt; file:filename().</code></td>
-</tr>
-<tr>
-<td class="line" id="L246"><a href="#L246">246</a></td>
-<td class="hits"></td>
-<td class="source"><code>get_module_run_dir() -&gt;</code></td>
-</tr>
-<tr class="hit">
-<td class="line" id="L247"><a href="#L247">247</a></td>
-<td class="hits">3</td>
-<td class="source"><code>    RunDir = filename:join(eturnal:get_opt(run_dir), ?MODULE),</code></td>
-</tr>
-<tr class="hit">
-<td class="line" id="L248"><a href="#L248">248</a></td>
-<td class="hits">3</td>
-<td class="source"><code>    ok = filelib:ensure_dir(filename:join(RunDir, &lt;&lt;"file"&gt;&gt;)),</code></td>
-</tr>
-<tr class="hit">
-<td class="line" id="L249"><a href="#L249">249</a></td>
-<td class="hits">3</td>
-<td class="source"><code>    unicode:characters_to_list(RunDir).</code></td>
-</tr>
-<tr>
-<td class="line" id="L250"><a href="#L250">250</a></td>
-<td class="hits"></td>
-<td class="source"><code></code></td>
-</tr>
-<tr>
-<td class="line" id="L251"><a href="#L251">251</a></td>
-<td class="hits"></td>
-<td class="source"><code>-spec get_module_or_global_opt(eturnal_module:option()) -&gt; term().</code></td>
-</tr>
-<tr>
-<td class="line" id="L252"><a href="#L252">252</a></td>
-<td class="hits"></td>
-<td class="source"><code>get_module_or_global_opt(Opt) -&gt;</code></td>
-</tr>
-<tr class="miss">
-<td class="line" id="L253"><a href="#L253">253</a></td>
-<td class="hits"><pre style="display: inline;">:-(</pre></td>
-<td class="source"><code>    case eturnal_module:get_opt(?MODULE, Opt) of</code></td>
-</tr>
-<tr>
-<td class="line" id="L254"><a href="#L254">254</a></td>
-<td class="hits"></td>
-<td class="source"><code>        Value when Value =:= undefined;</code></td>
-</tr>
-<tr>
-<td class="line" id="L255"><a href="#L255">255</a></td>
-<td class="hits"></td>
-<td class="source"><code>                   Value =:= none -&gt;</code></td>
-</tr>
-<tr class="miss">
-<td class="line" id="L256"><a href="#L256">256</a></td>
-<td class="hits"><pre style="display: inline;">:-(</pre></td>
-<td class="source"><code>            eturnal:get_opt(Opt);</code></td>
-</tr>
-<tr>
-<td class="line" id="L257"><a href="#L257">257</a></td>
-<td class="hits"></td>
-<td class="source"><code>        Value -&gt;</code></td>
-</tr>
-<tr class="miss">
-<td class="line" id="L258"><a href="#L258">258</a></td>
-<td class="hits"><pre style="display: inline;">:-(</pre></td>
-<td class="source"><code>            Value</code></td>
-</tr>
-<tr>
-<td class="line" id="L259"><a href="#L259">259</a></td>
 <td class="hits"></td>
 <td class="source"><code>    end.</code></td>
 </tr>
 <tr>
-<td class="line" id="L260"><a href="#L260">260</a></td>
+<td class="line" id="L242"><a href="#L242">242</a></td>
 <td class="hits"></td>
 <td class="source"><code></code></td>
 </tr>
 <tr>
-<td class="line" id="L261"><a href="#L261">261</a></td>
+<td class="line" id="L243"><a href="#L243">243</a></td>
 <td class="hits"></td>
-<td class="source"><code>-spec check_vm_metrics_opt(boolean()) -&gt; ok | modified.</code></td>
+<td class="source"><code>-spec get_pem_file_path() -&gt; file:filename().</code></td>
 </tr>
 <tr>
-<td class="line" id="L262"><a href="#L262">262</a></td>
+<td class="line" id="L244"><a href="#L244">244</a></td>
 <td class="hits"></td>
-<td class="source"><code>check_vm_metrics_opt(NewValue) -&gt;</code></td>
+<td class="source"><code>get_pem_file_path() -&gt;</code></td>
+</tr>
+<tr class="miss">
+<td class="line" id="L245"><a href="#L245">245</a></td>
+<td class="hits"><pre style="display: inline;">:-(</pre></td>
+<td class="source"><code>    Path = filename:join(get_module_run_dir(), &lt;&lt;?PEM_FILE_NAME&gt;&gt;),</code></td>
+</tr>
+<tr class="miss">
+<td class="line" id="L246"><a href="#L246">246</a></td>
+<td class="hits"><pre style="display: inline;">:-(</pre></td>
+<td class="source"><code>    unicode:characters_to_list(Path).</code></td>
+</tr>
+<tr>
+<td class="line" id="L247"><a href="#L247">247</a></td>
+<td class="hits"></td>
+<td class="source"><code></code></td>
+</tr>
+<tr>
+<td class="line" id="L248"><a href="#L248">248</a></td>
+<td class="hits"></td>
+<td class="source"><code>-spec get_document_root() -&gt; file:filename().</code></td>
+</tr>
+<tr>
+<td class="line" id="L249"><a href="#L249">249</a></td>
+<td class="hits"></td>
+<td class="source"><code>get_document_root() -&gt;</code></td>
 </tr>
 <tr class="hit">
+<td class="line" id="L250"><a href="#L250">250</a></td>
+<td class="hits">3</td>
+<td class="source"><code>    DocDir = filename:join(get_module_run_dir(), &lt;&lt;"doc"&gt;&gt;),</code></td>
+</tr>
+<tr class="hit">
+<td class="line" id="L251"><a href="#L251">251</a></td>
+<td class="hits">3</td>
+<td class="source"><code>    ok = filelib:ensure_dir(filename:join(DocDir, &lt;&lt;"file"&gt;&gt;)),</code></td>
+</tr>
+<tr class="hit">
+<td class="line" id="L252"><a href="#L252">252</a></td>
+<td class="hits">3</td>
+<td class="source"><code>    unicode:characters_to_list(DocDir).</code></td>
+</tr>
+<tr>
+<td class="line" id="L253"><a href="#L253">253</a></td>
+<td class="hits"></td>
+<td class="source"><code></code></td>
+</tr>
+<tr>
+<td class="line" id="L254"><a href="#L254">254</a></td>
+<td class="hits"></td>
+<td class="source"><code>-spec get_module_run_dir() -&gt; file:filename().</code></td>
+</tr>
+<tr>
+<td class="line" id="L255"><a href="#L255">255</a></td>
+<td class="hits"></td>
+<td class="source"><code>get_module_run_dir() -&gt;</code></td>
+</tr>
+<tr class="hit">
+<td class="line" id="L256"><a href="#L256">256</a></td>
+<td class="hits">3</td>
+<td class="source"><code>    RunDir = filename:join(eturnal:get_opt(run_dir), ?MODULE),</code></td>
+</tr>
+<tr class="hit">
+<td class="line" id="L257"><a href="#L257">257</a></td>
+<td class="hits">3</td>
+<td class="source"><code>    ok = filelib:ensure_dir(filename:join(RunDir, &lt;&lt;"file"&gt;&gt;)),</code></td>
+</tr>
+<tr class="hit">
+<td class="line" id="L258"><a href="#L258">258</a></td>
+<td class="hits">3</td>
+<td class="source"><code>    unicode:characters_to_list(RunDir).</code></td>
+</tr>
+<tr>
+<td class="line" id="L259"><a href="#L259">259</a></td>
+<td class="hits"></td>
+<td class="source"><code></code></td>
+</tr>
+<tr>
+<td class="line" id="L260"><a href="#L260">260</a></td>
+<td class="hits"></td>
+<td class="source"><code>-spec get_module_or_global_opt(eturnal_module:option()) -&gt; term().</code></td>
+</tr>
+<tr>
+<td class="line" id="L261"><a href="#L261">261</a></td>
+<td class="hits"></td>
+<td class="source"><code>get_module_or_global_opt(Opt) -&gt;</code></td>
+</tr>
+<tr class="miss">
+<td class="line" id="L262"><a href="#L262">262</a></td>
+<td class="hits"><pre style="display: inline;">:-(</pre></td>
+<td class="source"><code>    case eturnal_module:get_opt(?MODULE, Opt) of</code></td>
+</tr>
+<tr>
 <td class="line" id="L263"><a href="#L263">263</a></td>
-<td class="hits">3</td>
-<td class="source"><code>    PID = whereis(prometheus_sup),</code></td>
+<td class="hits"></td>
+<td class="source"><code>        Value when Value =:= undefined;</code></td>
 </tr>
-<tr class="hit">
+<tr>
 <td class="line" id="L264"><a href="#L264">264</a></td>
-<td class="hits">3</td>
-<td class="source"><code>    OldValue = application:get_env(prometheus, collectors),</code></td>
+<td class="hits"></td>
+<td class="source"><code>                   Value =:= none -&gt;</code></td>
 </tr>
-<tr class="hit">
+<tr class="miss">
 <td class="line" id="L265"><a href="#L265">265</a></td>
-<td class="hits">3</td>
-<td class="source"><code>    if is_pid(PID),</code></td>
+<td class="hits"><pre style="display: inline;">:-(</pre></td>
+<td class="source"><code>            eturnal:get_opt(Opt);</code></td>
 </tr>
 <tr>
 <td class="line" id="L266"><a href="#L266">266</a></td>
 <td class="hits"></td>
-<td class="source"><code>       ((NewValue =:= true) and (OldValue =/= undefined)) or</code></td>
-</tr>
-<tr>
-<td class="line" id="L267"><a href="#L267">267</a></td>
-<td class="hits"></td>
-<td class="source"><code>        (NewValue =/= true) and (OldValue =:= undefined) -&gt;</code></td>
+<td class="source"><code>        Value -&gt;</code></td>
 </tr>
 <tr class="miss">
-<td class="line" id="L268"><a href="#L268">268</a></td>
+<td class="line" id="L267"><a href="#L267">267</a></td>
 <td class="hits"><pre style="display: inline;">:-(</pre></td>
-<td class="source"><code>            modified;</code></td>
+<td class="source"><code>            Value</code></td>
+</tr>
+<tr>
+<td class="line" id="L268"><a href="#L268">268</a></td>
+<td class="hits"></td>
+<td class="source"><code>    end.</code></td>
 </tr>
 <tr>
 <td class="line" id="L269"><a href="#L269">269</a></td>
 <td class="hits"></td>
+<td class="source"><code></code></td>
+</tr>
+<tr>
+<td class="line" id="L270"><a href="#L270">270</a></td>
+<td class="hits"></td>
+<td class="source"><code>-spec check_vm_metrics_opt(boolean()) -&gt; ok | modified.</code></td>
+</tr>
+<tr>
+<td class="line" id="L271"><a href="#L271">271</a></td>
+<td class="hits"></td>
+<td class="source"><code>check_vm_metrics_opt(NewValue) -&gt;</code></td>
+</tr>
+<tr class="hit">
+<td class="line" id="L272"><a href="#L272">272</a></td>
+<td class="hits">3</td>
+<td class="source"><code>    PID = whereis(prometheus_sup),</code></td>
+</tr>
+<tr class="hit">
+<td class="line" id="L273"><a href="#L273">273</a></td>
+<td class="hits">3</td>
+<td class="source"><code>    OldValue = application:get_env(prometheus, collectors),</code></td>
+</tr>
+<tr class="hit">
+<td class="line" id="L274"><a href="#L274">274</a></td>
+<td class="hits">3</td>
+<td class="source"><code>    if is_pid(PID),</code></td>
+</tr>
+<tr>
+<td class="line" id="L275"><a href="#L275">275</a></td>
+<td class="hits"></td>
+<td class="source"><code>       ((NewValue =:= true) and (OldValue =/= undefined)) or</code></td>
+</tr>
+<tr>
+<td class="line" id="L276"><a href="#L276">276</a></td>
+<td class="hits"></td>
+<td class="source"><code>        (NewValue =/= true) and (OldValue =:= undefined) -&gt;</code></td>
+</tr>
+<tr class="miss">
+<td class="line" id="L277"><a href="#L277">277</a></td>
+<td class="hits"><pre style="display: inline;">:-(</pre></td>
+<td class="source"><code>            modified;</code></td>
+</tr>
+<tr>
+<td class="line" id="L278"><a href="#L278">278</a></td>
+<td class="hits"></td>
 <td class="source"><code>       true -&gt;</code></td>
 </tr>
 <tr class="hit">
-<td class="line" id="L270"><a href="#L270">270</a></td>
+<td class="line" id="L279"><a href="#L279">279</a></td>
 <td class="hits">3</td>
 <td class="source"><code>            ok</code></td>
 </tr>
 <tr>
-<td class="line" id="L271"><a href="#L271">271</a></td>
+<td class="line" id="L280"><a href="#L280">280</a></td>
 <td class="hits"></td>
 <td class="source"><code>    end.</code></td>
 </tr>
