@@ -103,7 +103,7 @@ td.source {
 </head>
 <body>
 <h1><code>/home/runner/work/eturnal/eturnal/_build/test/cover/aggregate/eturnal_app.html</code></h1>
-<footer><p>File generated from <code>/home/runner/work/eturnal/eturnal/_build/test/lib/eturnal/ebin/../src/eturnal_app.erl</code> by <a href="http://erlang.org/doc/man/cover.html">cover</a> at 2022-08-07 at 15:37:59</p></footer>
+<footer><p>File generated from <code>/home/runner/work/eturnal/eturnal/_build/test/lib/eturnal/ebin/../src/eturnal_app.erl</code> by <a href="http://erlang.org/doc/man/cover.html">cover</a> at 2022-08-07 at 18:19:22</p></footer>
 <table>
 <tbody>
 <tr>
@@ -119,12 +119,12 @@ td.source {
 <tr>
 <td class="line" id="L3"><a href="#L3">3</a></td>
 <td class="hits"></td>
-<td class="source"><code>%%% Copyright (c) 2020 Holger Weiss &lt;holger@zedat.fu-berlin.de&gt;.</code></td>
+<td class="source"><code>%%% Copyright (c) 2020-2022 Holger Weiss &lt;holger@zedat.fu-berlin.de&gt;.</code></td>
 </tr>
 <tr>
 <td class="line" id="L4"><a href="#L4">4</a></td>
 <td class="hits"></td>
-<td class="source"><code>%%% Copyright (c) 2020 ProcessOne, SARL.</code></td>
+<td class="source"><code>%%% Copyright (c) 2020-2022 ProcessOne, SARL.</code></td>
 </tr>
 <tr>
 <td class="line" id="L5"><a href="#L5">5</a></td>
@@ -409,80 +409,190 @@ td.source {
 <tr class="miss">
 <td class="line" id="L61"><a href="#L61">61</a></td>
 <td class="hits"><pre style="display: inline;">:-(</pre></td>
-<td class="source"><code>    ok = gen_server:cast(eturnal, {config_change, {Changed, New, Removed},</code></td>
+<td class="source"><code>    case conf_is_loaded() of</code></td>
 </tr>
 <tr>
 <td class="line" id="L62"><a href="#L62">62</a></td>
 <td class="hits"></td>
-<td class="source"><code>                                   fun eturnal_systemd:reloading/0,</code></td>
+<td class="source"><code>        true -&gt;</code></td>
 </tr>
-<tr>
+<tr class="miss">
 <td class="line" id="L63"><a href="#L63">63</a></td>
-<td class="hits"></td>
-<td class="source"><code>                                   fun eturnal_systemd:ready/0}).</code></td>
+<td class="hits"><pre style="display: inline;">:-(</pre></td>
+<td class="source"><code>            ok = gen_server:cast(</code></td>
 </tr>
 <tr>
 <td class="line" id="L64"><a href="#L64">64</a></td>
 <td class="hits"></td>
-<td class="source"><code></code></td>
+<td class="source"><code>                   eturnal, {config_change, {Changed, New, Removed},</code></td>
 </tr>
 <tr>
 <td class="line" id="L65"><a href="#L65">65</a></td>
 <td class="hits"></td>
-<td class="source"><code>%% Internal functions.</code></td>
+<td class="source"><code>                             fun eturnal_systemd:reloading/0,</code></td>
 </tr>
 <tr>
 <td class="line" id="L66"><a href="#L66">66</a></td>
 <td class="hits"></td>
-<td class="source"><code></code></td>
+<td class="source"><code>                             fun eturnal_systemd:ready/0});</code></td>
 </tr>
 <tr>
 <td class="line" id="L67"><a href="#L67">67</a></td>
 <td class="hits"></td>
-<td class="source"><code>-spec conf_init() -&gt; ok.</code></td>
+<td class="source"><code>        false -&gt;</code></td>
 </tr>
-<tr>
+<tr class="miss">
 <td class="line" id="L68"><a href="#L68">68</a></td>
-<td class="hits"></td>
-<td class="source"><code>conf_init() -&gt; % Just to cope with an empty configuration file.</code></td>
+<td class="hits"><pre style="display: inline;">:-(</pre></td>
+<td class="source"><code>            ?LOG_NOTICE("Upgraded to eturnal ~s, reapplying configuration",</code></td>
 </tr>
-<tr class="hit">
+<tr class="miss">
 <td class="line" id="L69"><a href="#L69">69</a></td>
-<td class="hits">1</td>
-<td class="source"><code>    try eturnal:get_opt(realm) of</code></td>
+<td class="hits"><pre style="display: inline;">:-(</pre></td>
+<td class="source"><code>                        [eturnal_misc:version()]),</code></td>
+</tr>
+<tr class="miss">
+<td class="line" id="L70"><a href="#L70">70</a></td>
+<td class="hits"><pre style="display: inline;">:-(</pre></td>
+<td class="source"><code>            ok = conf_load(),</code></td>
+</tr>
+<tr class="miss">
+<td class="line" id="L71"><a href="#L71">71</a></td>
+<td class="hits"><pre style="display: inline;">:-(</pre></td>
+<td class="source"><code>            ok = gen_server:cast(eturnal, reload)</code></td>
 </tr>
 <tr>
-<td class="line" id="L70"><a href="#L70">70</a></td>
-<td class="hits"></td>
-<td class="source"><code>        Realm when is_binary(Realm) -&gt;</code></td>
-</tr>
-<tr class="hit">
-<td class="line" id="L71"><a href="#L71">71</a></td>
-<td class="hits">1</td>
-<td class="source"><code>            ?LOG_DEBUG("Configuration has been loaded successfully"),</code></td>
-</tr>
-<tr class="hit">
 <td class="line" id="L72"><a href="#L72">72</a></td>
-<td class="hits">1</td>
-<td class="source"><code>            ok</code></td>
+<td class="hits"></td>
+<td class="source"><code>    end.</code></td>
 </tr>
 <tr>
 <td class="line" id="L73"><a href="#L73">73</a></td>
 <td class="hits"></td>
-<td class="source"><code>    catch error:{badmatch, undefined} -&gt;</code></td>
+<td class="source"><code></code></td>
+</tr>
+<tr>
+<td class="line" id="L74"><a href="#L74">74</a></td>
+<td class="hits"></td>
+<td class="source"><code>%% Internal functions.</code></td>
+</tr>
+<tr>
+<td class="line" id="L75"><a href="#L75">75</a></td>
+<td class="hits"></td>
+<td class="source"><code></code></td>
+</tr>
+<tr>
+<td class="line" id="L76"><a href="#L76">76</a></td>
+<td class="hits"></td>
+<td class="source"><code>-spec conf_init() -&gt; ok.</code></td>
+</tr>
+<tr>
+<td class="line" id="L77"><a href="#L77">77</a></td>
+<td class="hits"></td>
+<td class="source"><code>conf_init() -&gt; % Just to cope with an empty configuration file.</code></td>
+</tr>
+<tr class="hit">
+<td class="line" id="L78"><a href="#L78">78</a></td>
+<td class="hits">1</td>
+<td class="source"><code>    case conf_is_loaded() of</code></td>
+</tr>
+<tr>
+<td class="line" id="L79"><a href="#L79">79</a></td>
+<td class="hits"></td>
+<td class="source"><code>        true -&gt;</code></td>
+</tr>
+<tr class="hit">
+<td class="line" id="L80"><a href="#L80">80</a></td>
+<td class="hits">1</td>
+<td class="source"><code>            ?LOG_DEBUG("Configuration has been loaded successfully"),</code></td>
+</tr>
+<tr class="hit">
+<td class="line" id="L81"><a href="#L81">81</a></td>
+<td class="hits">1</td>
+<td class="source"><code>            ok;</code></td>
+</tr>
+<tr>
+<td class="line" id="L82"><a href="#L82">82</a></td>
+<td class="hits"></td>
+<td class="source"><code>        false -&gt;</code></td>
 </tr>
 <tr class="miss">
-<td class="line" id="L74"><a href="#L74">74</a></td>
+<td class="line" id="L83"><a href="#L83">83</a></td>
 <td class="hits"><pre style="display: inline;">:-(</pre></td>
 <td class="source"><code>            ?LOG_DEBUG("Empty configuration, using defaults"),</code></td>
 </tr>
 <tr class="miss">
-<td class="line" id="L75"><a href="#L75">75</a></td>
+<td class="line" id="L84"><a href="#L84">84</a></td>
 <td class="hits"><pre style="display: inline;">:-(</pre></td>
-<td class="source"><code>            ok = conf:load([{eturnal, []}])</code></td>
+<td class="source"><code>            ok = conf_load()</code></td>
 </tr>
 <tr>
-<td class="line" id="L76"><a href="#L76">76</a></td>
+<td class="line" id="L85"><a href="#L85">85</a></td>
+<td class="hits"></td>
+<td class="source"><code>    end.</code></td>
+</tr>
+<tr>
+<td class="line" id="L86"><a href="#L86">86</a></td>
+<td class="hits"></td>
+<td class="source"><code></code></td>
+</tr>
+<tr>
+<td class="line" id="L87"><a href="#L87">87</a></td>
+<td class="hits"></td>
+<td class="source"><code>-spec conf_load() -&gt; ok.</code></td>
+</tr>
+<tr>
+<td class="line" id="L88"><a href="#L88">88</a></td>
+<td class="hits"></td>
+<td class="source"><code>conf_load() -&gt;</code></td>
+</tr>
+<tr class="miss">
+<td class="line" id="L89"><a href="#L89">89</a></td>
+<td class="hits"><pre style="display: inline;">:-(</pre></td>
+<td class="source"><code>    ok = conf:load([{eturnal, []}]).</code></td>
+</tr>
+<tr>
+<td class="line" id="L90"><a href="#L90">90</a></td>
+<td class="hits"></td>
+<td class="source"><code></code></td>
+</tr>
+<tr>
+<td class="line" id="L91"><a href="#L91">91</a></td>
+<td class="hits"></td>
+<td class="source"><code>-spec conf_is_loaded() -&gt; boolean().</code></td>
+</tr>
+<tr>
+<td class="line" id="L92"><a href="#L92">92</a></td>
+<td class="hits"></td>
+<td class="source"><code>conf_is_loaded() -&gt;</code></td>
+</tr>
+<tr class="hit">
+<td class="line" id="L93"><a href="#L93">93</a></td>
+<td class="hits">1</td>
+<td class="source"><code>    try eturnal:get_opt(realm) of</code></td>
+</tr>
+<tr>
+<td class="line" id="L94"><a href="#L94">94</a></td>
+<td class="hits"></td>
+<td class="source"><code>        Realm when is_binary(Realm) -&gt;</code></td>
+</tr>
+<tr class="hit">
+<td class="line" id="L95"><a href="#L95">95</a></td>
+<td class="hits">1</td>
+<td class="source"><code>            true</code></td>
+</tr>
+<tr>
+<td class="line" id="L96"><a href="#L96">96</a></td>
+<td class="hits"></td>
+<td class="source"><code>    catch error:{badmatch, undefined} -&gt;</code></td>
+</tr>
+<tr class="miss">
+<td class="line" id="L97"><a href="#L97">97</a></td>
+<td class="hits"><pre style="display: inline;">:-(</pre></td>
+<td class="source"><code>            false</code></td>
+</tr>
+<tr>
+<td class="line" id="L98"><a href="#L98">98</a></td>
 <td class="hits"></td>
 <td class="source"><code>    end.</code></td>
 </tr>
