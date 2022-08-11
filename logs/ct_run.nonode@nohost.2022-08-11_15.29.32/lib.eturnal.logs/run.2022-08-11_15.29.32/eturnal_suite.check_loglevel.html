@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>Test eturnal_SUITE:check_loglevel result</title>
+<meta http-equiv="cache-control" content="no-cache"></meta>
+<meta http-equiv="content-type" content="text/html; charset=utf-8"></meta>
+<link rel="stylesheet" href="../../ct_default.css" type="text/css"></link>
+<script type="text/javascript" src="../../jquery-latest.js"></script>
+<script type="text/javascript" src="../../jquery.tablesorter.min.js"></script>
+</head>
+<body>
+
+<a name="top"></a><pre>
+=== Test case: <a href="eturnal_suite.src.html#check_loglevel-1">eturnal_SUITE:check_loglevel/1</a> (click for source code)
+
+=== Config value:
+
+    [{watchdog,&lt;0.1153.0&gt;},
+     {tc_logfile,"/home/runner/work/eturnal/eturnal/_build/test/logs/ct_run.nonode@nohost.2022-08-11_15.29.32/lib.eturnal.logs/run.2022-08-11_15.29.32/eturnal_suite.check_loglevel.html"},
+     {tc_group_properties,[]},
+     {tc_group_path,[]},
+     {data_dir,"/home/runner/work/eturnal/eturnal/_build/test/lib/eturnal/test/eturnal_SUITE_data/"},
+     {priv_dir,"/home/runner/work/eturnal/eturnal/_build/test/logs/ct_run.nonode@nohost.2022-08-11_15.29.32/lib.eturnal.logs/run.2022-08-11_15.29.32/log_private/"}]
+
+=== Current directory is "/home/runner/work/eturnal/eturnal/_build/test/logs/ct_run.nonode@nohost.2022-08-11_15.29.32"
+
+=== Started at 2022-08-11 15:29:37
+
+<br />
+
+</pre>
+<div class="default"><pre><b>*** User 2022-08-11 15:29:37.172 ***</b><a id=e-103 class="link-to-entry" href="#e-103">&#x1f517;</a>
+Setting log level to debug
+</pre></div>
+<pre>
+
+</pre>
+<div class="sasl"><pre><b>*** System report during eturnal_SUITE:check_loglevel/1 2022-08-11 15:29:37.173 ***</b><a id=e-104 class="link-to-entry" href="#e-104">&#x1f517;</a>
+=DEBUG REPORT==== 11-Aug-2022::15:29:37.172935 ===
+Handling API call: set_loglevel(debug)
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="default"><pre><b>*** User 2022-08-11 15:29:37.173 ***</b><a id=e-106 class="link-to-entry" href="#e-106">&#x1f517;</a>
+Checking whether log level is set to debug
+</pre></div>
+<pre>
+
+</pre>
+<div class="sasl"><pre><b>*** System report during eturnal_SUITE:check_loglevel/1 2022-08-11 15:29:37.173 ***</b><a id=e-105 class="link-to-entry" href="#e-105">&#x1f517;</a>
+=DEBUG REPORT==== 11-Aug-2022::15:29:37.173273 ===
+eturnal call ({set_loglevel,debug}) returned ok
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="default"><pre><b>*** User 2022-08-11 15:29:37.173 ***</b><a id=e-109 class="link-to-entry" href="#e-109">&#x1f517;</a>
+Setting invalid log level
+</pre></div>
+<pre>
+
+</pre>
+<div class="default"><pre><b>*** User 2022-08-11 15:29:37.174 ***</b><a id=e-112 class="link-to-entry" href="#e-112">&#x1f517;</a>
+Checking whether log level is still set to debug
+</pre></div>
+<pre>
+
+</pre>
+<div class="sasl"><pre><b>*** System report during eturnal_SUITE:check_loglevel/1 2022-08-11 15:29:37.173 ***</b><a id=e-107 class="link-to-entry" href="#e-107">&#x1f517;</a>
+=DEBUG REPORT==== 11-Aug-2022::15:29:37.173487 ===
+Handling API call: get_loglevel()
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="sasl"><pre><b>*** System report during eturnal_SUITE:check_loglevel/1 2022-08-11 15:29:37.173 ***</b><a id=e-108 class="link-to-entry" href="#e-108">&#x1f517;</a>
+=DEBUG REPORT==== 11-Aug-2022::15:29:37.173607 ===
+eturnal call (get_loglevel) returned {ok,debug}
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="sasl"><pre><b>*** System report during eturnal_SUITE:check_loglevel/1 2022-08-11 15:29:37.173 ***</b><a id=e-110 class="link-to-entry" href="#e-110">&#x1f517;</a>
+=DEBUG REPORT==== 11-Aug-2022::15:29:37.173768 ===
+Handling API call: set_loglevel(invalid)
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="sasl"><pre><b>*** System report during eturnal_SUITE:check_loglevel/1 2022-08-11 15:29:37.174 ***</b><a id=e-111 class="link-to-entry" href="#e-111">&#x1f517;</a>
+=DEBUG REPORT==== 11-Aug-2022::15:29:37.173937 ===
+Invalid log level: invalid
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="sasl"><pre><b>*** System report during eturnal_SUITE:check_loglevel/1 2022-08-11 15:29:37.174 ***</b><a id=e-113 class="link-to-entry" href="#e-113">&#x1f517;</a>
+=DEBUG REPORT==== 11-Aug-2022::15:29:37.174244 ===
+Handling API call: get_loglevel()
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="sasl"><pre><b>*** System report during eturnal_SUITE:check_loglevel/1 2022-08-11 15:29:37.174 ***</b><a id=e-114 class="link-to-entry" href="#e-114">&#x1f517;</a>
+=DEBUG REPORT==== 11-Aug-2022::15:29:37.174433 ===
+eturnal call (get_loglevel) returned {ok,debug}
+
+</pre></div>
+<pre>
+<a name="end"></a>
+
+
+=== Ended at 2022-08-11 15:29:37
+=== successfully completed test case
+=== === Returned value: {ok,"debug"}
+</pre>
+<center>
+<br /><hr /><p>
+<a href="../../../all_runs.html">Test run history
+</a>  |  <a href="../../../index.html">Top level test index
+</a>  |  <a href="../../../suite.log.latest.html">Latest test result</a>
+</p>
+<div class="copyright">Copyright &copy; 2022 <a href="http://www.erlang.org">Open Telecom Platform</a><br />
+Updated: <!--date-->Thu Aug 11 2022 15:29:37<!--/date--><br />
+</div>
+</center>
+</body>
+</html>
