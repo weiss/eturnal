@@ -103,7 +103,7 @@ td.source {
 </head>
 <body>
 <h1><code>/home/runner/work/eturnal/eturnal/_build/test/cover/aggregate/mod_stats_influx.html</code></h1>
-<footer><p>File generated from <code>/home/runner/work/eturnal/eturnal/_build/test/lib/eturnal/ebin/../src/mod_stats_influx.erl</code> by <a href="http://erlang.org/doc/man/cover.html">cover</a> at 2023-08-01 at 15:29:20</p></footer>
+<footer><p>File generated from <code>/home/runner/work/eturnal/eturnal/_build/test/lib/eturnal/ebin/../src/mod_stats_influx.erl</code> by <a href="http://erlang.org/doc/man/cover.html">cover</a> at 2023-08-02 at 07:27:57</p></footer>
 <table>
 <tbody>
 <tr>
@@ -388,7 +388,7 @@ td.source {
 </tr>
 <tr class="hit">
 <td class="line" id="L57"><a href="#L57">57</a></td>
-<td class="hits">1</td>
+<td class="hits">2</td>
 <td class="source"><code>    on_turn_session_stop(Info).</code></td>
 </tr>
 <tr>
@@ -538,17 +538,17 @@ td.source {
 </tr>
 <tr class="hit">
 <td class="line" id="L87"><a href="#L87">87</a></td>
-<td class="hits">1</td>
+<td class="hits">2</td>
 <td class="source"><code>    ?LOG_DEBUG("Writing stats of TURN session ~s to InfluxDB", [ID]),</code></td>
 </tr>
 <tr class="hit">
 <td class="line" id="L88"><a href="#L88">88</a></td>
-<td class="hits">1</td>
+<td class="hits">2</td>
 <td class="source"><code>    Duration = erlang:convert_time_unit(Duration0, native, microsecond),</code></td>
 </tr>
 <tr class="hit">
 <td class="line" id="L89"><a href="#L89">89</a></td>
-<td class="hits">1</td>
+<td class="hits">2</td>
 <td class="source"><code>    Points = [{type, &lt;&lt;"turn"&gt;&gt;},</code></td>
 </tr>
 <tr>
@@ -573,7 +573,7 @@ td.source {
 </tr>
 <tr class="hit">
 <td class="line" id="L94"><a href="#L94">94</a></td>
-<td class="hits">1</td>
+<td class="hits">2</td>
 <td class="source"><code>    ok = influx_udp:write_to(?INFLUX_POOL, &lt;&lt;"events"&gt;&gt;, Points).</code></td>
 </tr>
 </tbody>
