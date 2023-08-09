@@ -1,4 +1,4 @@
-{config,[]}.
+{config,[{ct_config_plain,["/home/runner/work/eturnal/eturnal/test/eturnal_SUITE.config"]}]}.
 {event_handler,[]}.
 {ct_hooks,[cth_readable_failonly,cth_readable_compact_shell,cth_retry,
            cth_log_redirect]}.
