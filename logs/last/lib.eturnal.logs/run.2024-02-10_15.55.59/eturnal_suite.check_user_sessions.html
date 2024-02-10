@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>Test eturnal_SUITE:check_user_sessions result</title>
+<meta http-equiv="cache-control" content="no-cache"></meta>
+<meta http-equiv="content-type" content="text/html; charset=utf-8"></meta>
+<link rel="stylesheet" href="../../ct_default.css" type="text/css"></link>
+<script type="text/javascript" src="../../jquery-latest.js"></script>
+<script type="text/javascript" src="../../jquery.tablesorter.min.js"></script>
+</head>
+<body>
+
+<a name="top"></a><pre>
+=== Test case: <a href="eturnal_suite.src.html#check_user_sessions-1">eturnal_SUITE:check_user_sessions/1</a> (click for source code)
+
+=== Config value:
+
+    [{address,{127,0,0,1}},
+     {udp_port,34780},
+     {tcp_port,34780},
+     {tls_port,53490},
+     {auto_port,34781},
+     {watchdog,&lt;0.996.0&gt;},
+     {tc_logfile,"/home/runner/work/eturnal/eturnal/_build/test/logs/ct_run.nonode@nohost.2024-02-10_15.55.59/lib.eturnal.logs/run.2024-02-10_15.55.59/eturnal_suite.check_user_sessions.html"},
+     {tc_group_properties,[]},
+     {tc_group_path,[]},
+     {data_dir,"/home/runner/work/eturnal/eturnal/_build/test/lib/eturnal/test/eturnal_SUITE_data/"},
+     {priv_dir,"/home/runner/work/eturnal/eturnal/_build/test/logs/ct_run.nonode@nohost.2024-02-10_15.55.59/lib.eturnal.logs/run.2024-02-10_15.55.59/log_private/"}]
+
+=== Current directory is "/home/runner/work/eturnal/eturnal/_build/test/logs/ct_run.nonode@nohost.2024-02-10_15.55.59"
+
+=== Started at 2024-02-10 15:56:01
+
+<br />
+
+</pre>
+<div class="default"><pre><b>*** User 2024-02-10 15:56:01.567 ***</b><a id=e-44 class="link-to-entry" href="#e-44">&#x1f517;</a>
+Checking active TURN sessions of user
+</pre></div>
+<pre>
+
+</pre>
+<div class="sasl"><pre><b>*** System report during eturnal_SUITE:check_user_sessions/1 2024-02-10 15:56:01.567 ***</b><a id=e-45 class="link-to-entry" href="#e-45">&#x1f517;</a>
+=DEBUG REPORT==== 10-Feb-2024::15:56:01.567629 ===
+Handling API call: get_sessions("alice")
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="default"><pre><b>*** User 2024-02-10 15:56:01.567 ***</b><a id=e-46 class="link-to-entry" href="#e-46">&#x1f517;</a>
+Got active TURN sessions of user: "No active TURN sessions"
+</pre></div>
+<pre>
+
+</pre>
+<div class="default"><pre><b>*** User 2024-02-10 15:56:01.567 ***</b><a id=e-47 class="link-to-entry" href="#e-47">&#x1f517;</a>
+Checking active TURN sessions of invalid user
+</pre></div>
+<pre>
+
+</pre>
+<div class="sasl"><pre><b>*** System report during eturnal_SUITE:check_user_sessions/1 2024-02-10 15:56:01.567 ***</b><a id=e-48 class="link-to-entry" href="#e-48">&#x1f517;</a>
+=DEBUG REPORT==== 10-Feb-2024::15:56:01.567813 ===
+Handling API call: disconnect(alice)
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="sasl"><pre><b>*** System report during eturnal_SUITE:check_user_sessions/1 2024-02-10 15:56:01.567 ***</b><a id=e-49 class="link-to-entry" href="#e-49">&#x1f517;</a>
+=DEBUG REPORT==== 10-Feb-2024::15:56:01.567904 ===
+Cannot convert user name to binary: alice
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="default"><pre><b>*** User 2024-02-10 15:56:01.568 ***</b><a id=e-50 class="link-to-entry" href="#e-50">&#x1f517;</a>
+Got an error, as expected: "User name must be specified as a string"
+</pre></div>
+<pre>
+<a name="end"></a>
+
+
+=== Ended at 2024-02-10 15:56:01
+=== successfully completed test case
+=== === Returned value: ok
+</pre>
+<center>
+<br /><hr /><p>
+<a href="../../../all_runs.html">Test run history
+</a>  |  <a href="../../../index.html">Top level test index
+</a>  |  <a href="../../../suite.log.latest.html">Latest test result</a>
+</p>
+<div class="copyright">Copyright &copy; 2024 <a href="http://www.erlang.org">Open Telecom Platform</a><br />
+Updated: <!--date-->Sat Feb 10 2024 15:56:01<!--/date--><br />
+</div>
+</center>
+</body>
+</html>
