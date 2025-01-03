@@ -103,7 +103,7 @@ td.source {
 </head>
 <body>
 <h1><code>/home/runner/work/eturnal/eturnal/_build/test/cover/aggregate/mod_log_stun.html</code></h1>
-<footer><p>File generated from <code>/home/runner/work/eturnal/eturnal/_build/test/lib/eturnal/ebin/../src/mod_log_stun.erl</code> by <a href="http://erlang.org/doc/man/cover.html">cover</a> at 2024-12-17 at 11:58:13</p></footer>
+<footer><p>File generated from <code>/home/runner/work/eturnal/eturnal/_build/test/lib/eturnal/ebin/../src/mod_log_stun.erl</code> by <a href="http://erlang.org/doc/man/cover.html">cover</a> at 2025-01-03 at 14:28:28</p></footer>
 <table>
 <tbody>
 <tr>
@@ -339,80 +339,85 @@ td.source {
 <tr>
 <td class="line" id="L47"><a href="#L47">47</a></td>
 <td class="hits"></td>
-<td class="source"><code>-spec stop() -&gt; ok.</code></td>
+<td class="source"><code></code></td>
 </tr>
 <tr>
 <td class="line" id="L48"><a href="#L48">48</a></td>
 <td class="hits"></td>
-<td class="source"><code>stop() -&gt;</code></td>
+<td class="source"><code>-spec stop() -&gt; ok.</code></td>
 </tr>
-<tr class="hit">
+<tr>
 <td class="line" id="L49"><a href="#L49">49</a></td>
-<td class="hits">3</td>
-<td class="source"><code>    ?LOG_DEBUG("Stopping ~s", [?MODULE]),</code></td>
+<td class="hits"></td>
+<td class="source"><code>stop() -&gt;</code></td>
 </tr>
 <tr class="hit">
 <td class="line" id="L50"><a href="#L50">50</a></td>
 <td class="hits">3</td>
-<td class="source"><code>    ok.</code></td>
+<td class="source"><code>    ?LOG_DEBUG("Stopping ~s", [?MODULE]),</code></td>
 </tr>
-<tr>
+<tr class="hit">
 <td class="line" id="L51"><a href="#L51">51</a></td>
-<td class="hits"></td>
-<td class="source"><code></code></td>
+<td class="hits">3</td>
+<td class="source"><code>    ok.</code></td>
 </tr>
 <tr>
 <td class="line" id="L52"><a href="#L52">52</a></td>
 <td class="hits"></td>
-<td class="source"><code>-spec options() -&gt; eturnal_module:options().</code></td>
+<td class="source"><code></code></td>
 </tr>
 <tr>
 <td class="line" id="L53"><a href="#L53">53</a></td>
 <td class="hits"></td>
+<td class="source"><code>-spec options() -&gt; eturnal_module:options().</code></td>
+</tr>
+<tr>
+<td class="line" id="L54"><a href="#L54">54</a></td>
+<td class="hits"></td>
 <td class="source"><code>options() -&gt;</code></td>
 </tr>
 <tr class="hit">
-<td class="line" id="L54"><a href="#L54">54</a></td>
+<td class="line" id="L55"><a href="#L55">55</a></td>
 <td class="hits">3</td>
 <td class="source"><code>    {#{level =&gt; enum([critical, error, warning, notice, info, debug])},</code></td>
 </tr>
 <tr>
-<td class="line" id="L55"><a href="#L55">55</a></td>
+<td class="line" id="L56"><a href="#L56">56</a></td>
 <td class="hits"></td>
 <td class="source"><code>     [{defaults,</code></td>
 </tr>
 <tr>
-<td class="line" id="L56"><a href="#L56">56</a></td>
+<td class="line" id="L57"><a href="#L57">57</a></td>
 <td class="hits"></td>
 <td class="source"><code>       #{level =&gt; info}}]}.</code></td>
 </tr>
 <tr>
-<td class="line" id="L57"><a href="#L57">57</a></td>
-<td class="hits"></td>
-<td class="source"><code></code></td>
-</tr>
-<tr>
 <td class="line" id="L58"><a href="#L58">58</a></td>
 <td class="hits"></td>
-<td class="source"><code>%% Internal functions.</code></td>
+<td class="source"><code></code></td>
 </tr>
 <tr>
 <td class="line" id="L59"><a href="#L59">59</a></td>
 <td class="hits"></td>
-<td class="source"><code></code></td>
+<td class="source"><code>%% Internal functions.</code></td>
 </tr>
 <tr>
 <td class="line" id="L60"><a href="#L60">60</a></td>
 <td class="hits"></td>
+<td class="source"><code></code></td>
+</tr>
+<tr>
+<td class="line" id="L61"><a href="#L61">61</a></td>
+<td class="hits"></td>
 <td class="source"><code>-spec format_protocol(old | new) -&gt; binary().</code></td>
 </tr>
 <tr class="miss">
-<td class="line" id="L61"><a href="#L61">61</a></td>
+<td class="line" id="L62"><a href="#L62">62</a></td>
 <td class="hits"><pre style="display: inline;">:-(</pre></td>
 <td class="source"><code>format_protocol(old) -&gt; &lt;&lt;"'classic' STUN"&gt;&gt;;</code></td>
 </tr>
 <tr class="hit">
-<td class="line" id="L62"><a href="#L62">62</a></td>
+<td class="line" id="L63"><a href="#L63">63</a></td>
 <td class="hits">5</td>
 <td class="source"><code>format_protocol(new) -&gt; &lt;&lt;"STUN"&gt;&gt;.</code></td>
 </tr>
