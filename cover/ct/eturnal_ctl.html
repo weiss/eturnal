@@ -103,7 +103,7 @@ td.source {
 </head>
 <body>
 <h1><code>/home/runner/work/eturnal/eturnal/_build/test/cover/ct/eturnal_ctl.html</code></h1>
-<footer><p>File generated from <code>/home/runner/work/eturnal/eturnal/_build/test/lib/eturnal/ebin/../src/eturnal_ctl.erl</code> by <a href="http://erlang.org/doc/man/cover.html">cover</a> at 2025-03-24 at 12:17:04</p></footer>
+<footer><p>File generated from <code>/home/runner/work/eturnal/eturnal/_build/test/lib/eturnal/ebin/../src/eturnal_ctl.erl</code> by <a href="http://erlang.org/doc/man/cover.html">cover</a> at 2025-03-24 at 17:08:11</p></footer>
 <table>
 <tbody>
 <tr>
@@ -746,14 +746,14 @@ td.source {
 <td class="hits"></td>
 <td class="source"><code>get_status() -&gt;</code></td>
 </tr>
-<tr class="miss">
+<tr class="hit">
 <td class="line" id="L129"><a href="#L129">129</a></td>
-<td class="hits"><pre style="display: inline;">:-(</pre></td>
+<td class="hits">1</td>
 <td class="source"><code>    ?LOG_DEBUG("Handling API call: get_status()"),</code></td>
 </tr>
-<tr class="miss">
+<tr class="hit">
 <td class="line" id="L130"><a href="#L130">130</a></td>
-<td class="hits"><pre style="display: inline;">:-(</pre></td>
+<td class="hits">1</td>
 <td class="source"><code>    case call(get_status) of</code></td>
 </tr>
 <tr>
@@ -761,9 +761,9 @@ td.source {
 <td class="hits"></td>
 <td class="source"><code>        ok -&gt;</code></td>
 </tr>
-<tr class="miss">
+<tr class="hit">
 <td class="line" id="L132"><a href="#L132">132</a></td>
-<td class="hits"><pre style="display: inline;">:-(</pre></td>
+<td class="hits">1</td>
 <td class="source"><code>            {ok, "eturnal is running"};</code></td>
 </tr>
 <tr>
@@ -2303,7 +2303,7 @@ td.source {
 </tr>
 <tr class="hit">
 <td class="line" id="L440"><a href="#L440">440</a></td>
-<td class="hits">20</td>
+<td class="hits">21</td>
 <td class="source"><code>    try gen_server:call(eturnal, Request, timer:minutes(1)) of</code></td>
 </tr>
 <tr>
@@ -2313,12 +2313,12 @@ td.source {
 </tr>
 <tr class="hit">
 <td class="line" id="L442"><a href="#L442">442</a></td>
-<td class="hits">3</td>
+<td class="hits">4</td>
 <td class="source"><code>            ?LOG_DEBUG("eturnal call (~p) returned ok", [Request]),</code></td>
 </tr>
 <tr class="hit">
 <td class="line" id="L443"><a href="#L443">443</a></td>
-<td class="hits">3</td>
+<td class="hits">4</td>
 <td class="source"><code>            ok;</code></td>
 </tr>
 <tr>
