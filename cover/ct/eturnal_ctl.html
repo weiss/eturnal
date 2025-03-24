@@ -103,7 +103,7 @@ td.source {
 </head>
 <body>
 <h1><code>/home/runner/work/eturnal/eturnal/_build/test/cover/ct/eturnal_ctl.html</code></h1>
-<footer><p>File generated from <code>/home/runner/work/eturnal/eturnal/_build/test/lib/eturnal/ebin/../src/eturnal_ctl.erl</code> by <a href="http://erlang.org/doc/man/cover.html">cover</a> at 2025-03-24 at 17:08:11</p></footer>
+<footer><p>File generated from <code>/home/runner/work/eturnal/eturnal/_build/test/lib/eturnal/ebin/../src/eturnal_ctl.erl</code> by <a href="http://erlang.org/doc/man/cover.html">cover</a> at 2025-03-24 at 18:26:45</p></footer>
 <table>
 <tbody>
 <tr>
@@ -653,12 +653,12 @@ td.source {
 </tr>
 <tr class="hit">
 <td class="line" id="L110"><a href="#L110">110</a></td>
-<td class="hits">1</td>
+<td class="hits">3</td>
 <td class="source"><code>    ?LOG_DEBUG("Handling API call: get_sessions(~p)", [Username0]),</code></td>
 </tr>
 <tr class="hit">
 <td class="line" id="L111"><a href="#L111">111</a></td>
-<td class="hits">1</td>
+<td class="hits">3</td>
 <td class="source"><code>    try unicode:characters_to_binary(Username0) of</code></td>
 </tr>
 <tr>
@@ -668,7 +668,7 @@ td.source {
 </tr>
 <tr class="hit">
 <td class="line" id="L113"><a href="#L113">113</a></td>
-<td class="hits">1</td>
+<td class="hits">2</td>
 <td class="source"><code>            case query_user_sessions(Username) of</code></td>
 </tr>
 <tr>
@@ -688,7 +688,7 @@ td.source {
 </tr>
 <tr class="hit">
 <td class="line" id="L117"><a href="#L117">117</a></td>
-<td class="hits">1</td>
+<td class="hits">2</td>
 <td class="source"><code>                    {ok, "No active TURN sessions"}</code></td>
 </tr>
 <tr>
@@ -716,14 +716,14 @@ td.source {
 <td class="hits"></td>
 <td class="source"><code>    catch _:badarg -&gt;</code></td>
 </tr>
-<tr class="miss">
+<tr class="hit">
 <td class="line" id="L123"><a href="#L123">123</a></td>
-<td class="hits"><pre style="display: inline;">:-(</pre></td>
+<td class="hits">1</td>
 <td class="source"><code>            ?LOG_DEBUG("Cannot convert user name to binary: ~p", [Username0]),</code></td>
 </tr>
-<tr class="miss">
+<tr class="hit">
 <td class="line" id="L124"><a href="#L124">124</a></td>
-<td class="hits"><pre style="display: inline;">:-(</pre></td>
+<td class="hits">1</td>
 <td class="source"><code>            {error, "User name must be specified as a string"}</code></td>
 </tr>
 <tr>
@@ -1043,12 +1043,12 @@ td.source {
 </tr>
 <tr class="hit">
 <td class="line" id="L188"><a href="#L188">188</a></td>
-<td class="hits">3</td>
+<td class="hits">2</td>
 <td class="source"><code>    ?LOG_DEBUG("Handling API call: disconnect(~p)", [Username0]),</code></td>
 </tr>
 <tr class="hit">
 <td class="line" id="L189"><a href="#L189">189</a></td>
-<td class="hits">3</td>
+<td class="hits">2</td>
 <td class="source"><code>    try unicode:characters_to_binary(Username0) of</code></td>
 </tr>
 <tr>
@@ -1093,12 +1093,12 @@ td.source {
 </tr>
 <tr class="hit">
 <td class="line" id="L198"><a href="#L198">198</a></td>
-<td class="hits">2</td>
+<td class="hits">1</td>
 <td class="source"><code>            ?LOG_DEBUG("Cannot convert user name to binary: ~p", [Username0]),</code></td>
 </tr>
 <tr class="hit">
 <td class="line" id="L199"><a href="#L199">199</a></td>
-<td class="hits">2</td>
+<td class="hits">1</td>
 <td class="source"><code>            {error, "User name must be specified as a string"}</code></td>
 </tr>
 <tr>
@@ -1458,7 +1458,7 @@ td.source {
 </tr>
 <tr class="hit">
 <td class="line" id="L271"><a href="#L271">271</a></td>
-<td class="hits">3</td>
+<td class="hits">4</td>
 <td class="source"><code>    lists:filtermap(</code></td>
 </tr>
 <tr>
@@ -1643,7 +1643,7 @@ td.source {
 </tr>
 <tr class="hit">
 <td class="line" id="L308"><a href="#L308">308</a></td>
-<td class="hits">2</td>
+<td class="hits">3</td>
 <td class="source"><code>    Pred = fun(#session{user = User}) when User =:= Username -&gt;</code></td>
 </tr>
 <tr class="miss">
@@ -1693,7 +1693,7 @@ td.source {
 </tr>
 <tr class="hit">
 <td class="line" id="L318"><a href="#L318">318</a></td>
-<td class="hits">2</td>
+<td class="hits">3</td>
 <td class="source"><code>    filter_sessions(Pred).</code></td>
 </tr>
 <tr>
