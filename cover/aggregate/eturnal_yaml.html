@@ -103,7 +103,7 @@ td.source {
 </head>
 <body>
 <h1><code>/home/runner/work/eturnal/eturnal/_build/test/cover/aggregate/eturnal_yaml.html</code></h1>
-<footer><p>File generated from <code>/home/runner/work/eturnal/eturnal/_build/test/lib/eturnal/ebin/../src/eturnal_yaml.erl</code> by <a href="http://erlang.org/doc/man/cover.html">cover</a> at 2025-03-28 at 16:56:15</p></footer>
+<footer><p>File generated from <code>/home/runner/work/eturnal/eturnal/_build/test/lib/eturnal/ebin/../src/eturnal_yaml.erl</code> by <a href="http://erlang.org/doc/man/cover.html">cover</a> at 2025-03-28 at 22:43:59</p></footer>
 <table>
 <tbody>
 <tr>
@@ -429,12 +429,12 @@ td.source {
 <tr>
 <td class="line" id="L65"><a href="#L65">65</a></td>
 <td class="hits"></td>
-<td class="source"><code>        relay_min_port =&gt; port(),</code></td>
+<td class="source"><code>        relay_min_port =&gt; int(1025, 65535),</code></td>
 </tr>
 <tr>
 <td class="line" id="L66"><a href="#L66">66</a></td>
 <td class="hits"></td>
-<td class="source"><code>        relay_max_port =&gt; port(),</code></td>
+<td class="source"><code>        relay_max_port =&gt; int(1025, 65535),</code></td>
 </tr>
 <tr>
 <td class="line" id="L67"><a href="#L67">67</a></td>
@@ -954,7 +954,7 @@ td.source {
 <tr>
 <td class="line" id="L170"><a href="#L170">170</a></td>
 <td class="hits"></td>
-<td class="source"><code>              port =&gt; int(0, 65535),</code></td>
+<td class="source"><code>              port =&gt; port(),</code></td>
 </tr>
 <tr>
 <td class="line" id="L171"><a href="#L171">171</a></td>
@@ -1499,7 +1499,7 @@ td.source {
 <tr class="miss">
 <td class="line" id="L279"><a href="#L279">279</a></td>
 <td class="hits"><pre style="display: inline;">:-(</pre></td>
-<td class="source"><code>                true = (Port &gt;= 1),</code></td>
+<td class="source"><code>                true = (Port &gt;= 1025),</code></td>
 </tr>
 <tr class="miss">
 <td class="line" id="L280"><a href="#L280">280</a></td>
