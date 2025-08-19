@@ -3,12 +3,145 @@ Common Test starting (cwd is /home/runner/work/eturnal/eturnal)
 
 
 
-CWD set to: "/home/runner/work/eturnal/eturnal/_build/test/logs/ct_run.nonode@nohost.2025-05-04_09.06.58"
+CWD set to: "/home/runner/work/eturnal/eturnal/_build/test/logs/ct_run.nonode@nohost.2025-08-19_11.33.21"
 
 TEST INFO: 1 test(s), 19 case(s) in 1 suite(s)
 
 Testing lib.eturnal: Starting test, 19 test cases
-Testing lib.eturnal: TEST COMPLETE, 19 ok, 0 failed of 19 test cases
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+eturnal_SUITE:start_eturnal failed on line 113
+Reason: {badmatch,{error,{eturnal,{{shutdown,{failed_to_start_child,...}
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Testing lib.eturnal: *** FAILED test case 1 of 19 ***
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+gen_server:call failed on line 1301
+Reason: {noproc,{gen_server,call,...}}
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Testing lib.eturnal: *** FAILED test case 2 of 19 ***
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+gen_server:call failed on line 1301
+Reason: {noproc,{gen_server,call,...}}
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Testing lib.eturnal: *** FAILED test case 3 of 19 ***
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+gen_server:call failed on line 1301
+Reason: {noproc,{gen_server,call,...}}
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Testing lib.eturnal: *** FAILED test case 4 of 19 ***
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+gen_server:call failed on line 1301
+Reason: {noproc,{gen_server,call,...}}
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Testing lib.eturnal: *** FAILED test case 5 of 19 ***
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+gen_server:call failed on line 1301
+Reason: {noproc,{gen_server,call,...}}
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Testing lib.eturnal: *** FAILED test case 6 of 19 ***
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+gen_server:call failed on line 1301
+Reason: {noproc,{gen_server,call,...}}
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Testing lib.eturnal: *** FAILED test case 7 of 19 ***
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+gen_server:call failed on line 1301
+Reason: {noproc,{gen_server,call,...}}
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Testing lib.eturnal: *** FAILED test case 8 of 19 ***
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+gen_server:call failed on line 1301
+Reason: {noproc,{gen_server,call,...}}
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Testing lib.eturnal: *** FAILED test case 9 of 19 ***
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+eturnal_SUITE:reload failed on line 214
+Reason: {badmatch,{error,enoent}}
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Testing lib.eturnal: *** FAILED test case 10 of 19 ***
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+eturnal_SUITE:connect_tcp failed on line 227
+Reason: {badmatch,{error,econnrefused}}
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Testing lib.eturnal: *** FAILED test case 11 of 19 ***
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+eturnal_SUITE:connect_tls failed on line 235
+Reason: {badmatch,{error,econnrefused}}
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Testing lib.eturnal: *** FAILED test case 12 of 19 ***
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+eturnal_SUITE:turn_udp failed on line 249
+Reason: {badmatch,{error,timeout}}
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Testing lib.eturnal: *** FAILED test case 13 of 19 ***
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+eturnal_SUITE:stun_udp failed on line 260
+Reason: {badmatch,false}
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Testing lib.eturnal: *** FAILED test case 14 of 19 ***
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+eturnal_SUITE:stun_tcp failed on line 270
+Reason: {badmatch,false}
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Testing lib.eturnal: *** FAILED test case 15 of 19 ***
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+eturnal_SUITE:stun_tls failed on line 280
+Reason: {badmatch,false}
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Testing lib.eturnal: *** FAILED test case 16 of 19 ***
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+eturnal_SUITE:stun_tcp_auto failed on line 290
+Reason: {badmatch,false}
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Testing lib.eturnal: *** FAILED test case 17 of 19 ***
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+eturnal_SUITE:stun_tls_auto failed on line 300
+Reason: {badmatch,false}
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Testing lib.eturnal: *** FAILED test case 18 of 19 ***
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+eturnal_SUITE:stop_eturnal failed on line 305
+Reason: {badmatch,{error,{not_started,eturnal}}}
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Testing lib.eturnal: *** FAILED test case 19 of 19 ***
+Testing lib.eturnal: TEST COMPLETE, 0 ok, 19 failed of 19 test cases
 
 Updating /home/runner/work/eturnal/eturnal/_build/test/logs/index.html ... done
 Updating /home/runner/work/eturnal/eturnal/_build/test/logs/all_runs.html ... done
