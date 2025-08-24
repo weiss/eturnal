@@ -140,7 +140,7 @@ td.source {
 </head>
 <body>
 <h1><code>/home/runner/work/eturnal/eturnal/_build/test/cover/eunit/mod_stats_prometheus.html</code></h1>
-<footer><p>File generated from <code>/home/runner/work/eturnal/eturnal/_build/test/lib/eturnal/ebin/../src/mod_stats_prometheus.erl</code> by <a href="http://erlang.org/doc/man/cover.html">cover</a> at 2025-08-21 at 11:51:49</p></footer>
+<footer><p>File generated from <code>/home/runner/work/eturnal/eturnal/_build/test/lib/eturnal/ebin/../src/mod_stats_prometheus.erl</code> by <a href="http://erlang.org/doc/man/cover.html">cover</a> at 2025-08-24 at 16:08:51</p></footer>
 <table>
 <tbody>
 <tr>
@@ -1498,48 +1498,43 @@ td.source {
 <td class="hits"></td>
 <td class="source"><code>check_vm_metrics_opt(NewValue) -&gt;</code></td>
 </tr>
-<tr class="miss">
+<tr>
 <td class="line" id="L272"><a href="#L272">272</a></td>
-<td class="hits"><pre style="display: inline;">:-(</pre></td>
-<td class="source"><code>    PID = whereis(prometheus_sup),</code></td>
+<td class="hits"></td>
+<td class="source"><code>    % Default collectors include VM metrics.</code></td>
 </tr>
 <tr class="miss">
 <td class="line" id="L273"><a href="#L273">273</a></td>
 <td class="hits"><pre style="display: inline;">:-(</pre></td>
-<td class="source"><code>    OldValue = application:get_env(prometheus, collectors),</code></td>
+<td class="source"><code>    OldValue = application:get_env(prometheus, collectors) =:= undefined,</code></td>
 </tr>
 <tr class="miss">
 <td class="line" id="L274"><a href="#L274">274</a></td>
 <td class="hits"><pre style="display: inline;">:-(</pre></td>
-<td class="source"><code>    if is_pid(PID),</code></td>
-</tr>
-<tr>
-<td class="line" id="L275"><a href="#L275">275</a></td>
-<td class="hits"></td>
-<td class="source"><code>       (NewValue and (OldValue =/= undefined)) or</code></td>
-</tr>
-<tr>
-<td class="line" id="L276"><a href="#L276">276</a></td>
-<td class="hits"></td>
-<td class="source"><code>       ((not NewValue) and (OldValue =:= undefined)) -&gt;</code></td>
+<td class="source"><code>    PID = whereis(prometheus_sup),</code></td>
 </tr>
 <tr class="miss">
-<td class="line" id="L277"><a href="#L277">277</a></td>
+<td class="line" id="L275"><a href="#L275">275</a></td>
+<td class="hits"><pre style="display: inline;">:-(</pre></td>
+<td class="source"><code>    if is_pid(PID), NewValue =/= OldValue -&gt;</code></td>
+</tr>
+<tr class="miss">
+<td class="line" id="L276"><a href="#L276">276</a></td>
 <td class="hits"><pre style="display: inline;">:-(</pre></td>
 <td class="source"><code>            modified;</code></td>
 </tr>
 <tr>
-<td class="line" id="L278"><a href="#L278">278</a></td>
+<td class="line" id="L277"><a href="#L277">277</a></td>
 <td class="hits"></td>
 <td class="source"><code>       true -&gt;</code></td>
 </tr>
 <tr class="miss">
-<td class="line" id="L279"><a href="#L279">279</a></td>
+<td class="line" id="L278"><a href="#L278">278</a></td>
 <td class="hits"><pre style="display: inline;">:-(</pre></td>
 <td class="source"><code>            ok</code></td>
 </tr>
 <tr>
-<td class="line" id="L280"><a href="#L280">280</a></td>
+<td class="line" id="L279"><a href="#L279">279</a></td>
 <td class="hits"></td>
 <td class="source"><code>    end.</code></td>
 </tr>
