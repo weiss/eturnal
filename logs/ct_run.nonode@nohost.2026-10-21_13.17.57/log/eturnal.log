@@ -1,0 +1,1108 @@
+2026-10-21 13:17:57.522594+00:00 [notice] Starting eturnal 1.12.3 on Erlang/OTP 29 (ERTS 17.1) (eturnal_app:start/2:34)
+2026-10-21 13:17:57.522747+00:00 [debug] Starting supervisor: eturnal_sup (eturnal_sup:start_link/0:31)
+2026-10-21 13:17:57.522853+00:00 [debug] Configuring eturnal_sup supervisor: [#{id => systemd,
+                                       start =>
+                                           {eturnal_systemd,start_link,[]}},
+                                     #{id => eturnal,
+                                       start => {eturnal,start_link,[]}}] (eturnal_sup:init/1:39)
+2026-10-21 13:17:57.525383+00:00 [info] Got no NOTIFY_SOCKET, notifications disabled (eturnal_systemd:init/1:89)
+2026-10-21 13:17:57.525528+00:00 [debug] PROGRESS REPORT:
+    supervisor: {local,eturnal_sup}
+    started: [{pid,<0.960.0>},
+              {id,systemd},
+              {mfargs,{eturnal_systemd,start_link,[]}},
+              {restart_type,permanent},
+              {significant,false},
+              {shutdown,5000},
+              {child_type,worker}]
+ (supervisor:report_progress/3:2323)
+2026-10-21 13:17:57.525650+00:00 [info] Relay IPv4 address: 127.0.0.1 (port range: 49152-65535) (eturnal:log_relay_addresses/0:349)
+2026-10-21 13:17:57.525782+00:00 [info] Relay IPv6 address not configured (eturnal:log_relay_addresses/0:359)
+2026-10-21 13:17:57.537174+00:00 [info] Cannot determine control query port: noport (eturnal:log_control_listener/0:373)
+2026-10-21 13:17:57.537693+00:00 [debug] Using run directory run (eturnal:ensure_run_dir/0:863)
+2026-10-21 13:17:57.537820+00:00 [debug] TURN configuration seems fine (eturnal:check_turn_config/0:603)
+2026-10-21 13:17:57.537925+00:00 [warning] TLS enabled without 'tls_crt_file', creating self-signed certificate (eturnal:check_pem_file/0:809)
+2026-10-21 13:17:59.088032+00:00 [debug] Calling mod_stats_influx:start/0 (eturnal_module:start/1:143)
+2026-10-21 13:17:59.088312+00:00 [debug] Starting mod_stats_influx (mod_stats_influx:start/0:37)
+2026-10-21 13:17:59.090879+00:00 [debug] PROGRESS REPORT:
+    application: ulitos
+    started_at: nonode@nohost
+ (application_controller:info_started/2:2154)
+2026-10-21 13:17:59.092169+00:00 [debug] PROGRESS REPORT:
+    application: poolboy
+    started_at: nonode@nohost
+ (application_controller:info_started/2:2154)
+2026-10-21 13:17:59.093186+00:00 [info]     msg: Starting application: influx_udp (influx_udp_app:start/2:10)
+2026-10-21 13:17:59.095664+00:00 [debug] PROGRESS REPORT:
+    supervisor: {local,influx_udp_sup}
+    started: [{pid,<0.976.0>},
+              {id,influx_udp},
+              {mfargs,{influx_udp,start_link,[]}},
+              {restart_type,permanent},
+              {significant,false},
+              {shutdown,5000},
+              {child_type,worker}]
+ (supervisor:report_progress/3:2323)
+2026-10-21 13:17:59.095823+00:00 [debug] PROGRESS REPORT:
+    application: influx_udp
+    started_at: nonode@nohost
+ (application_controller:info_started/2:2154)
+2026-10-21 13:17:59.095837+00:00 [debug] Dependency influx_udp was available already (eturnal_module:ensure_dep/2:284)
+2026-10-21 13:17:59.099353+00:00 [info]     options: #{port => 8089,host => "localhost",pool_size => 1,
+               max_overflow => 1}
+    msg: Start clients pool
+    host: {127,0,0,1} (influx_udp:start_pool_/2:239)
+2026-10-21 13:17:59.107842+00:00 [info]     port: 59075
+    msg: Open UDP socket on port (influx_udp_worker:init/1:43)
+2026-10-21 13:17:59.108120+00:00 [debug] PROGRESS REPORT:
+    supervisor: {local,influx_udp_sup}
+    started: [{pid,<0.979.0>},
+              {id,stats_influx_pool},
+              {mfargs,
+                  {poolboy,start_link,
+                      [[{name,{local,stats_influx_pool}},
+                        {worker_module,influx_udp_worker},
+                        {size,1},
+                        {max_overflow,1}],
+                       [{options,
+                            #{port => 8089,
+                              host => {127,0,0,1},
+                              pool_size => 1,max_overflow => 1}}]]}},
+              {restart_type,permanent},
+              {significant,false},
+              {shutdown,5000},
+              {child_type,worker}]
+ (supervisor:report_progress/3:2333)
+2026-10-21 13:17:59.108369+00:00 [info] Started mod_stats_influx (eturnal:start_modules/0:384)
+2026-10-21 13:17:59.108493+00:00 [debug] Calling mod_log_stun:start/0 (eturnal_module:start/1:143)
+2026-10-21 13:17:59.108615+00:00 [debug] Starting mod_log_stun (mod_log_stun:start/0:38)
+2026-10-21 13:17:59.108753+00:00 [info] Started mod_log_stun (eturnal:start_modules/0:384)
+2026-10-21 13:17:59.108866+00:00 [debug] Calling mod_stats_prometheus:start/0 (eturnal_module:start/1:143)
+2026-10-21 13:17:59.109221+00:00 [debug] Starting mod_stats_prometheus (mod_stats_prometheus:start/0:56)
+2026-10-21 13:17:59.122627+00:00 [debug] PROGRESS REPORT:
+    application: prometheus
+    started_at: nonode@nohost
+ (application_controller:info_started/2:2154)
+2026-10-21 13:17:59.123592+00:00 [debug] PROGRESS REPORT:
+    application: accept
+    started_at: nonode@nohost
+ (application_controller:info_started/2:2154)
+2026-10-21 13:17:59.134242+00:00 [debug] PROGRESS REPORT:
+    application: prometheus_httpd
+    started_at: nonode@nohost
+ (application_controller:info_started/2:2154)
+2026-10-21 13:17:59.134366+00:00 [debug] Dependency prometheus_httpd was available already (eturnal_module:ensure_dep/2:284)
+2026-10-21 13:17:59.168325+00:00 [debug] PROGRESS REPORT:
+    supervisor: {local,httpd_instance_sup__127_0_0_1__9081default}
+    started: [{pid,<0.997.0>},
+              {id,{httpd_connection_sup,{127,0,0,1},9081,default}},
+              {mfargs,{httpd_connection_sup,start_link,[[{127,0,0,1},9081]]}},
+              {restart_type,permanent},
+              {significant,false},
+              {shutdown,5000},
+              {child_type,supervisor}]
+ (supervisor:report_progress/3:2323)
+2026-10-21 13:17:59.170839+00:00 [debug] PROGRESS REPORT:
+    supervisor: {local,httpd_instance_sup__127_0_0_1__9081default}
+    started: [{pid,<0.998.0>},
+              {id,{httpd_misc_sup,{127,0,0,1},9081,default}},
+              {mfargs,{httpd_misc_sup,start_link,[{127,0,0,1},9081,default]}},
+              {restart_type,permanent},
+              {significant,false},
+              {shutdown,infinity},
+              {child_type,supervisor}]
+ (supervisor:report_progress/3:2323)
+2026-10-21 13:17:59.173977+00:00 [debug] PROGRESS REPORT:
+    supervisor: {local,httpd_instance_sup__127_0_0_1__9081default}
+    started: [{pid,<0.999.0>},
+              {id,{httpd_manager,{127,0,0,1},9081,default}},
+              {mfargs,
+                  {httpd_manager,start_link,
+                      [undefined,
+                       [{bind_address,{127,0,0,1}},
+                        {socket_type,ip_comm},
+                        {port,9081},
+                        {server_root,"run/mod_stats_prometheus/doc"},
+                        {document_root,"run/mod_stats_prometheus/doc"},
+                        {server_name,"Prometheus Exporter"},
+                        {modules,[prometheus_httpd]}],
+                       15000]}},
+              {restart_type,permanent},
+              {significant,false},
+              {shutdown,4000},
+              {child_type,worker}]
+ (supervisor:report_progress/3:2323)
+2026-10-21 13:17:59.195771+00:00 [debug] PROGRESS REPORT:
+    supervisor: {local,httpd_acceptor_sup__127_0_0_1__9081default}
+    started: [{pid,<0.1001.0>},
+              {id,{httpd_acceptor_sup,{127,0,0,1},9081,default}},
+              {mfargs,{httpd_acceptor,start_link,
+                                      [httpd__127_0_0_1__9081default,ip_comm,
+                                       {127,0,0,1},
+                                       9081,inet,
+                                       httpd_conf__127_0_0_1__9081default,
+                                       15000]}},
+              {restart_type,transient},
+              {significant,false},
+              {shutdown,brutal_kill},
+              {child_type,worker}]
+ (supervisor:report_progress/3:2323)
+2026-10-21 13:17:59.195979+00:00 [debug] PROGRESS REPORT:
+    supervisor: {local,httpd_instance_sup__127_0_0_1__9081default}
+    started: [{pid,<0.1000.0>},
+              {id,{httpd_acceptor_sup,{127,0,0,1},9081,default}},
+              {mfargs,
+                  {httpd_acceptor_sup,start_link,
+                      [[{127,0,0,1},
+                        9081,
+                        [{bind_address,{127,0,0,1}},
+                         {socket_type,ip_comm},
+                         {port,9081},
+                         {server_root,"run/mod_stats_prometheus/doc"},
+                         {document_root,"run/mod_stats_prometheus/doc"},
+                         {server_name,"Prometheus Exporter"},
+                         {modules,[prometheus_httpd]}],
+                        15000,undefined]]}},
+              {restart_type,permanent},
+              {significant,false},
+              {shutdown,infinity},
+              {child_type,supervisor}]
+ (supervisor:report_progress/3:2323)
+2026-10-21 13:17:59.196126+00:00 [debug] PROGRESS REPORT:
+    supervisor: {local,httpd_sup}
+    started: [{pid,<0.996.0>},
+              {id,{httpd_instance_sup,{127,0,0,1},9081,default}},
+              {mfargs,
+                  {httpd_instance_sup,start_link,
+                      [[{bind_address,{127,0,0,1}},
+                        {socket_type,ip_comm},
+                        {port,9081},
+                        {server_root,"run/mod_stats_prometheus/doc"},
+                        {document_root,"run/mod_stats_prometheus/doc"},
+                        {server_name,"Prometheus Exporter"},
+                        {modules,[prometheus_httpd]}],
+                       15000,[]]}},
+              {restart_type,permanent},
+              {significant,false},
+              {shutdown,infinity},
+              {child_type,supervisor}]
+ (supervisor:report_progress/3:2333)
+2026-10-21 13:17:59.196768+00:00 [info] Started mod_stats_prometheus (eturnal:start_modules/0:384)
+2026-10-21 13:17:59.197002+00:00 [debug] Starting listener 127.0.0.1:34780 (udp) with options:
+[{use_turn,true},
+ {auth_type,user},
+ {turn_ipv4_address,{127,0,0,1}},
+ {turn_min_port,49152},
+ {turn_max_port,65535},
+ {turn_max_allocations,10},
+ {turn_max_permissions,10},
+ {shaper,100000},
+ {auth_realm,<<"eturnal.net">>},
+ {server_name,<<"eturnal">>},
+ {auth_fun,fun eturnal:get_password/2},
+ {hook_fun,fun eturnal:run_hook/2},
+ {turn_blacklist_clients,[{{127,0,0,1},8}]},
+ {turn_blacklist_peers,[{{10,0,0,0},8},
+                        {{100,64,0,0},10},
+                        {{127,0,0,0},8},
+                        {{169,254,0,0},16},
+                        {{172,16,0,0},12},
+                        {{192,0,0,0},24},
+                        {{192,0,2,0},24},
+                        {{192,88,99,0},24},
+                        {{192,168,0,0},16},
+                        {{198,18,0,0},15},
+                        {{198,51,100,0},24},
+                        {{203,0,113,0},24},
+                        {{224,0,0,0},4},
+                        {{240,0,0,0},4},
+                        {{0,0,0,0,0,0,0,1},128},
+                        {{100,65435,0,0,0,0,0,0},96},
+                        {{256,0,0,0,0,0,0,0},64},
+                        {{8193,3512,0,0,0,0,0,0},32},
+                        {{64512,0,0,0,0,0,0,0},7},
+                        {{65152,0,0,0,0,0,0,0},10},
+                        {{65280,0,0,0,0,0,0,0},8}]},
+ {turn_whitelist_clients,[{{127,0,0,1},32}]},
+ {turn_whitelist_peers,[{{127,0,0,1},32},
+                        {{203,0,113,113},32},
+                        {{8193,3512,0,0,0,0,0,0},64}]}] (eturnal:start_listeners/0:419)
+2026-10-21 13:17:59.210378+00:00 [info] Listening on 127.0.0.1:34780 (udp) (STUN/TURN) (eturnal:start_listeners/0:426)
+2026-10-21 13:17:59.210562+00:00 [debug] Starting listener 127.0.0.1:34780 (tcp) with options:
+[{use_turn,false},
+ {auth_type,anonymous},
+ {turn_ipv4_address,{127,0,0,1}},
+ {turn_min_port,49152},
+ {turn_max_port,65535},
+ {turn_max_allocations,10},
+ {turn_max_permissions,10},
+ {shaper,100000},
+ {auth_realm,<<"eturnal.net">>},
+ {server_name,<<"eturnal">>},
+ {auth_fun,fun eturnal:get_password/2},
+ {hook_fun,fun eturnal:run_hook/2},
+ {turn_blacklist_clients,[{{127,0,0,1},8}]},
+ {turn_blacklist_peers,[{{10,0,0,0},8},
+                        {{100,64,0,0},10},
+                        {{127,0,0,0},8},
+                        {{169,254,0,0},16},
+                        {{172,16,0,0},12},
+                        {{192,0,0,0},24},
+                        {{192,0,2,0},24},
+                        {{192,88,99,0},24},
+                        {{192,168,0,0},16},
+                        {{198,18,0,0},15},
+                        {{198,51,100,0},24},
+                        {{203,0,113,0},24},
+                        {{224,0,0,0},4},
+                        {{240,0,0,0},4},
+                        {{0,0,0,0,0,0,0,1},128},
+                        {{100,65435,0,0,0,0,0,0},96},
+                        {{256,0,0,0,0,0,0,0},64},
+                        {{8193,3512,0,0,0,0,0,0},32},
+                        {{64512,0,0,0,0,0,0,0},7},
+                        {{65152,0,0,0,0,0,0,0},10},
+                        {{65280,0,0,0,0,0,0,0},8}]},
+ {turn_whitelist_clients,[{{127,0,0,1},32}]},
+ {turn_whitelist_peers,[{{127,0,0,1},32},
+                        {{203,0,113,113},32},
+                        {{8193,3512,0,0,0,0,0,0},64}]}] (eturnal:start_listeners/0:419)
+2026-10-21 13:17:59.211310+00:00 [info] Listening on 127.0.0.1:34780 (tcp) (STUN only) (eturnal:start_listeners/0:426)
+2026-10-21 13:17:59.211440+00:00 [debug] Starting listener 127.0.0.1:53490 (tls) with options:
+[{use_turn,false},
+ {auth_type,anonymous},
+ {tls,true},
+ {certfile,<<"run/cert.pem">>},
+ {ciphers,<<"HIGH:!aNULL:@STRENGTH">>},
+ {protocol_options,<<"no_tlsv1|no_tlsv1_1|cipher_server_preference">>},
+ {turn_ipv4_address,{127,0,0,1}},
+ {turn_min_port,49152},
+ {turn_max_port,65535},
+ {turn_max_allocations,10},
+ {turn_max_permissions,10},
+ {shaper,100000},
+ {auth_realm,<<"eturnal.net">>},
+ {server_name,<<"eturnal">>},
+ {auth_fun,fun eturnal:get_password/2},
+ {hook_fun,fun eturnal:run_hook/2},
+ {turn_blacklist_clients,[{{127,0,0,1},8}]},
+ {turn_blacklist_peers,[{{10,0,0,0},8},
+                        {{100,64,0,0},10},
+                        {{127,0,0,0},8},
+                        {{169,254,0,0},16},
+                        {{172,16,0,0},12},
+                        {{192,0,0,0},24},
+                        {{192,0,2,0},24},
+                        {{192,88,99,0},24},
+                        {{192,168,0,0},16},
+                        {{198,18,0,0},15},
+                        {{198,51,100,0},24},
+                        {{203,0,113,0},24},
+                        {{224,0,0,0},4},
+                        {{240,0,0,0},4},
+                        {{0,0,0,0,0,0,0,1},128},
+                        {{100,65435,0,0,0,0,0,0},96},
+                        {{256,0,0,0,0,0,0,0},64},
+                        {{8193,3512,0,0,0,0,0,0},32},
+                        {{64512,0,0,0,0,0,0,0},7},
+                        {{65152,0,0,0,0,0,0,0},10},
+                        {{65280,0,0,0,0,0,0,0},8}]},
+ {turn_whitelist_clients,[{{127,0,0,1},32}]},
+ {turn_whitelist_peers,[{{127,0,0,1},32},
+                        {{203,0,113,113},32},
+                        {{8193,3512,0,0,0,0,0,0},64}]}] (eturnal:start_listeners/0:419)
+2026-10-21 13:17:59.212101+00:00 [info] Listening on 127.0.0.1:53490 (tls) (STUN only) (eturnal:start_listeners/0:426)
+2026-10-21 13:17:59.212251+00:00 [debug] Starting listener 127.0.0.1:34781 (auto) with options:
+[{use_turn,false},
+ {auth_type,anonymous},
+ {tls,optional},
+ {certfile,<<"run/cert.pem">>},
+ {ciphers,<<"HIGH:!aNULL:@STRENGTH">>},
+ {protocol_options,<<"no_tlsv1|no_tlsv1_1|cipher_server_preference">>},
+ {turn_ipv4_address,{127,0,0,1}},
+ {turn_min_port,49152},
+ {turn_max_port,65535},
+ {turn_max_allocations,10},
+ {turn_max_permissions,10},
+ {shaper,100000},
+ {auth_realm,<<"eturnal.net">>},
+ {server_name,<<"eturnal">>},
+ {auth_fun,fun eturnal:get_password/2},
+ {hook_fun,fun eturnal:run_hook/2},
+ {turn_blacklist_clients,[{{127,0,0,1},8}]},
+ {turn_blacklist_peers,[{{10,0,0,0},8},
+                        {{100,64,0,0},10},
+                        {{127,0,0,0},8},
+                        {{169,254,0,0},16},
+                        {{172,16,0,0},12},
+                        {{192,0,0,0},24},
+                        {{192,0,2,0},24},
+                        {{192,88,99,0},24},
+                        {{192,168,0,0},16},
+                        {{198,18,0,0},15},
+                        {{198,51,100,0},24},
+                        {{203,0,113,0},24},
+                        {{224,0,0,0},4},
+                        {{240,0,0,0},4},
+                        {{0,0,0,0,0,0,0,1},128},
+                        {{100,65435,0,0,0,0,0,0},96},
+                        {{256,0,0,0,0,0,0,0},64},
+                        {{8193,3512,0,0,0,0,0,0},32},
+                        {{64512,0,0,0,0,0,0,0},7},
+                        {{65152,0,0,0,0,0,0,0},10},
+                        {{65280,0,0,0,0,0,0,0},8}]},
+ {turn_whitelist_clients,[{{127,0,0,1},32}]},
+ {turn_whitelist_peers,[{{127,0,0,1},32},
+                        {{203,0,113,113},32},
+                        {{8193,3512,0,0,0,0,0,0},64}]}] (eturnal:start_listeners/0:419)
+2026-10-21 13:17:59.225319+00:00 [info] Listening on 127.0.0.1:34781 (auto) (STUN only) (eturnal:start_listeners/0:426)
+2026-10-21 13:17:59.225474+00:00 [debug] Started 3 modules (eturnal:init/1:105)
+2026-10-21 13:17:59.225592+00:00 [debug] Started 4 listeners (eturnal:init/1:106)
+2026-10-21 13:17:59.225708+00:00 [debug] PROGRESS REPORT:
+    supervisor: {local,eturnal_sup}
+    started: [{pid,<0.962.0>},
+              {id,eturnal},
+              {mfargs,{eturnal,start_link,[]}},
+              {restart_type,permanent},
+              {significant,false},
+              {shutdown,5000},
+              {child_type,worker}]
+ (supervisor:report_progress/3:2323)
+2026-10-21 13:17:59.225833+00:00 [debug] No NOTIFY_SOCKET, dropping READY=1 notification (eturnal_systemd:handle_cast/2:102)
+2026-10-21 13:17:59.225853+00:00 [debug] PROGRESS REPORT:
+    application: eturnal
+    started_at: nonode@nohost
+ (application_controller:info_started/2:2154)
+2026-10-21 13:17:59.252425+00:00 [debug] Handling API call: get_status() (eturnal_ctl:get_status/0:109)
+2026-10-21 13:17:59.252571+00:00 [debug] eturnal call (get_status) returned ok (eturnal_ctl:call/1:439)
+2026-10-21 13:17:59.276424+00:00 [debug] Handling API call: get_info() (eturnal_ctl:get_info/0:119)
+2026-10-21 13:17:59.277026+00:00 [debug] eturnal call (get_info) returned {ok,
+                                  {eturnal_node_info,<<"1.12.3">>,
+                                   {"29","17.1"},
+                                   3797,0,180,91127955,1,57396544}} (eturnal_ctl:call/1:442)
+2026-10-21 13:17:59.301624+00:00 [debug] Handling API call: get_sessions() (eturnal_ctl:get_sessions/0:95)
+2026-10-21 13:17:59.325125+00:00 [debug] Handling API call: get_sessions("alice") (eturnal_ctl:get_sessions/1:100)
+2026-10-21 13:17:59.325446+00:00 [debug] Handling API call: get_sessions("1256900400:alice") (eturnal_ctl:get_sessions/1:100)
+2026-10-21 13:17:59.325684+00:00 [debug] Handling API call: get_sessions(alice) (eturnal_ctl:get_sessions/1:100)
+2026-10-21 13:17:59.325802+00:00 [debug] Cannot convert user name to binary: alice (eturnal_ctl:with_username/2:201)
+2026-10-21 13:17:59.349479+00:00 [debug] Handling API call: disconnect("alice") (eturnal_ctl:disconnect/1:168)
+2026-10-21 13:17:59.349832+00:00 [debug] Handling API call: disconnect(alice) (eturnal_ctl:disconnect/1:168)
+2026-10-21 13:17:59.349957+00:00 [debug] Cannot convert user name to binary: alice (eturnal_ctl:with_username/2:201)
+2026-10-21 13:17:59.373215+00:00 [debug] Handling API call: get_credentials("2009-10-30 11:00:00Z", []) (eturnal_ctl:get_credentials/2:60)
+2026-10-21 13:17:59.373487+00:00 [debug] eturnal call ({get_password,<<"1256900400">>}) returned {ok,
+                                                         <<"uEKlpcME7MNMMVRV8rUFPCTIFEs=">>} (eturnal_ctl:call/1:442)
+2026-10-21 13:17:59.378859+00:00 [debug] Handling API call: get_credentials("86400", "alice") (eturnal_ctl:get_credentials/2:60)
+2026-10-21 13:17:59.379195+00:00 [debug] eturnal call ({get_password,<<"1792675079:alice">>}) returned {ok,
+                                                               <<"+vFzvPUp47bgn+iC+0f0sAAhKHY=">>} (eturnal_ctl:call/1:442)
+2026-10-21 13:17:59.379362+00:00 [debug] Handling API call: get_password("1792675079:alice") (eturnal_ctl:get_password/1:79)
+2026-10-21 13:17:59.379471+00:00 [debug] eturnal call ({get_password,<<"1792675079:alice">>}) returned {ok,
+                                                               <<"+vFzvPUp47bgn+iC+0f0sAAhKHY=">>} (eturnal_ctl:call/1:442)
+2026-10-21 13:17:59.379645+00:00 [debug] Handling API call: get_credentials("86400s", "alice") (eturnal_ctl:get_credentials/2:60)
+2026-10-21 13:17:59.379838+00:00 [debug] eturnal call ({get_password,<<"1792675079:alice">>}) returned {ok,
+                                                               <<"+vFzvPUp47bgn+iC+0f0sAAhKHY=">>} (eturnal_ctl:call/1:442)
+2026-10-21 13:17:59.380009+00:00 [debug] Handling API call: get_password("1792675079:alice") (eturnal_ctl:get_password/1:79)
+2026-10-21 13:17:59.380164+00:00 [debug] eturnal call ({get_password,<<"1792675079:alice">>}) returned {ok,
+                                                               <<"+vFzvPUp47bgn+iC+0f0sAAhKHY=">>} (eturnal_ctl:call/1:442)
+2026-10-21 13:17:59.380379+00:00 [debug] Handling API call: get_credentials("1440m", "alice") (eturnal_ctl:get_credentials/2:60)
+2026-10-21 13:17:59.380533+00:00 [debug] eturnal call ({get_password,<<"1792675079:alice">>}) returned {ok,
+                                                               <<"+vFzvPUp47bgn+iC+0f0sAAhKHY=">>} (eturnal_ctl:call/1:442)
+2026-10-21 13:17:59.380687+00:00 [debug] Handling API call: get_password("1792675079:alice") (eturnal_ctl:get_password/1:79)
+2026-10-21 13:17:59.380810+00:00 [debug] eturnal call ({get_password,<<"1792675079:alice">>}) returned {ok,
+                                                               <<"+vFzvPUp47bgn+iC+0f0sAAhKHY=">>} (eturnal_ctl:call/1:442)
+2026-10-21 13:17:59.380978+00:00 [debug] Handling API call: get_credentials("24h", "alice") (eturnal_ctl:get_credentials/2:60)
+2026-10-21 13:17:59.381106+00:00 [debug] eturnal call ({get_password,<<"1792675079:alice">>}) returned {ok,
+                                                               <<"+vFzvPUp47bgn+iC+0f0sAAhKHY=">>} (eturnal_ctl:call/1:442)
+2026-10-21 13:17:59.381213+00:00 [debug] Handling API call: get_password("1792675079:alice") (eturnal_ctl:get_password/1:79)
+2026-10-21 13:17:59.381345+00:00 [debug] eturnal call ({get_password,<<"1792675079:alice">>}) returned {ok,
+                                                               <<"+vFzvPUp47bgn+iC+0f0sAAhKHY=">>} (eturnal_ctl:call/1:442)
+2026-10-21 13:17:59.381539+00:00 [debug] Handling API call: get_credentials("1d", "alice") (eturnal_ctl:get_credentials/2:60)
+2026-10-21 13:17:59.381688+00:00 [debug] eturnal call ({get_password,<<"1792675079:alice">>}) returned {ok,
+                                                               <<"+vFzvPUp47bgn+iC+0f0sAAhKHY=">>} (eturnal_ctl:call/1:442)
+2026-10-21 13:17:59.381840+00:00 [debug] Handling API call: get_password("1792675079:alice") (eturnal_ctl:get_password/1:79)
+2026-10-21 13:17:59.381951+00:00 [debug] eturnal call ({get_password,<<"1792675079:alice">>}) returned {ok,
+                                                               <<"+vFzvPUp47bgn+iC+0f0sAAhKHY=">>} (eturnal_ctl:call/1:442)
+2026-10-21 13:17:59.382084+00:00 [debug] Handling API call: get_password("Invalid") (eturnal_ctl:get_password/1:79)
+2026-10-21 13:17:59.382200+00:00 [debug] eturnal call ({get_password,<<"Invalid">>}) returned {error,no_credentials} (eturnal_ctl:call/1:445)
+2026-10-21 13:17:59.382327+00:00 [debug] Handling API call: get_credentials("Invalid", []) (eturnal_ctl:get_credentials/2:60)
+2026-10-21 13:17:59.382421+00:00 [debug] Invalid argument(s): "Invalid":[] (eturnal_ctl:get_credentials/2:73)
+2026-10-21 13:17:59.382484+00:00 [debug] Handling API call: get_password(invalid) (eturnal_ctl:get_password/1:79)
+2026-10-21 13:17:59.382537+00:00 [debug] Cannot convert user name to binary: invalid (eturnal_ctl:with_username/2:201)
+2026-10-21 13:17:59.382588+00:00 [debug] Handling API call: get_credentials(invalid, []) (eturnal_ctl:get_credentials/2:60)
+2026-10-21 13:17:59.382637+00:00 [debug] Invalid argument(s): invalid:[] (eturnal_ctl:get_credentials/2:73)
+2026-10-21 13:17:59.382689+00:00 [debug] Handling API call: get_password([invalid]) (eturnal_ctl:get_password/1:79)
+2026-10-21 13:17:59.382789+00:00 [debug] Cannot convert user name to binary: [invalid] (eturnal_ctl:with_username/2:201)
+2026-10-21 13:17:59.382886+00:00 [debug] Handling API call: get_credentials([invalid], []) (eturnal_ctl:get_credentials/2:60)
+2026-10-21 13:17:59.382967+00:00 [debug] Invalid argument(s): [invalid]:[] (eturnal_ctl:get_credentials/2:73)
+2026-10-21 13:17:59.383092+00:00 [debug] Handling API call: get_credentials(1256900400, invalid) (eturnal_ctl:get_credentials/2:60)
+2026-10-21 13:17:59.383151+00:00 [debug] Invalid argument(s): 1256900400:invalid (eturnal_ctl:get_credentials/2:73)
+2026-10-21 13:17:59.383248+00:00 [debug] Handling API call: get_password("alice") (eturnal_ctl:get_password/1:79)
+2026-10-21 13:17:59.383370+00:00 [debug] eturnal call ({get_password,<<"alice">>}) returned {ok,<<"l0vesBob">>} (eturnal_ctl:call/1:442)
+2026-10-21 13:17:59.407100+00:00 [debug] Handling API call: set_loglevel(debug) (eturnal_ctl:set_loglevel/1:149)
+2026-10-21 13:17:59.407334+00:00 [debug] eturnal call ({set_loglevel,debug}) returned ok (eturnal_ctl:call/1:439)
+2026-10-21 13:17:59.407465+00:00 [debug] Handling API call: get_loglevel() (eturnal_ctl:get_loglevel/0:139)
+2026-10-21 13:17:59.407548+00:00 [debug] eturnal call (get_loglevel) returned {ok,debug} (eturnal_ctl:call/1:442)
+2026-10-21 13:17:59.407684+00:00 [debug] Handling API call: set_loglevel(invalid) (eturnal_ctl:set_loglevel/1:149)
+2026-10-21 13:17:59.407772+00:00 [debug] Invalid log level: invalid (eturnal_ctl:set_loglevel/1:159)
+2026-10-21 13:17:59.407893+00:00 [debug] Handling API call: get_loglevel() (eturnal_ctl:get_loglevel/0:139)
+2026-10-21 13:17:59.407994+00:00 [debug] eturnal call (get_loglevel) returned {ok,debug} (eturnal_ctl:call/1:442)
+2026-10-21 13:17:59.431027+00:00 [debug] Handling API call: get_version() (eturnal_ctl:get_version/0:129)
+2026-10-21 13:17:59.431182+00:00 [debug] eturnal call (get_version) returned {ok,<<"1.12.3">>} (eturnal_ctl:call/1:442)
+2026-10-21 13:17:59.454467+00:00 [debug] Handling API call: reload() (eturnal_ctl:reload/0:179)
+2026-10-21 13:17:59.456522+00:00 [debug] Calling mod_log_stun:options/0 (eturnal_module:options/1:192)
+2026-10-21 13:17:59.456611+00:00 [debug] Calling mod_stats_influx:options/0 (eturnal_module:options/1:192)
+2026-10-21 13:17:59.456676+00:00 [debug] Calling mod_stats_prometheus:options/0 (eturnal_module:options/1:192)
+2026-10-21 13:17:59.457267+00:00 [info] Reloading configuration (eturnal:reload/1:627)
+2026-10-21 13:17:59.457456+00:00 [warning] TLS enabled without 'tls_crt_file', creating self-signed certificate (eturnal:check_pem_file/0:809)
+2026-10-21 13:18:01.080210+00:00 [info] Using new TLS certificate (eturnal:reload/1:631)
+2026-10-21 13:18:01.080645+00:00 [debug] Calling mod_stats_influx:stop/1 (eturnal_module:stop/1:163)
+2026-10-21 13:18:01.080762+00:00 [debug] Stopping mod_stats_influx (mod_stats_influx:stop/0:61)
+2026-10-21 13:18:01.080851+00:00 [info] Stopped mod_stats_influx (eturnal:stop_modules/1:397)
+2026-10-21 13:18:01.082261+00:00 [debug] Calling mod_log_stun:stop/1 (eturnal_module:stop/1:163)
+2026-10-21 13:18:01.082431+00:00 [debug] Stopping mod_log_stun (mod_log_stun:stop/0:49)
+2026-10-21 13:18:01.082520+00:00 [info] Stopped mod_log_stun (eturnal:stop_modules/1:397)
+2026-10-21 13:18:01.084194+00:00 [debug] Calling mod_stats_prometheus:stop/1 (eturnal_module:stop/1:163)
+2026-10-21 13:18:01.084377+00:00 [debug] Stopping mod_stats_prometheus (mod_stats_prometheus:stop/0:110)
+2026-10-21 13:18:01.084702+00:00 [info] Stopped mod_stats_prometheus (eturnal:stop_modules/1:397)
+2026-10-21 13:18:01.084813+00:00 [debug] Calling mod_stats_influx:start/0 (eturnal_module:start/1:143)
+2026-10-21 13:18:01.084902+00:00 [debug] Starting mod_stats_influx (mod_stats_influx:start/0:37)
+2026-10-21 13:18:01.084978+00:00 [debug] Dependency influx_udp was available already (eturnal_module:ensure_dep/2:284)
+2026-10-21 13:18:01.085398+00:00 [info]     options: #{port => 8089,host => "localhost",pool_size => 1,
+               max_overflow => 1}
+    msg: Start clients pool
+    host: {127,0,0,1} (influx_udp:start_pool_/2:239)
+2026-10-21 13:18:01.086458+00:00 [info] Started mod_stats_influx (eturnal:start_modules/0:384)
+2026-10-21 13:18:01.086589+00:00 [debug] Calling mod_log_stun:start/0 (eturnal_module:start/1:143)
+2026-10-21 13:18:01.086695+00:00 [debug] Starting mod_log_stun (mod_log_stun:start/0:38)
+2026-10-21 13:18:01.087926+00:00 [info] Started mod_log_stun (eturnal:start_modules/0:384)
+2026-10-21 13:18:01.088040+00:00 [debug] Calling mod_stats_prometheus:start/0 (eturnal_module:start/1:143)
+2026-10-21 13:18:01.088139+00:00 [debug] Starting mod_stats_prometheus (mod_stats_prometheus:start/0:56)
+2026-10-21 13:18:01.088238+00:00 [debug] Dependency prometheus_httpd was available already (eturnal_module:ensure_dep/2:284)
+2026-10-21 13:18:01.088877+00:00 [debug] PROGRESS REPORT:
+    supervisor: {local,httpd_instance_sup__127_0_0_1__9081default}
+    started: [{pid,<0.1136.0>},
+              {id,{httpd_connection_sup,{127,0,0,1},9081,default}},
+              {mfargs,{httpd_connection_sup,start_link,[[{127,0,0,1},9081]]}},
+              {restart_type,permanent},
+              {significant,false},
+              {shutdown,5000},
+              {child_type,supervisor}]
+ (supervisor:report_progress/3:2323)
+2026-10-21 13:18:01.089058+00:00 [debug] PROGRESS REPORT:
+    supervisor: {local,httpd_instance_sup__127_0_0_1__9081default}
+    started: [{pid,<0.1137.0>},
+              {id,{httpd_misc_sup,{127,0,0,1},9081,default}},
+              {mfargs,{httpd_misc_sup,start_link,[{127,0,0,1},9081,default]}},
+              {restart_type,permanent},
+              {significant,false},
+              {shutdown,infinity},
+              {child_type,supervisor}]
+ (supervisor:report_progress/3:2323)
+2026-10-21 13:18:01.090916+00:00 [debug] PROGRESS REPORT:
+    supervisor: {local,httpd_instance_sup__127_0_0_1__9081default}
+    started: [{pid,<0.1138.0>},
+              {id,{httpd_manager,{127,0,0,1},9081,default}},
+              {mfargs,
+                  {httpd_manager,start_link,
+                      [undefined,
+                       [{bind_address,{127,0,0,1}},
+                        {socket_type,ip_comm},
+                        {port,9081},
+                        {server_root,"run/mod_stats_prometheus/doc"},
+                        {document_root,"run/mod_stats_prometheus/doc"},
+                        {server_name,"Prometheus Exporter"},
+                        {modules,[prometheus_httpd]}],
+                       15000]}},
+              {restart_type,permanent},
+              {significant,false},
+              {shutdown,4000},
+              {child_type,worker}]
+ (supervisor:report_progress/3:2323)
+2026-10-21 13:18:01.091370+00:00 [debug] PROGRESS REPORT:
+    supervisor: {local,httpd_acceptor_sup__127_0_0_1__9081default}
+    started: [{pid,<0.1140.0>},
+              {id,{httpd_acceptor_sup,{127,0,0,1},9081,default}},
+              {mfargs,{httpd_acceptor,start_link,
+                                      [httpd__127_0_0_1__9081default,ip_comm,
+                                       {127,0,0,1},
+                                       9081,inet,
+                                       httpd_conf__127_0_0_1__9081default,
+                                       15000]}},
+              {restart_type,transient},
+              {significant,false},
+              {shutdown,brutal_kill},
+              {child_type,worker}]
+ (supervisor:report_progress/3:2323)
+2026-10-21 13:18:01.091531+00:00 [debug] PROGRESS REPORT:
+    supervisor: {local,httpd_instance_sup__127_0_0_1__9081default}
+    started: [{pid,<0.1139.0>},
+              {id,{httpd_acceptor_sup,{127,0,0,1},9081,default}},
+              {mfargs,
+                  {httpd_acceptor_sup,start_link,
+                      [[{127,0,0,1},
+                        9081,
+                        [{bind_address,{127,0,0,1}},
+                         {socket_type,ip_comm},
+                         {port,9081},
+                         {server_root,"run/mod_stats_prometheus/doc"},
+                         {document_root,"run/mod_stats_prometheus/doc"},
+                         {server_name,"Prometheus Exporter"},
+                         {modules,[prometheus_httpd]}],
+                        15000,undefined]]}},
+              {restart_type,permanent},
+              {significant,false},
+              {shutdown,infinity},
+              {child_type,supervisor}]
+ (supervisor:report_progress/3:2323)
+2026-10-21 13:18:01.091661+00:00 [debug] PROGRESS REPORT:
+    supervisor: {local,httpd_sup}
+    started: [{pid,<0.1135.0>},
+              {id,{httpd_instance_sup,{127,0,0,1},9081,default}},
+              {mfargs,
+                  {httpd_instance_sup,start_link,
+                      [[{bind_address,{127,0,0,1}},
+                        {socket_type,ip_comm},
+                        {port,9081},
+                        {server_root,"run/mod_stats_prometheus/doc"},
+                        {document_root,"run/mod_stats_prometheus/doc"},
+                        {server_name,"Prometheus Exporter"},
+                        {modules,[prometheus_httpd]}],
+                       15000,[]]}},
+              {restart_type,permanent},
+              {significant,false},
+              {shutdown,infinity},
+              {child_type,supervisor}]
+ (supervisor:report_progress/3:2333)
+2026-10-21 13:18:01.093678+00:00 [info] Started mod_stats_prometheus (eturnal:start_modules/0:384)
+2026-10-21 13:18:01.093805+00:00 [debug] Restarted modules (eturnal:reload/1:639)
+2026-10-21 13:18:01.093902+00:00 [debug] eturnal call (reload) returned ok (eturnal_ctl:call/1:439)
+2026-10-21 13:18:01.094202+00:00 [debug] Handling API call: reload() (eturnal_ctl:reload/0:179)
+2026-10-21 13:18:01.096486+00:00 [debug] Calling mod_log_stun:options/0 (eturnal_module:options/1:192)
+2026-10-21 13:18:01.096639+00:00 [debug] Calling mod_stats_influx:options/0 (eturnal_module:options/1:192)
+2026-10-21 13:18:01.096797+00:00 [debug] Calling mod_stats_prometheus:options/0 (eturnal_module:options/1:192)
+2026-10-21 13:18:01.097402+00:00 [info] Reloading configuration (eturnal:reload/1:627)
+2026-10-21 13:18:01.097623+00:00 [debug] Keeping PEM file (run/cert.pem) (eturnal:check_pem_file/0:806)
+2026-10-21 13:18:01.097726+00:00 [debug] TLS certificate unchanged (eturnal:reload/1:633)
+2026-10-21 13:18:01.098423+00:00 [debug] Calling mod_stats_influx:stop/1 (eturnal_module:stop/1:163)
+2026-10-21 13:18:01.098590+00:00 [debug] Stopping mod_stats_influx (mod_stats_influx:stop/0:61)
+2026-10-21 13:18:01.098688+00:00 [info] Stopped mod_stats_influx (eturnal:stop_modules/1:397)
+2026-10-21 13:18:01.099650+00:00 [debug] Calling mod_log_stun:stop/1 (eturnal_module:stop/1:163)
+2026-10-21 13:18:01.099752+00:00 [debug] Stopping mod_log_stun (mod_log_stun:stop/0:49)
+2026-10-21 13:18:01.099843+00:00 [info] Stopped mod_log_stun (eturnal:stop_modules/1:397)
+2026-10-21 13:18:01.101039+00:00 [debug] Calling mod_stats_prometheus:stop/1 (eturnal_module:stop/1:163)
+2026-10-21 13:18:01.101194+00:00 [debug] Stopping mod_stats_prometheus (mod_stats_prometheus:stop/0:110)
+2026-10-21 13:18:01.101497+00:00 [info] Stopped mod_stats_prometheus (eturnal:stop_modules/1:397)
+2026-10-21 13:18:01.101613+00:00 [debug] Calling mod_stats_influx:start/0 (eturnal_module:start/1:143)
+2026-10-21 13:18:01.101698+00:00 [debug] Starting mod_stats_influx (mod_stats_influx:start/0:37)
+2026-10-21 13:18:01.101799+00:00 [debug] Dependency influx_udp was available already (eturnal_module:ensure_dep/2:284)
+2026-10-21 13:18:01.102071+00:00 [info]     options: #{port => 8089,host => "localhost",pool_size => 1,
+               max_overflow => 1}
+    msg: Start clients pool
+    host: {127,0,0,1} (influx_udp:start_pool_/2:239)
+2026-10-21 13:18:01.103483+00:00 [info] Started mod_stats_influx (eturnal:start_modules/0:384)
+2026-10-21 13:18:01.103609+00:00 [debug] Calling mod_log_stun:start/0 (eturnal_module:start/1:143)
+2026-10-21 13:18:01.103707+00:00 [debug] Starting mod_log_stun (mod_log_stun:start/0:38)
+2026-10-21 13:18:01.104115+00:00 [info] Started mod_log_stun (eturnal:start_modules/0:384)
+2026-10-21 13:18:01.104249+00:00 [debug] Calling mod_stats_prometheus:start/0 (eturnal_module:start/1:143)
+2026-10-21 13:18:01.104403+00:00 [debug] Starting mod_stats_prometheus (mod_stats_prometheus:start/0:56)
+2026-10-21 13:18:01.104546+00:00 [debug] Dependency prometheus_httpd was available already (eturnal_module:ensure_dep/2:284)
+2026-10-21 13:18:01.105130+00:00 [debug] PROGRESS REPORT:
+    supervisor: {local,httpd_instance_sup__127_0_0_1__9081default}
+    started: [{pid,<0.1172.0>},
+              {id,{httpd_connection_sup,{127,0,0,1},9081,default}},
+              {mfargs,{httpd_connection_sup,start_link,[[{127,0,0,1},9081]]}},
+              {restart_type,permanent},
+              {significant,false},
+              {shutdown,5000},
+              {child_type,supervisor}]
+ (supervisor:report_progress/3:2323)
+2026-10-21 13:18:01.105317+00:00 [debug] PROGRESS REPORT:
+    supervisor: {local,httpd_instance_sup__127_0_0_1__9081default}
+    started: [{pid,<0.1173.0>},
+              {id,{httpd_misc_sup,{127,0,0,1},9081,default}},
+              {mfargs,{httpd_misc_sup,start_link,[{127,0,0,1},9081,default]}},
+              {restart_type,permanent},
+              {significant,false},
+              {shutdown,infinity},
+              {child_type,supervisor}]
+ (supervisor:report_progress/3:2323)
+2026-10-21 13:18:01.105702+00:00 [debug] PROGRESS REPORT:
+    supervisor: {local,httpd_instance_sup__127_0_0_1__9081default}
+    started: [{pid,<0.1174.0>},
+              {id,{httpd_manager,{127,0,0,1},9081,default}},
+              {mfargs,
+                  {httpd_manager,start_link,
+                      [undefined,
+                       [{bind_address,{127,0,0,1}},
+                        {socket_type,ip_comm},
+                        {port,9081},
+                        {server_root,"run/mod_stats_prometheus/doc"},
+                        {document_root,"run/mod_stats_prometheus/doc"},
+                        {server_name,"Prometheus Exporter"},
+                        {modules,[prometheus_httpd]}],
+                       15000]}},
+              {restart_type,permanent},
+              {significant,false},
+              {shutdown,4000},
+              {child_type,worker}]
+ (supervisor:report_progress/3:2323)
+2026-10-21 13:18:01.106228+00:00 [debug] PROGRESS REPORT:
+    supervisor: {local,httpd_acceptor_sup__127_0_0_1__9081default}
+    started: [{pid,<0.1176.0>},
+              {id,{httpd_acceptor_sup,{127,0,0,1},9081,default}},
+              {mfargs,{httpd_acceptor,start_link,
+                                      [httpd__127_0_0_1__9081default,ip_comm,
+                                       {127,0,0,1},
+                                       9081,inet,
+                                       httpd_conf__127_0_0_1__9081default,
+                                       15000]}},
+              {restart_type,transient},
+              {significant,false},
+              {shutdown,brutal_kill},
+              {child_type,worker}]
+ (supervisor:report_progress/3:2323)
+2026-10-21 13:18:01.106398+00:00 [debug] PROGRESS REPORT:
+    supervisor: {local,httpd_instance_sup__127_0_0_1__9081default}
+    started: [{pid,<0.1175.0>},
+              {id,{httpd_acceptor_sup,{127,0,0,1},9081,default}},
+              {mfargs,
+                  {httpd_acceptor_sup,start_link,
+                      [[{127,0,0,1},
+                        9081,
+                        [{bind_address,{127,0,0,1}},
+                         {socket_type,ip_comm},
+                         {port,9081},
+                         {server_root,"run/mod_stats_prometheus/doc"},
+                         {document_root,"run/mod_stats_prometheus/doc"},
+                         {server_name,"Prometheus Exporter"},
+                         {modules,[prometheus_httpd]}],
+                        15000,undefined]]}},
+              {restart_type,permanent},
+              {significant,false},
+              {shutdown,infinity},
+              {child_type,supervisor}]
+ (supervisor:report_progress/3:2323)
+2026-10-21 13:18:01.106510+00:00 [debug] PROGRESS REPORT:
+    supervisor: {local,httpd_sup}
+    started: [{pid,<0.1171.0>},
+              {id,{httpd_instance_sup,{127,0,0,1},9081,default}},
+              {mfargs,
+                  {httpd_instance_sup,start_link,
+                      [[{bind_address,{127,0,0,1}},
+                        {socket_type,ip_comm},
+                        {port,9081},
+                        {server_root,"run/mod_stats_prometheus/doc"},
+                        {document_root,"run/mod_stats_prometheus/doc"},
+                        {server_name,"Prometheus Exporter"},
+                        {modules,[prometheus_httpd]}],
+                       15000,[]]}},
+              {restart_type,permanent},
+              {significant,false},
+              {shutdown,infinity},
+              {child_type,supervisor}]
+ (supervisor:report_progress/3:2333)
+2026-10-21 13:18:01.108687+00:00 [info] Started mod_stats_prometheus (eturnal:start_modules/0:384)
+2026-10-21 13:18:01.108834+00:00 [debug] Restarted modules (eturnal:reload/1:639)
+2026-10-21 13:18:01.108942+00:00 [debug] eturnal call (reload) returned ok (eturnal_ctl:call/1:439)
+2026-10-21 13:18:01.133377+00:00 [info] Accepting connection: 127.0.0.1:40704 -> 127.0.0.1:34780 [TCP, session 4nqimc7i2y4n] (stun_acceptor:accept/3:158)
+2026-10-21 13:18:01.156930+00:00 [info] Accepting connection: 127.0.0.1:56600 -> 127.0.0.1:53490 [TLS, session mqyg2sbwhk58] (stun_acceptor:accept/3:158)
+2026-10-21 13:18:01.187177+00:00 [debug] Received:
+#stun{class = request,method = 3,magic = 554869826,
+      trid = 17375736700517594210747001885,raw = <<>>,unsupported = [],
+      'ALTERNATE-SERVER' = undefined,'CHANNEL-NUMBER' = undefined,
+      'DATA' = undefined,'DONT-FRAGMENT' = false,'ERROR-CODE' = undefined,
+      'LIFETIME' = undefined,'MAPPED-ADDRESS' = undefined,
+      'MESSAGE-INTEGRITY' = undefined,'NONCE' = undefined,'REALM' = undefined,
+      'REQUESTED-ADDRESS-FAMILY' = undefined,
+      'REQUESTED-TRANSPORT' = undefined,'SOFTWARE' = undefined,
+      'UNKNOWN-ATTRIBUTES' = [],'USERNAME' = undefined,
+      'XOR-MAPPED-ADDRESS' = undefined,'XOR-PEER-ADDRESS' = [],
+      'XOR-RELAYED-ADDRESS' = undefined} (stun:udp_recv/5:146)
+2026-10-21 13:18:01.187361+00:00 [debug] Sending:
+#stun{class = error,method = 3,magic = 554869826,
+      trid = 17375736700517594210747001885,raw = <<>>,unsupported = [],
+      'ALTERNATE-SERVER' = undefined,'CHANNEL-NUMBER' = undefined,
+      'DATA' = undefined,'DONT-FRAGMENT' = false,
+      'ERROR-CODE' = {401,<<"Unauthorized">>},
+      'LIFETIME' = undefined,'MAPPED-ADDRESS' = undefined,
+      'MESSAGE-INTEGRITY' = undefined,'NONCE' = <<"2388083030">>,
+      'REALM' = <<"eturnal.net">>,'REQUESTED-ADDRESS-FAMILY' = undefined,
+      'REQUESTED-TRANSPORT' = undefined,'SOFTWARE' = <<"eturnal">>,
+      'UNKNOWN-ATTRIBUTES' = [],'USERNAME' = undefined,
+      'XOR-MAPPED-ADDRESS' = undefined,'XOR-PEER-ADDRESS' = [],
+      'XOR-RELAYED-ADDRESS' = undefined} (stun:send/3:500)
+2026-10-21 13:18:01.187688+00:00 [debug] Received:
+#stun{class = request,method = 3,magic = 554869826,
+      trid = 74792986587926040571641862324,
+      raw = <<0,3,0,76,33,18,164,66,241,171,78,247,67,243,63,207,198,220,24,
+              180,0,25,0,4,17,0,0,0,0,6,0,5,97,108,105,99,101,0,0,0,0,20,0,11,
+              101,116,117,114,110,97,108,46,110,101,116,0,0,21,0,10,50,51,56,
+              56,48,56,51,48,51,48,0,0>>,
+      unsupported = [],'ALTERNATE-SERVER' = undefined,
+      'CHANNEL-NUMBER' = undefined,'DATA' = undefined,'DONT-FRAGMENT' = false,
+      'ERROR-CODE' = undefined,'LIFETIME' = undefined,
+      'MAPPED-ADDRESS' = undefined,
+      'MESSAGE-INTEGRITY' = <<205,55,41,153,90,245,173,15,118,231,5,75,43,111,
+                              81,241,155,252,160,198>>,
+      'NONCE' = <<"2388083030">>,'REALM' = <<"eturnal.net">>,
+      'REQUESTED-ADDRESS-FAMILY' = undefined,'REQUESTED-TRANSPORT' = udp,
+      'SOFTWARE' = undefined,'UNKNOWN-ATTRIBUTES' = [],
+      'USERNAME' = <<"alice">>,'XOR-MAPPED-ADDRESS' = undefined,
+      'XOR-PEER-ADDRESS' = [],'XOR-RELAYED-ADDRESS' = undefined} (stun:udp_recv/5:146)
+2026-10-21 13:18:01.187819+00:00 [debug] Looking up password for: alice [UDP, session aiks9zcq69u3, user alice, client 127.0.0.1:41683] (eturnal:get_password/2:259)
+2026-10-21 13:18:01.187875+00:00 [info] Accepting long-term STUN/TURN authentication [UDP, session aiks9zcq69u3, user alice, client 127.0.0.1:41683] (stun:process/2:289)
+2026-10-21 13:18:01.190500+00:00 [debug] Running 'turn_session_start' hook [UDP, session aiks9zcq69u3, user alice, client 127.0.0.1:41683] (turn:run_hook/3:753)
+2026-10-21 13:18:01.190580+00:00 [debug] Got 'turn_session_start' event [UDP, session aiks9zcq69u3, user alice, client 127.0.0.1:41683] (eturnal_module:handle_event/2:177)
+2026-10-21 13:18:01.190651+00:00 [debug] Calling mod_stats_prometheus:handle_event/2 [UDP, session aiks9zcq69u3, user alice, client 127.0.0.1:41683] (eturnal_module:handle_event/2:180)
+2026-10-21 13:18:01.190716+00:00 [debug] Observing started TURN session aiks9zcq69u3 for Prometheus [UDP, session aiks9zcq69u3, user alice, client 127.0.0.1:41683] (mod_stats_prometheus:on_turn_session_start/1:174)
+2026-10-21 13:18:01.190936+00:00 [notice] Creating TURN allocation (lifetime: 599 seconds) [UDP, session aiks9zcq69u3, user alice, client 127.0.0.1:41683, relay 127.0.0.1:55485] (turn:wait_for_allocate/2:226)
+2026-10-21 13:18:01.191071+00:00 [debug] Sending:
+#stun{class = response,method = 3,magic = 554869826,
+      trid = 74792986587926040571641862324,raw = <<>>,unsupported = [],
+      'ALTERNATE-SERVER' = undefined,'CHANNEL-NUMBER' = undefined,
+      'DATA' = undefined,'DONT-FRAGMENT' = false,'ERROR-CODE' = undefined,
+      'LIFETIME' = 599,'MAPPED-ADDRESS' = undefined,
+      'MESSAGE-INTEGRITY' = undefined,'NONCE' = undefined,'REALM' = undefined,
+      'REQUESTED-ADDRESS-FAMILY' = undefined,
+      'REQUESTED-TRANSPORT' = undefined,'SOFTWARE' = <<"eturnal">>,
+      'UNKNOWN-ATTRIBUTES' = [],'USERNAME' = undefined,
+      'XOR-MAPPED-ADDRESS' = {{127,0,0,1},41683},
+      'XOR-PEER-ADDRESS' = [],
+      'XOR-RELAYED-ADDRESS' = {{127,0,0,1},55485}} (turn:send/2:549)
+2026-10-21 13:18:01.191420+00:00 [debug] Received:
+#stun{class = request,method = 4,magic = 554869826,
+      trid = 28469269088976399710600924558,
+      raw = <<0,4,0,76,33,18,164,66,91,253,58,57,196,98,187,10,226,169,141,142,
+              0,6,0,5,97,108,105,99,101,0,0,0,0,20,0,11,101,116,117,114,110,97,
+              108,46,110,101,116,0,0,21,0,10,50,51,56,56,48,56,51,48,51,48,0,0,
+              0,13,0,4,0,0,0,0>>,
+      unsupported = [],'ALTERNATE-SERVER' = undefined,
+      'CHANNEL-NUMBER' = undefined,'DATA' = undefined,'DONT-FRAGMENT' = false,
+      'ERROR-CODE' = undefined,'LIFETIME' = 0,'MAPPED-ADDRESS' = undefined,
+      'MESSAGE-INTEGRITY' = <<242,31,226,47,4,108,220,27,138,7,219,74,194,155,
+                              50,55,68,131,89,195>>,
+      'NONCE' = <<"2388083030">>,'REALM' = <<"eturnal.net">>,
+      'REQUESTED-ADDRESS-FAMILY' = undefined,
+      'REQUESTED-TRANSPORT' = undefined,'SOFTWARE' = undefined,
+      'UNKNOWN-ATTRIBUTES' = [],'USERNAME' = <<"alice">>,
+      'XOR-MAPPED-ADDRESS' = undefined,'XOR-PEER-ADDRESS' = [],
+      'XOR-RELAYED-ADDRESS' = undefined} (stun:udp_recv/5:146)
+2026-10-21 13:18:01.191527+00:00 [debug] Looking up password for: alice [UDP, session amsik7xq4ygt, user alice, client 127.0.0.1:41683] (eturnal:get_password/2:259)
+2026-10-21 13:18:01.191592+00:00 [info] Accepting long-term STUN/TURN authentication [UDP, session amsik7xq4ygt, user alice, client 127.0.0.1:41683] (stun:process/2:289)
+2026-10-21 13:18:01.191631+00:00 [info] Client requested closing the TURN session [UDP, session aiks9zcq69u3, user alice, client 127.0.0.1:41683, relay 127.0.0.1:55485] (turn:active/2:285)
+2026-10-21 13:18:01.191737+00:00 [debug] Sending:
+#stun{class = response,method = 4,magic = 554869826,
+      trid = 28469269088976399710600924558,raw = <<>>,unsupported = [],
+      'ALTERNATE-SERVER' = undefined,'CHANNEL-NUMBER' = undefined,
+      'DATA' = undefined,'DONT-FRAGMENT' = false,'ERROR-CODE' = undefined,
+      'LIFETIME' = 0,'MAPPED-ADDRESS' = undefined,
+      'MESSAGE-INTEGRITY' = undefined,'NONCE' = undefined,'REALM' = undefined,
+      'REQUESTED-ADDRESS-FAMILY' = undefined,
+      'REQUESTED-TRANSPORT' = undefined,'SOFTWARE' = <<"eturnal">>,
+      'UNKNOWN-ATTRIBUTES' = [],'USERNAME' = undefined,
+      'XOR-MAPPED-ADDRESS' = undefined,'XOR-PEER-ADDRESS' = [],
+      'XOR-RELAYED-ADDRESS' = undefined} (turn:send/2:549)
+2026-10-21 13:18:01.191883+00:00 [info] Deleting TURN allocation [UDP, session aiks9zcq69u3, user alice, client 127.0.0.1:41683, relay 127.0.0.1:55485] (turn:terminate/3:482)
+2026-10-21 13:18:01.191933+00:00 [notice] Relayed 0 KiB (in 0 B / 0 packets, out 0 B / 0 packets), duration: 0 seconds [UDP, session aiks9zcq69u3, user alice, client 127.0.0.1:41683, relay 127.0.0.1:55485] (turn:terminate/3:489)
+2026-10-21 13:18:01.191989+00:00 [debug] Running 'turn_session_stop' hook [UDP, session aiks9zcq69u3, user alice, client 127.0.0.1:41683, relay 127.0.0.1:55485] (turn:run_hook/3:753)
+2026-10-21 13:18:01.192027+00:00 [debug] Got 'turn_session_stop' event [UDP, session aiks9zcq69u3, user alice, client 127.0.0.1:41683, relay 127.0.0.1:55485] (eturnal_module:handle_event/2:177)
+2026-10-21 13:18:01.192088+00:00 [debug] Calling mod_stats_influx:handle_event/2 [UDP, session aiks9zcq69u3, user alice, client 127.0.0.1:41683, relay 127.0.0.1:55485] (eturnal_module:handle_event/2:180)
+2026-10-21 13:18:01.192130+00:00 [debug] Received:
+#stun{class = request,method = 3,magic = 554869826,
+      trid = 44628309212439797637700711178,raw = <<>>,unsupported = [],
+      'ALTERNATE-SERVER' = undefined,'CHANNEL-NUMBER' = undefined,
+      'DATA' = undefined,'DONT-FRAGMENT' = false,'ERROR-CODE' = undefined,
+      'LIFETIME' = undefined,'MAPPED-ADDRESS' = undefined,
+      'MESSAGE-INTEGRITY' = undefined,'NONCE' = undefined,'REALM' = undefined,
+      'REQUESTED-ADDRESS-FAMILY' = undefined,
+      'REQUESTED-TRANSPORT' = undefined,'SOFTWARE' = undefined,
+      'UNKNOWN-ATTRIBUTES' = [],'USERNAME' = undefined,
+      'XOR-MAPPED-ADDRESS' = undefined,'XOR-PEER-ADDRESS' = [],
+      'XOR-RELAYED-ADDRESS' = undefined} (stun:udp_recv/5:146)
+2026-10-21 13:18:01.192160+00:00 [debug] Writing stats of TURN session aiks9zcq69u3 to InfluxDB [UDP, session aiks9zcq69u3, user alice, client 127.0.0.1:41683, relay 127.0.0.1:55485] (mod_stats_influx:on_turn_session_stop/1:87)
+2026-10-21 13:18:01.192251+00:00 [debug] Sending:
+#stun{class = error,method = 3,magic = 554869826,
+      trid = 44628309212439797637700711178,raw = <<>>,unsupported = [],
+      'ALTERNATE-SERVER' = undefined,'CHANNEL-NUMBER' = undefined,
+      'DATA' = undefined,'DONT-FRAGMENT' = false,
+      'ERROR-CODE' = {401,<<"Unauthorized">>},
+      'LIFETIME' = undefined,'MAPPED-ADDRESS' = undefined,
+      'MESSAGE-INTEGRITY' = undefined,'NONCE' = <<"1469015511">>,
+      'REALM' = <<"eturnal.net">>,'REQUESTED-ADDRESS-FAMILY' = undefined,
+      'REQUESTED-TRANSPORT' = undefined,'SOFTWARE' = <<"eturnal">>,
+      'UNKNOWN-ATTRIBUTES' = [],'USERNAME' = undefined,
+      'XOR-MAPPED-ADDRESS' = undefined,'XOR-PEER-ADDRESS' = [],
+      'XOR-RELAYED-ADDRESS' = undefined} (stun:send/3:500)
+2026-10-21 13:18:01.192541+00:00 [debug] Received:
+#stun{class = request,method = 3,magic = 554869826,
+      trid = 74460168379346530401750453310,
+      raw = <<0,3,0,80,33,18,164,66,240,152,1,248,6,180,241,251,194,65,140,62,
+              0,25,0,4,17,0,0,0,0,6,0,10,50,49,52,53,57,49,51,50,48,48,0,0,0,
+              20,0,11,101,116,117,114,110,97,108,46,110,101,116,0,0,21,0,10,49,
+              52,54,57,48,49,53,53,49,49,0,0>>,
+      unsupported = [],'ALTERNATE-SERVER' = undefined,
+      'CHANNEL-NUMBER' = undefined,'DATA' = undefined,'DONT-FRAGMENT' = false,
+      'ERROR-CODE' = undefined,'LIFETIME' = undefined,
+      'MAPPED-ADDRESS' = undefined,
+      'MESSAGE-INTEGRITY' = <<63,9,175,203,139,110,232,12,51,191,72,154,183,90,
+                              212,46,52,249,121,162>>,
+      'NONCE' = <<"1469015511">>,'REALM' = <<"eturnal.net">>,
+      'REQUESTED-ADDRESS-FAMILY' = undefined,'REQUESTED-TRANSPORT' = udp,
+      'SOFTWARE' = undefined,'UNKNOWN-ATTRIBUTES' = [],
+      'USERNAME' = <<"2145913200">>,'XOR-MAPPED-ADDRESS' = undefined,
+      'XOR-PEER-ADDRESS' = [],'XOR-RELAYED-ADDRESS' = undefined} (stun:udp_recv/5:146)
+2026-10-21 13:18:01.192659+00:00 [debug] Deriving password for: 2145913200 [UDP, session 6crwtdja99oj, user 2145913200, client 127.0.0.1:44000] (eturnal:get_password/2:245)
+2026-10-21 13:18:01.192713+00:00 [info] Accepting long-term STUN/TURN authentication [UDP, session 6crwtdja99oj, user 2145913200, client 127.0.0.1:44000] (stun:process/2:289)
+2026-10-21 13:18:01.192786+00:00 [debug] Running 'turn_session_start' hook [UDP, session 6crwtdja99oj, user 2145913200, client 127.0.0.1:44000] (turn:run_hook/3:753)
+2026-10-21 13:18:01.192838+00:00 [debug] Got 'turn_session_start' event [UDP, session 6crwtdja99oj, user 2145913200, client 127.0.0.1:44000] (eturnal_module:handle_event/2:177)
+2026-10-21 13:18:01.192865+00:00 [debug] Calling mod_stats_prometheus:handle_event/2 [UDP, session 6crwtdja99oj, user 2145913200, client 127.0.0.1:44000] (eturnal_module:handle_event/2:180)
+2026-10-21 13:18:01.192907+00:00 [debug] Observing started TURN session 6crwtdja99oj for Prometheus [UDP, session 6crwtdja99oj, user 2145913200, client 127.0.0.1:44000] (mod_stats_prometheus:on_turn_session_start/1:174)
+2026-10-21 13:18:01.193060+00:00 [notice] Creating TURN allocation (lifetime: 600 seconds) [UDP, session 6crwtdja99oj, user 2145913200, client 127.0.0.1:44000, relay 127.0.0.1:63103] (turn:wait_for_allocate/2:226)
+2026-10-21 13:18:01.193158+00:00 [debug] Sending:
+#stun{class = response,method = 3,magic = 554869826,
+      trid = 74460168379346530401750453310,raw = <<>>,unsupported = [],
+      'ALTERNATE-SERVER' = undefined,'CHANNEL-NUMBER' = undefined,
+      'DATA' = undefined,'DONT-FRAGMENT' = false,'ERROR-CODE' = undefined,
+      'LIFETIME' = 600,'MAPPED-ADDRESS' = undefined,
+      'MESSAGE-INTEGRITY' = undefined,'NONCE' = undefined,'REALM' = undefined,
+      'REQUESTED-ADDRESS-FAMILY' = undefined,
+      'REQUESTED-TRANSPORT' = undefined,'SOFTWARE' = <<"eturnal">>,
+      'UNKNOWN-ATTRIBUTES' = [],'USERNAME' = undefined,
+      'XOR-MAPPED-ADDRESS' = {{127,0,0,1},44000},
+      'XOR-PEER-ADDRESS' = [],
+      'XOR-RELAYED-ADDRESS' = {{127,0,0,1},63103}} (turn:send/2:549)
+2026-10-21 13:18:01.193499+00:00 [debug] Received:
+#stun{class = request,method = 4,magic = 554869826,
+      trid = 2274212811446560726079624437,
+      raw = <<0,4,0,80,33,18,164,66,7,89,47,75,139,17,138,109,16,233,212,245,0,
+              6,0,10,50,49,52,53,57,49,51,50,48,48,0,0,0,20,0,11,101,116,117,
+              114,110,97,108,46,110,101,116,0,0,21,0,10,49,52,54,57,48,49,53,
+              53,49,49,0,0,0,13,0,4,0,0,0,0>>,
+      unsupported = [],'ALTERNATE-SERVER' = undefined,
+      'CHANNEL-NUMBER' = undefined,'DATA' = undefined,'DONT-FRAGMENT' = false,
+      'ERROR-CODE' = undefined,'LIFETIME' = 0,'MAPPED-ADDRESS' = undefined,
+      'MESSAGE-INTEGRITY' = <<233,127,203,41,215,164,179,87,216,75,79,164,92,
+                              237,203,52,141,150,33,170>>,
+      'NONCE' = <<"1469015511">>,'REALM' = <<"eturnal.net">>,
+      'REQUESTED-ADDRESS-FAMILY' = undefined,
+      'REQUESTED-TRANSPORT' = undefined,'SOFTWARE' = undefined,
+      'UNKNOWN-ATTRIBUTES' = [],'USERNAME' = <<"2145913200">>,
+      'XOR-MAPPED-ADDRESS' = undefined,'XOR-PEER-ADDRESS' = [],
+      'XOR-RELAYED-ADDRESS' = undefined} (stun:udp_recv/5:146)
+2026-10-21 13:18:01.193618+00:00 [debug] Deriving password for: 2145913200 [UDP, session i39wak56cm1i, user 2145913200, client 127.0.0.1:44000] (eturnal:get_password/2:245)
+2026-10-21 13:18:01.193675+00:00 [info] Accepting long-term STUN/TURN authentication [UDP, session i39wak56cm1i, user 2145913200, client 127.0.0.1:44000] (stun:process/2:289)
+2026-10-21 13:18:01.193733+00:00 [info] Client requested closing the TURN session [UDP, session 6crwtdja99oj, user 2145913200, client 127.0.0.1:44000, relay 127.0.0.1:63103] (turn:active/2:285)
+2026-10-21 13:18:01.193851+00:00 [debug] Sending:
+#stun{class = response,method = 4,magic = 554869826,
+      trid = 2274212811446560726079624437,raw = <<>>,unsupported = [],
+      'ALTERNATE-SERVER' = undefined,'CHANNEL-NUMBER' = undefined,
+      'DATA' = undefined,'DONT-FRAGMENT' = false,'ERROR-CODE' = undefined,
+      'LIFETIME' = 0,'MAPPED-ADDRESS' = undefined,
+      'MESSAGE-INTEGRITY' = undefined,'NONCE' = undefined,'REALM' = undefined,
+      'REQUESTED-ADDRESS-FAMILY' = undefined,
+      'REQUESTED-TRANSPORT' = undefined,'SOFTWARE' = <<"eturnal">>,
+      'UNKNOWN-ATTRIBUTES' = [],'USERNAME' = undefined,
+      'XOR-MAPPED-ADDRESS' = undefined,'XOR-PEER-ADDRESS' = [],
+      'XOR-RELAYED-ADDRESS' = undefined} (turn:send/2:549)
+2026-10-21 13:18:01.193980+00:00 [info] Deleting TURN allocation [UDP, session 6crwtdja99oj, user 2145913200, client 127.0.0.1:44000, relay 127.0.0.1:63103] (turn:terminate/3:482)
+2026-10-21 13:18:01.194026+00:00 [notice] Relayed 0 KiB (in 0 B / 0 packets, out 0 B / 0 packets), duration: 0 seconds [UDP, session 6crwtdja99oj, user 2145913200, client 127.0.0.1:44000, relay 127.0.0.1:63103] (turn:terminate/3:489)
+2026-10-21 13:18:01.194085+00:00 [debug] Running 'turn_session_stop' hook [UDP, session 6crwtdja99oj, user 2145913200, client 127.0.0.1:44000, relay 127.0.0.1:63103] (turn:run_hook/3:753)
+2026-10-21 13:18:01.194130+00:00 [debug] Got 'turn_session_stop' event [UDP, session 6crwtdja99oj, user 2145913200, client 127.0.0.1:44000, relay 127.0.0.1:63103] (eturnal_module:handle_event/2:177)
+2026-10-21 13:18:01.194198+00:00 [debug] Calling mod_stats_influx:handle_event/2 [UDP, session 6crwtdja99oj, user 2145913200, client 127.0.0.1:44000, relay 127.0.0.1:63103] (eturnal_module:handle_event/2:180)
+2026-10-21 13:18:01.194254+00:00 [debug] Writing stats of TURN session 6crwtdja99oj to InfluxDB [UDP, session 6crwtdja99oj, user 2145913200, client 127.0.0.1:44000, relay 127.0.0.1:63103] (mod_stats_influx:on_turn_session_stop/1:87)
+2026-10-21 13:18:01.195443+00:00 [debug] Calling mod_stats_prometheus:handle_event/2 [UDP, session aiks9zcq69u3, user alice, client 127.0.0.1:41683, relay 127.0.0.1:55485] (eturnal_module:handle_event/2:180)
+2026-10-21 13:18:01.195499+00:00 [debug] Calling mod_stats_prometheus:handle_event/2 [UDP, session 6crwtdja99oj, user 2145913200, client 127.0.0.1:44000, relay 127.0.0.1:63103] (eturnal_module:handle_event/2:180)
+2026-10-21 13:18:01.195544+00:00 [debug] Observing stopped TURN session 6crwtdja99oj for Prometheus [UDP, session 6crwtdja99oj, user 2145913200, client 127.0.0.1:44000, relay 127.0.0.1:63103] (mod_stats_prometheus:on_turn_session_stop/1:187)
+2026-10-21 13:18:01.195525+00:00 [debug] Observing stopped TURN session aiks9zcq69u3 for Prometheus [UDP, session aiks9zcq69u3, user alice, client 127.0.0.1:41683, relay 127.0.0.1:55485] (mod_stats_prometheus:on_turn_session_stop/1:187)
+2026-10-21 13:18:01.217619+00:00 [debug] Received:
+#stun{class = request,method = 1,magic = 554869826,
+      trid = 38318810232018733352188458147,raw = <<>>,unsupported = [],
+      'ALTERNATE-SERVER' = undefined,'CHANNEL-NUMBER' = undefined,
+      'DATA' = undefined,'DONT-FRAGMENT' = false,'ERROR-CODE' = undefined,
+      'LIFETIME' = undefined,'MAPPED-ADDRESS' = undefined,
+      'MESSAGE-INTEGRITY' = undefined,'NONCE' = undefined,'REALM' = undefined,
+      'REQUESTED-ADDRESS-FAMILY' = undefined,
+      'REQUESTED-TRANSPORT' = undefined,'SOFTWARE' = undefined,
+      'UNKNOWN-ATTRIBUTES' = [],'USERNAME' = undefined,
+      'XOR-MAPPED-ADDRESS' = undefined,'XOR-PEER-ADDRESS' = [],
+      'XOR-RELAYED-ADDRESS' = undefined} (stun:udp_recv/5:146)
+2026-10-21 13:18:01.217707+00:00 [debug] Responding to STUN request [UDP, session 8cpc01u2y4c6, anonymous, client 127.0.0.1:46362] (stun:process/4:357)
+2026-10-21 13:18:01.217752+00:00 [debug] Running 'stun_query' hook [UDP, session 8cpc01u2y4c6, anonymous, client 127.0.0.1:46362] (stun:run_hook/3:747)
+2026-10-21 13:18:01.217787+00:00 [debug] Got 'stun_query' event [UDP, session 8cpc01u2y4c6, anonymous, client 127.0.0.1:46362] (eturnal_module:handle_event/2:177)
+2026-10-21 13:18:01.217823+00:00 [debug] Calling mod_log_stun:handle_event/2 [UDP, session 8cpc01u2y4c6, anonymous, client 127.0.0.1:46362] (eturnal_module:handle_event/2:180)
+2026-10-21 13:18:01.217855+00:00 [info] Responding to STUN request [UDP, session 8cpc01u2y4c6, anonymous, client 127.0.0.1:46362] (mod_log_stun:handle_event/2:44)
+2026-10-21 13:18:01.217892+00:00 [debug] Calling mod_stats_influx:handle_event/2 [UDP, session 8cpc01u2y4c6, anonymous, client 127.0.0.1:46362] (eturnal_module:handle_event/2:180)
+2026-10-21 13:18:01.217923+00:00 [debug] Writing STUN query event to InfluxDB [UDP, session 8cpc01u2y4c6, anonymous, client 127.0.0.1:46362] (mod_stats_influx:on_stun_query/1:76)
+2026-10-21 13:18:01.218051+00:00 [debug] Calling mod_stats_prometheus:handle_event/2 [UDP, session 8cpc01u2y4c6, anonymous, client 127.0.0.1:46362] (eturnal_module:handle_event/2:180)
+2026-10-21 13:18:01.218086+00:00 [debug] Observing STUN query for Prometheus [UDP, session 8cpc01u2y4c6, anonymous, client 127.0.0.1:46362] (mod_stats_prometheus:on_stun_query/1:166)
+2026-10-21 13:18:01.218163+00:00 [debug] Sending:
+#stun{class = response,method = 1,magic = 554869826,
+      trid = 38318810232018733352188458147,raw = <<>>,unsupported = [],
+      'ALTERNATE-SERVER' = undefined,'CHANNEL-NUMBER' = undefined,
+      'DATA' = undefined,'DONT-FRAGMENT' = false,'ERROR-CODE' = undefined,
+      'LIFETIME' = undefined,'MAPPED-ADDRESS' = undefined,
+      'MESSAGE-INTEGRITY' = undefined,'NONCE' = undefined,'REALM' = undefined,
+      'REQUESTED-ADDRESS-FAMILY' = undefined,
+      'REQUESTED-TRANSPORT' = undefined,'SOFTWARE' = <<"eturnal">>,
+      'UNKNOWN-ATTRIBUTES' = [],'USERNAME' = undefined,
+      'XOR-MAPPED-ADDRESS' = {{127,0,0,1},46362},
+      'XOR-PEER-ADDRESS' = [],'XOR-RELAYED-ADDRESS' = undefined} (stun:send/3:500)
+2026-10-21 13:18:01.242658+00:00 [info] Accepting connection: 127.0.0.1:40716 -> 127.0.0.1:34780 [TCP, session w3d90uq4k7m7] (stun_acceptor:accept/3:158)
+2026-10-21 13:18:01.242891+00:00 [debug] Received:
+#stun{class = request,method = 1,magic = 554869826,
+      trid = 37823999954392304967372496847,raw = <<>>,unsupported = [],
+      'ALTERNATE-SERVER' = undefined,'CHANNEL-NUMBER' = undefined,
+      'DATA' = undefined,'DONT-FRAGMENT' = false,'ERROR-CODE' = undefined,
+      'LIFETIME' = undefined,'MAPPED-ADDRESS' = undefined,
+      'MESSAGE-INTEGRITY' = undefined,'NONCE' = undefined,'REALM' = undefined,
+      'REQUESTED-ADDRESS-FAMILY' = undefined,
+      'REQUESTED-TRANSPORT' = undefined,'SOFTWARE' = undefined,
+      'UNKNOWN-ATTRIBUTES' = [],'USERNAME' = undefined,
+      'XOR-MAPPED-ADDRESS' = undefined,'XOR-PEER-ADDRESS' = [],
+      'XOR-RELAYED-ADDRESS' = undefined} (stun:process_data/3:457)
+2026-10-21 13:18:01.242975+00:00 [debug] Responding to STUN request [TCP, session w3d90uq4k7m7, anonymous, client 127.0.0.1:40716] (stun:process/4:357)
+2026-10-21 13:18:01.243040+00:00 [debug] Running 'stun_query' hook [TCP, session w3d90uq4k7m7, anonymous, client 127.0.0.1:40716] (stun:run_hook/3:747)
+2026-10-21 13:18:01.243090+00:00 [debug] Got 'stun_query' event [TCP, session w3d90uq4k7m7, anonymous, client 127.0.0.1:40716] (eturnal_module:handle_event/2:177)
+2026-10-21 13:18:01.243131+00:00 [debug] Calling mod_log_stun:handle_event/2 [TCP, session w3d90uq4k7m7, anonymous, client 127.0.0.1:40716] (eturnal_module:handle_event/2:180)
+2026-10-21 13:18:01.243187+00:00 [info] Responding to STUN request [TCP, session w3d90uq4k7m7, anonymous, client 127.0.0.1:40716] (mod_log_stun:handle_event/2:44)
+2026-10-21 13:18:01.243220+00:00 [debug] Calling mod_stats_influx:handle_event/2 [TCP, session w3d90uq4k7m7, anonymous, client 127.0.0.1:40716] (eturnal_module:handle_event/2:180)
+2026-10-21 13:18:01.243263+00:00 [debug] Writing STUN query event to InfluxDB [TCP, session w3d90uq4k7m7, anonymous, client 127.0.0.1:40716] (mod_stats_influx:on_stun_query/1:76)
+2026-10-21 13:18:01.243494+00:00 [debug] Calling mod_stats_prometheus:handle_event/2 [TCP, session w3d90uq4k7m7, anonymous, client 127.0.0.1:40716] (eturnal_module:handle_event/2:180)
+2026-10-21 13:18:01.243554+00:00 [debug] Observing STUN query for Prometheus [TCP, session w3d90uq4k7m7, anonymous, client 127.0.0.1:40716] (mod_stats_prometheus:on_stun_query/1:166)
+2026-10-21 13:18:01.243642+00:00 [debug] Sending:
+#stun{class = response,method = 1,magic = 554869826,
+      trid = 37823999954392304967372496847,raw = <<>>,unsupported = [],
+      'ALTERNATE-SERVER' = undefined,'CHANNEL-NUMBER' = undefined,
+      'DATA' = undefined,'DONT-FRAGMENT' = false,'ERROR-CODE' = undefined,
+      'LIFETIME' = undefined,'MAPPED-ADDRESS' = undefined,
+      'MESSAGE-INTEGRITY' = undefined,'NONCE' = undefined,'REALM' = undefined,
+      'REQUESTED-ADDRESS-FAMILY' = undefined,
+      'REQUESTED-TRANSPORT' = undefined,'SOFTWARE' = <<"eturnal">>,
+      'UNKNOWN-ATTRIBUTES' = [],'USERNAME' = undefined,
+      'XOR-MAPPED-ADDRESS' = {{127,0,0,1},40716},
+      'XOR-PEER-ADDRESS' = [],'XOR-RELAYED-ADDRESS' = undefined} (stun:send/3:500)
+2026-10-21 13:18:01.244795+00:00 [info] Connection reset by peer [TCP, session w3d90uq4k7m7, anonymous, client 127.0.0.1:40716] (stun:handle_info/3:206)
+2026-10-21 13:18:01.267742+00:00 [info] Accepting connection: 127.0.0.1:56616 -> 127.0.0.1:53490 [TLS, session p0nuigzecnn0] (stun_acceptor:accept/3:158)
+2026-10-21 13:18:02.276085+00:00 [debug] Received:
+#stun{class = request,method = 1,magic = 554869826,
+      trid = 62970141800254031298909509873,raw = <<>>,unsupported = [],
+      'ALTERNATE-SERVER' = undefined,'CHANNEL-NUMBER' = undefined,
+      'DATA' = undefined,'DONT-FRAGMENT' = false,'ERROR-CODE' = undefined,
+      'LIFETIME' = undefined,'MAPPED-ADDRESS' = undefined,
+      'MESSAGE-INTEGRITY' = undefined,'NONCE' = undefined,'REALM' = undefined,
+      'REQUESTED-ADDRESS-FAMILY' = undefined,
+      'REQUESTED-TRANSPORT' = undefined,'SOFTWARE' = undefined,
+      'UNKNOWN-ATTRIBUTES' = [],'USERNAME' = undefined,
+      'XOR-MAPPED-ADDRESS' = undefined,'XOR-PEER-ADDRESS' = [],
+      'XOR-RELAYED-ADDRESS' = undefined} (stun:process_data/3:457)
+2026-10-21 13:18:02.276225+00:00 [debug] Responding to STUN request [TLS, session p0nuigzecnn0, anonymous, client 127.0.0.1:56616] (stun:process/4:357)
+2026-10-21 13:18:02.276311+00:00 [debug] Running 'stun_query' hook [TLS, session p0nuigzecnn0, anonymous, client 127.0.0.1:56616] (stun:run_hook/3:747)
+2026-10-21 13:18:02.276390+00:00 [debug] Got 'stun_query' event [TLS, session p0nuigzecnn0, anonymous, client 127.0.0.1:56616] (eturnal_module:handle_event/2:177)
+2026-10-21 13:18:02.276421+00:00 [debug] Calling mod_log_stun:handle_event/2 [TLS, session p0nuigzecnn0, anonymous, client 127.0.0.1:56616] (eturnal_module:handle_event/2:180)
+2026-10-21 13:18:02.276459+00:00 [info] Responding to STUN request [TLS, session p0nuigzecnn0, anonymous, client 127.0.0.1:56616] (mod_log_stun:handle_event/2:44)
+2026-10-21 13:18:02.276485+00:00 [debug] Calling mod_stats_influx:handle_event/2 [TLS, session p0nuigzecnn0, anonymous, client 127.0.0.1:56616] (eturnal_module:handle_event/2:180)
+2026-10-21 13:18:02.276524+00:00 [debug] Writing STUN query event to InfluxDB [TLS, session p0nuigzecnn0, anonymous, client 127.0.0.1:56616] (mod_stats_influx:on_stun_query/1:76)
+2026-10-21 13:18:02.276671+00:00 [debug] Calling mod_stats_prometheus:handle_event/2 [TLS, session p0nuigzecnn0, anonymous, client 127.0.0.1:56616] (eturnal_module:handle_event/2:180)
+2026-10-21 13:18:02.276701+00:00 [debug] Observing STUN query for Prometheus [TLS, session p0nuigzecnn0, anonymous, client 127.0.0.1:56616] (mod_stats_prometheus:on_stun_query/1:166)
+2026-10-21 13:18:02.276759+00:00 [debug] Sending:
+#stun{class = response,method = 1,magic = 554869826,
+      trid = 62970141800254031298909509873,raw = <<>>,unsupported = [],
+      'ALTERNATE-SERVER' = undefined,'CHANNEL-NUMBER' = undefined,
+      'DATA' = undefined,'DONT-FRAGMENT' = false,'ERROR-CODE' = undefined,
+      'LIFETIME' = undefined,'MAPPED-ADDRESS' = undefined,
+      'MESSAGE-INTEGRITY' = undefined,'NONCE' = undefined,'REALM' = undefined,
+      'REQUESTED-ADDRESS-FAMILY' = undefined,
+      'REQUESTED-TRANSPORT' = undefined,'SOFTWARE' = <<"eturnal">>,
+      'UNKNOWN-ATTRIBUTES' = [],'USERNAME' = undefined,
+      'XOR-MAPPED-ADDRESS' = {{127,0,0,1},56616},
+      'XOR-PEER-ADDRESS' = [],'XOR-RELAYED-ADDRESS' = undefined} (stun:send/3:500)
+2026-10-21 13:18:02.277084+00:00 [info] Connection reset by peer [TLS, session p0nuigzecnn0, anonymous, client 127.0.0.1:56616] (stun:handle_info/3:206)
+2026-10-21 13:18:02.300468+00:00 [info] Accepting connection: 127.0.0.1:42108 -> 127.0.0.1:34781 [TCP|TLS, session g1xutmzqbdsz] (stun_acceptor:accept/3:158)
+2026-10-21 13:18:02.300562+00:00 [debug] Determined transport protocol: TCP (stun:is_tls_handshake/1:693)
+2026-10-21 13:18:02.300770+00:00 [debug] Received:
+#stun{class = request,method = 1,magic = 554869826,
+      trid = 10284063001937850243295075690,raw = <<>>,unsupported = [],
+      'ALTERNATE-SERVER' = undefined,'CHANNEL-NUMBER' = undefined,
+      'DATA' = undefined,'DONT-FRAGMENT' = false,'ERROR-CODE' = undefined,
+      'LIFETIME' = undefined,'MAPPED-ADDRESS' = undefined,
+      'MESSAGE-INTEGRITY' = undefined,'NONCE' = undefined,'REALM' = undefined,
+      'REQUESTED-ADDRESS-FAMILY' = undefined,
+      'REQUESTED-TRANSPORT' = undefined,'SOFTWARE' = undefined,
+      'UNKNOWN-ATTRIBUTES' = [],'USERNAME' = undefined,
+      'XOR-MAPPED-ADDRESS' = undefined,'XOR-PEER-ADDRESS' = [],
+      'XOR-RELAYED-ADDRESS' = undefined} (stun:process_data/3:457)
+2026-10-21 13:18:02.300867+00:00 [debug] Responding to STUN request [TCP, session g1xutmzqbdsz, anonymous, client 127.0.0.1:42108] (stun:process/4:357)
+2026-10-21 13:18:02.300912+00:00 [debug] Running 'stun_query' hook [TCP, session g1xutmzqbdsz, anonymous, client 127.0.0.1:42108] (stun:run_hook/3:747)
+2026-10-21 13:18:02.300943+00:00 [debug] Got 'stun_query' event [TCP, session g1xutmzqbdsz, anonymous, client 127.0.0.1:42108] (eturnal_module:handle_event/2:177)
+2026-10-21 13:18:02.300987+00:00 [debug] Calling mod_log_stun:handle_event/2 [TCP, session g1xutmzqbdsz, anonymous, client 127.0.0.1:42108] (eturnal_module:handle_event/2:180)
+2026-10-21 13:18:02.301027+00:00 [info] Responding to STUN request [TCP, session g1xutmzqbdsz, anonymous, client 127.0.0.1:42108] (mod_log_stun:handle_event/2:44)
+2026-10-21 13:18:02.301061+00:00 [debug] Calling mod_stats_influx:handle_event/2 [TCP, session g1xutmzqbdsz, anonymous, client 127.0.0.1:42108] (eturnal_module:handle_event/2:180)
+2026-10-21 13:18:02.301090+00:00 [debug] Writing STUN query event to InfluxDB [TCP, session g1xutmzqbdsz, anonymous, client 127.0.0.1:42108] (mod_stats_influx:on_stun_query/1:76)
+2026-10-21 13:18:02.301217+00:00 [debug] Calling mod_stats_prometheus:handle_event/2 [TCP, session g1xutmzqbdsz, anonymous, client 127.0.0.1:42108] (eturnal_module:handle_event/2:180)
+2026-10-21 13:18:02.301253+00:00 [debug] Observing STUN query for Prometheus [TCP, session g1xutmzqbdsz, anonymous, client 127.0.0.1:42108] (mod_stats_prometheus:on_stun_query/1:166)
+2026-10-21 13:18:02.301359+00:00 [debug] Sending:
+#stun{class = response,method = 1,magic = 554869826,
+      trid = 10284063001937850243295075690,raw = <<>>,unsupported = [],
+      'ALTERNATE-SERVER' = undefined,'CHANNEL-NUMBER' = undefined,
+      'DATA' = undefined,'DONT-FRAGMENT' = false,'ERROR-CODE' = undefined,
+      'LIFETIME' = undefined,'MAPPED-ADDRESS' = undefined,
+      'MESSAGE-INTEGRITY' = undefined,'NONCE' = undefined,'REALM' = undefined,
+      'REQUESTED-ADDRESS-FAMILY' = undefined,
+      'REQUESTED-TRANSPORT' = undefined,'SOFTWARE' = <<"eturnal">>,
+      'UNKNOWN-ATTRIBUTES' = [],'USERNAME' = undefined,
+      'XOR-MAPPED-ADDRESS' = {{127,0,0,1},42108},
+      'XOR-PEER-ADDRESS' = [],'XOR-RELAYED-ADDRESS' = undefined} (stun:send/3:500)
+2026-10-21 13:18:02.302864+00:00 [info] Connection reset by peer [TCP, session g1xutmzqbdsz, anonymous, client 127.0.0.1:42108] (stun:handle_info/3:206)
+2026-10-21 13:18:02.325329+00:00 [info] Accepting connection: 127.0.0.1:42114 -> 127.0.0.1:34781 [TCP|TLS, session t1h4xme6jqfu] (stun_acceptor:accept/3:158)
+2026-10-21 13:18:02.325457+00:00 [debug] Determined transport protocol: TLS (stun:is_tls_handshake/1:690)
+2026-10-21 13:18:03.334250+00:00 [debug] Received:
+#stun{class = request,method = 1,magic = 554869826,
+      trid = 78138568865468904130387027641,raw = <<>>,unsupported = [],
+      'ALTERNATE-SERVER' = undefined,'CHANNEL-NUMBER' = undefined,
+      'DATA' = undefined,'DONT-FRAGMENT' = false,'ERROR-CODE' = undefined,
+      'LIFETIME' = undefined,'MAPPED-ADDRESS' = undefined,
+      'MESSAGE-INTEGRITY' = undefined,'NONCE' = undefined,'REALM' = undefined,
+      'REQUESTED-ADDRESS-FAMILY' = undefined,
+      'REQUESTED-TRANSPORT' = undefined,'SOFTWARE' = undefined,
+      'UNKNOWN-ATTRIBUTES' = [],'USERNAME' = undefined,
+      'XOR-MAPPED-ADDRESS' = undefined,'XOR-PEER-ADDRESS' = [],
+      'XOR-RELAYED-ADDRESS' = undefined} (stun:process_data/3:457)
+2026-10-21 13:18:03.334459+00:00 [debug] Responding to STUN request [TLS, session t1h4xme6jqfu, anonymous, client 127.0.0.1:42114] (stun:process/4:357)
+2026-10-21 13:18:03.334577+00:00 [debug] Running 'stun_query' hook [TLS, session t1h4xme6jqfu, anonymous, client 127.0.0.1:42114] (stun:run_hook/3:747)
+2026-10-21 13:18:03.334697+00:00 [debug] Got 'stun_query' event [TLS, session t1h4xme6jqfu, anonymous, client 127.0.0.1:42114] (eturnal_module:handle_event/2:177)
+2026-10-21 13:18:03.334765+00:00 [debug] Calling mod_log_stun:handle_event/2 [TLS, session t1h4xme6jqfu, anonymous, client 127.0.0.1:42114] (eturnal_module:handle_event/2:180)
+2026-10-21 13:18:03.334818+00:00 [info] Responding to STUN request [TLS, session t1h4xme6jqfu, anonymous, client 127.0.0.1:42114] (mod_log_stun:handle_event/2:44)
+2026-10-21 13:18:03.334881+00:00 [debug] Calling mod_stats_influx:handle_event/2 [TLS, session t1h4xme6jqfu, anonymous, client 127.0.0.1:42114] (eturnal_module:handle_event/2:180)
+2026-10-21 13:18:03.334941+00:00 [debug] Writing STUN query event to InfluxDB [TLS, session t1h4xme6jqfu, anonymous, client 127.0.0.1:42114] (mod_stats_influx:on_stun_query/1:76)
+2026-10-21 13:18:03.335181+00:00 [debug] Calling mod_stats_prometheus:handle_event/2 [TLS, session t1h4xme6jqfu, anonymous, client 127.0.0.1:42114] (eturnal_module:handle_event/2:180)
+2026-10-21 13:18:03.335233+00:00 [debug] Observing STUN query for Prometheus [TLS, session t1h4xme6jqfu, anonymous, client 127.0.0.1:42114] (mod_stats_prometheus:on_stun_query/1:166)
+2026-10-21 13:18:03.335362+00:00 [debug] Sending:
+#stun{class = response,method = 1,magic = 554869826,
+      trid = 78138568865468904130387027641,raw = <<>>,unsupported = [],
+      'ALTERNATE-SERVER' = undefined,'CHANNEL-NUMBER' = undefined,
+      'DATA' = undefined,'DONT-FRAGMENT' = false,'ERROR-CODE' = undefined,
+      'LIFETIME' = undefined,'MAPPED-ADDRESS' = undefined,
+      'MESSAGE-INTEGRITY' = undefined,'NONCE' = undefined,'REALM' = undefined,
+      'REQUESTED-ADDRESS-FAMILY' = undefined,
+      'REQUESTED-TRANSPORT' = undefined,'SOFTWARE' = <<"eturnal">>,
+      'UNKNOWN-ATTRIBUTES' = [],'USERNAME' = undefined,
+      'XOR-MAPPED-ADDRESS' = {{127,0,0,1},42114},
+      'XOR-PEER-ADDRESS' = [],'XOR-RELAYED-ADDRESS' = undefined} (stun:send/3:500)
+2026-10-21 13:18:03.335634+00:00 [info] Connection reset by peer [TLS, session t1h4xme6jqfu, anonymous, client 127.0.0.1:42114] (stun:handle_info/3:206)
+2026-10-21 13:18:03.359856+00:00 [debug] No NOTIFY_SOCKET, dropping STOPPING=1 notification (eturnal_systemd:handle_cast/2:102)
+2026-10-21 13:18:03.359891+00:00 [debug] Terminating eturnal (shutdown) (eturnal:terminate/2:186)
+2026-10-21 13:18:03.360149+00:00 [info] Stopped listening on 127.0.0.1:34780 (udp) (eturnal:stop_listeners/1:442)
+2026-10-21 13:18:03.360341+00:00 [info] Stopped listening on 127.0.0.1:34780 (tcp) (eturnal:stop_listeners/1:442)
+2026-10-21 13:18:03.360535+00:00 [info] Stopped listening on 127.0.0.1:53490 (tls) (eturnal:stop_listeners/1:442)
+2026-10-21 13:18:03.360707+00:00 [info] Stopped listening on 127.0.0.1:34781 (auto) (eturnal:stop_listeners/1:442)
+2026-10-21 13:18:03.361323+00:00 [debug] Calling mod_stats_influx:stop/1 (eturnal_module:stop/1:163)
+2026-10-21 13:18:03.361434+00:00 [debug] Stopping mod_stats_influx (mod_stats_influx:stop/0:61)
+2026-10-21 13:18:03.361534+00:00 [info] Stopped mod_stats_influx (eturnal:stop_modules/1:397)
+2026-10-21 13:18:03.362307+00:00 [debug] Calling mod_log_stun:stop/1 (eturnal_module:stop/1:163)
+2026-10-21 13:18:03.362462+00:00 [debug] Stopping mod_log_stun (mod_log_stun:stop/0:49)
+2026-10-21 13:18:03.362560+00:00 [info] Stopped mod_log_stun (eturnal:stop_modules/1:397)
+2026-10-21 13:18:03.363968+00:00 [debug] Calling mod_stats_prometheus:stop/1 (eturnal_module:stop/1:163)
+2026-10-21 13:18:03.364103+00:00 [debug] Stopping mod_stats_prometheus (mod_stats_prometheus:stop/0:110)
+2026-10-21 13:18:03.364415+00:00 [info] Stopped mod_stats_prometheus (eturnal:stop_modules/1:397)
+2026-10-21 13:18:03.364849+00:00 [debug] Removed run/cert.pem (eturnal:clean_run_dir/0:875)
+2026-10-21 13:18:03.364974+00:00 [debug] Terminating eturnal_systemd (shutdown) (eturnal_systemd:terminate/2:137)
+2026-10-21 13:18:03.365131+00:00 [notice] Stopping eturnal 1.12.3 on Erlang/OTP 29 (ERTS 17.1) (eturnal_app:stop/1:53)
